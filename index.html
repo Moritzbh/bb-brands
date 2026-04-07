@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRYFT Studio — Wir bauen deine Marke online. Komplett.</title>
+    <meta name="description" content="Branding, Shopify Store, E-Mail-Marketing, Backend-Systeme, Kampagnen — alles aus einer Hand. KI-gestützt, strategisch, für D2C-Marken.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* ====== RESET ====== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #020202;
+            --bg-surface: #111113;
+            --bg-elevated: #1a1a1f;
+            --bg-light: #f8fafc;
+            --bg-light-alt: #f1f5f9;
+            --text-primary: #eae7e4;
+            --text-heading: #ededed;
+            --text-body: #85868b;
+            --text-muted: #4d4d50;
+            --text-dark: #0f172a;
+            --text-dark-muted: #64748b;
+            --accent: #f97316;
+            --accent-light: #fb923c;
+            --accent-dark: #ea580c;
+            --accent-glow: rgba(249, 115, 22, 0.15);
+            --border: rgba(237, 237, 237, 0.12);
+            --border-light: #e2e8f0;
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1200px;
+            --section-pad: 140px;
+        }
+
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: white; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ====== NAV ====== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0 40px; background: rgba(2,2,2,0.92);
+            border-bottom: 1px solid var(--border); transition: all 0.3s;
+        }
+        .nav-inner {
+            max-width: var(--max-width); margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; height: 64px;
+        }
+        .logo { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--text-body); transition: color 0.2s; letter-spacing: 0.5px; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-cta {
+            padding: 10px 24px; background: var(--text-heading); color: var(--bg);
+            font-family: var(--font-display); font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; border: none;
+        }
+        .nav-cta:hover { background: var(--accent); color: white; }
+
+        /* ====== HERO ====== */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 140px 40px 60px; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 900px; height: 900px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner { max-width: 900px; position: relative; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border: 1px solid var(--border);
+            font-family: var(--font-mono); font-size: 11px; color: var(--accent);
+            letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 32px;
+        }
+        .hero-badge .dot { width: 6px; height: 6px; background: var(--accent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .hero h1 {
+            font-family: var(--font-display); font-size: clamp(38px, 5.5vw, 72px);
+            font-weight: 800; line-height: 1.05; letter-spacing: -2px;
+            color: var(--text-heading); margin-bottom: 24px;
+        }
+        .hero h1 .accent { color: var(--accent); }
+        .hero-sub {
+            font-size: 17px; font-weight: 300; line-height: 1.75;
+            color: var(--text-body); max-width: 620px; margin: 0 auto 40px;
+        }
+        .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--accent-dark));
+            color: white; border: none; font-family: var(--font-display);
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(249,115,22,0.25), 0 0 80px rgba(249,115,22,0.1); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 36px; background: transparent; color: var(--text-primary);
+            border: 1px solid var(--border); font-family: var(--font-display);
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-ghost:hover { border-color: rgba(237,237,237,0.3); background: rgba(255,255,255,0.03); }
+        .hero-qualifier { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.5px; }
+
+        /* Hero Mockup — Browser Frame */
+        .hero-mockup {
+            margin-top: 80px; position: relative;
+            max-width: 1060px; margin-left: auto; margin-right: auto;
+        }
+        .browser-frame {
+            border: 1px solid rgba(237,237,237,0.08);
+            background: var(--bg-surface); overflow: hidden;
+        }
+        .browser-bar {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 16px; background: var(--bg-elevated);
+            border-bottom: 1px solid rgba(237,237,237,0.06);
+        }
+        .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .browser-dot.r { background: #ff5f57; }
+        .browser-dot.y { background: #febc2e; }
+        .browser-dot.g { background: #28c840; }
+        .browser-url {
+            flex: 1; margin-left: 12px; padding: 6px 14px;
+            background: rgba(255,255,255,0.04); border-radius: 6px;
+            font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+        }
+        .browser-content {
+            position: relative; overflow: hidden;
+        }
+        .browser-content img {
+            width: 100%; display: block;
+            filter: brightness(0.85);
+            transition: filter 0.3s;
+        }
+        .browser-frame:hover .browser-content img { filter: brightness(0.95); }
+        .hero-mockup-glow {
+            position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+            width: 80%; height: 120px;
+            background: radial-gradient(ellipse, rgba(249,115,22,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ====== TRUST / LOGO MARQUEE ====== */
+        .trust-section {
+            padding: 60px 40px; border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border); overflow: hidden;
+        }
+        .trust-label {
+            text-align: center; font-family: var(--font-mono); font-size: 11px;
+            color: var(--text-body); letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        .marquee-wrapper { position: relative; width: 100%; overflow: hidden; }
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+        }
+        .marquee-wrapper::before { left: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 100%); }
+        .marquee-wrapper::after { right: 0; background: linear-gradient(270deg, var(--bg) 0%, transparent 100%); }
+        .marquee-track {
+            display: flex; gap: 64px; align-items: center;
+            animation: marquee 25s linear infinite; width: max-content;
+        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-logo {
+            flex-shrink: 0; height: 24px; padding: 0 12px;
+            font-family: var(--font-display); font-size: 16px; font-weight: 700;
+            color: var(--text-body); white-space: nowrap; opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .marquee-logo:hover { opacity: 1; color: var(--text-primary); }
+
+        /* ====== STATS BAR ====== */
+        .stats-bar { padding: 80px 40px; }
+        .stats-grid {
+            max-width: var(--max-width); margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center;
+        }
+        .stat-item .stat-number {
+            font-family: var(--font-display); font-size: 48px; font-weight: 800;
+            color: var(--text-heading); letter-spacing: -2px; line-height: 1;
+        }
+        .stat-item .stat-number .acc { color: var(--accent); }
+        .stat-item .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+
+        /* ====== COMMON SECTION ====== */
+        .dark-section { padding: var(--section-pad) 40px; }
+        .section-inner { max-width: var(--max-width); margin: 0 auto; }
+        .section-label {
+            font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: var(--font-display); font-size: clamp(30px, 4vw, 52px);
+            font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+            color: var(--text-heading); margin-bottom: 16px;
+        }
+        .section-subtitle { font-size: 16px; font-weight: 300; color: var(--text-body); max-width: 560px; line-height: 1.75; }
+        .section-header-center { text-align: center; }
+        .section-header-center .section-subtitle { margin: 0 auto; }
+        .light-section {
+            background: linear-gradient(var(--bg-light), var(--bg-light-alt) 40%, var(--bg-light));
+            padding: var(--section-pad) 40px; position: relative;
+        }
+        .light-section .section-title { color: var(--text-dark); }
+        .light-section .section-subtitle { color: var(--text-dark-muted); }
+
+        /* ====== PROBLEMS ====== */
+        .problems-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 2px; margin-top: 64px; background: var(--border);
+        }
+        .problem-card { padding: 44px; background: var(--bg); transition: all 0.3s; }
+        .problem-card:hover { background: var(--bg-surface); }
+        .problem-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 2px; margin-bottom: 16px; }
+        .problem-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-heading); margin-bottom: 12px; }
+        .problem-card p { font-size: 14px; font-weight: 300; color: var(--text-body); line-height: 1.75; }
+
+        /* ====== SERVICES / METHODOLOGY — Light ====== */
+        .method-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 2px; margin-top: 64px; background: var(--border-light);
+        }
+        .method-card { padding: 48px; background: white; transition: all 0.3s; }
+        .method-card:hover { transform: scale(1.01); }
+        .method-card.full-width { grid-column: 1 / -1; }
+        .method-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
+        .method-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; letter-spacing: -0.5px; }
+        .method-card p { font-size: 15px; font-weight: 300; color: var(--text-dark-muted); line-height: 1.75; max-width: 500px; }
+        .method-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .method-tag { padding: 4px 12px; border: 1px solid var(--border-light); font-size: 12px; color: var(--text-dark-muted); }
+
+        /* Method visual placeholder */
+        .method-visual {
+            width: 100%; aspect-ratio: 16/8; margin-top: 24px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .method-visual span {
+            font-family: var(--font-mono); font-size: 11px;
+            letter-spacing: 2px; color: var(--text-dark-muted); opacity: 0.5;
+        }
+
+        /* ====== CASE STUDIES ====== */
+        .cases-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px; margin-top: 64px; background: var(--border);
+        }
+        .case-card {
+            background: var(--bg); transition: all 0.3s;
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .case-card:hover { background: var(--bg-surface); }
+        .case-img {
+            width: 100%; aspect-ratio: 4/3; position: relative; overflow: hidden;
+        }
+        .case-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s; filter: brightness(0.8);
+        }
+        .case-card:hover .case-img img { transform: scale(1.05); }
+        .case-img-placeholder {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-size: 11px;
+            letter-spacing: 2px; color: var(--text-muted);
+        }
+        .case-img-placeholder.beauty { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); }
+        .case-img-placeholder.sport { background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #1a1a1a); }
+        .case-img-placeholder.edu { background: linear-gradient(135deg, #1a0a2e, #2d1b4e, #1a0a2e); }
+        .case-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+        .case-tag {
+            font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+        }
+        .case-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-heading); margin-bottom: 12px; line-height: 1.3; }
+        .case-card .case-desc { font-size: 14px; font-weight: 300; color: var(--text-body); line-height: 1.75; flex: 1; }
+        .case-stats {
+            display: flex; gap: 24px; margin-top: 20px; padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .case-stat-val { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text-heading); }
+        .case-stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+        .case-quote {
+            margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+            font-size: 13px; font-style: italic; font-weight: 300; color: var(--text-body); line-height: 1.7;
+        }
+        .case-quote::before { content: '\201C'; color: var(--accent); font-size: 18px; font-style: normal; margin-right: 2px; }
+
+        /* ====== GUARANTEE ====== */
+        .guarantee {
+            padding: var(--section-pad) 40px; text-align: center; position: relative;
+        }
+        .guarantee::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .guarantee-inner { max-width: 700px; margin: 0 auto; position: relative; }
+        .guarantee-badge {
+            display: inline-block; padding: 8px 20px;
+            border: 1px solid rgba(249,115,22,0.3); background: rgba(249,115,22,0.05);
+            font-family: var(--font-mono); font-size: 11px; color: var(--accent);
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 32px;
+        }
+        .guarantee h2 {
+            font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800; color: var(--text-heading); letter-spacing: -1px; line-height: 1.15; margin-bottom: 20px;
+        }
+        .guarantee p { font-size: 16px; font-weight: 300; color: var(--text-body); line-height: 1.75; margin-bottom: 40px; }
+
+        /* ====== PACKAGES ====== */
+        .packages-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px; margin-top: 64px; background: var(--border-light);
+        }
+        .package-card {
+            padding: 44px; background: white; display: flex;
+            flex-direction: column; transition: all 0.3s; position: relative;
+        }
+        .package-card:hover { transform: scale(1.01); }
+        .package-card.featured { background: var(--text-dark); color: white; }
+        .package-card.featured .package-name, .package-card.featured .package-price { color: var(--accent); }
+        .package-card.featured .package-title { color: white; }
+        .package-card.featured .package-desc, .package-card.featured .package-features li { color: rgba(255,255,255,0.6); }
+        .package-card.featured .package-features li::before { background: var(--accent); }
+        .package-card.featured .package-features li { border-bottom-color: rgba(255,255,255,0.1); }
+        .package-badge { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-light), var(--accent), var(--accent-dark)); }
+        .package-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+        .package-title { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--text-dark); letter-spacing: -0.5px; margin-bottom: 4px; }
+        .package-price { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 16px; }
+        .package-desc { font-size: 14px; font-weight: 300; color: var(--text-dark-muted); line-height: 1.7; margin-bottom: 24px; }
+        .package-features { list-style: none; flex: 1; margin-bottom: 28px; }
+        .package-features li {
+            font-size: 13px; color: var(--text-dark-muted); padding: 7px 0;
+            border-bottom: 1px solid var(--border-light); display: flex;
+            align-items: center; gap: 10px; font-weight: 300;
+        }
+        .package-features li::before { content: ''; width: 4px; height: 4px; background: var(--text-dark-muted); flex-shrink: 0; }
+        .package-cta {
+            padding: 14px 28px; font-family: var(--font-display); font-size: 13px;
+            font-weight: 600; cursor: pointer; text-align: center; transition: all 0.2s; border: none;
+        }
+        .package-cta.primary { background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--accent-dark)); color: white; }
+        .package-cta.primary:hover { box-shadow: 0 0 30px rgba(249,115,22,0.3); }
+        .package-cta.outline { background: transparent; color: var(--text-dark); border: 1px solid var(--border-light); }
+        .package-cta.outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ====== PROCESS ====== */
+        .process-steps {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 2px; margin-top: 64px; background: var(--border-light);
+        }
+        .process-step { padding: 40px 32px; background: white; }
+        .process-step:hover { background: var(--bg-light); }
+        .step-num {
+            font-family: var(--font-display); font-size: 56px; font-weight: 800;
+            color: var(--bg-light-alt); line-height: 1; margin-bottom: 16px;
+            -webkit-text-stroke: 1px var(--border-light);
+        }
+        .process-step h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+        .process-step p { font-size: 14px; font-weight: 300; color: var(--text-dark-muted); line-height: 1.7; }
+
+        /* ====== ABOUT ====== */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 2px; margin-top: 64px; background: var(--border);
+        }
+        .about-photo {
+            background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+            display: flex; align-items: center; justify-content: center;
+            min-height: 500px; position: relative; overflow: hidden;
+        }
+        .about-photo-placeholder {
+            font-family: var(--font-mono); font-size: 11px;
+            letter-spacing: 2px; color: var(--text-muted);
+        }
+        .about-content { padding: 64px; background: var(--bg); display: flex; flex-direction: column; justify-content: center; }
+        .about-content p { font-size: 16px; font-weight: 300; color: var(--text-body); line-height: 1.85; margin-bottom: 20px; }
+        .about-content p strong { color: var(--text-primary); font-weight: 500; }
+        .about-values-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 2px; margin-top: 64px; background: var(--border);
+        }
+        .about-value { padding: 28px; background: var(--bg); }
+        .about-value:hover { background: var(--bg-surface); }
+        .about-value h4 { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px; }
+        .about-value p { font-size: 13px; font-weight: 300; color: var(--text-body); line-height: 1.7; }
+
+        /* ====== FAQ ====== */
+        .faq-list { max-width: 800px; margin: 64px auto 0; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-question {
+            width: 100%; background: none; border: none; padding: 24px 0;
+            display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+            font-family: var(--font-display); font-size: 16px; font-weight: 600;
+            color: var(--text-heading); text-align: left; transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--accent); }
+        .faq-icon { font-size: 20px; color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 24px; }
+        .faq-answer p { font-size: 14px; font-weight: 300; color: var(--text-body); line-height: 1.75; }
+
+        /* ====== FINAL CTA ====== */
+        .final-cta { padding: var(--section-pad) 40px; position: relative; }
+        .final-cta::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 700px; height: 700px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-inner {
+            max-width: 900px; margin: 0 auto; position: relative;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border);
+        }
+        .cta-content { padding: 56px; background: var(--bg); }
+        .cta-content .section-title { margin-bottom: 16px; }
+        .cta-checks { list-style: none; margin: 24px 0 0; }
+        .cta-checks li {
+            font-size: 14px; font-weight: 300; color: var(--text-body); padding: 8px 0;
+            display: flex; align-items: flex-start; gap: 12px; line-height: 1.6;
+        }
+        .cta-checks li::before { content: ''; width: 6px; height: 6px; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
+        .cta-contact { padding: 56px; background: var(--bg-surface); }
+        .cta-contact h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-heading); margin-bottom: 24px; }
+        .form-field { margin-bottom: 16px; }
+        .form-field label {
+            display: block; font-size: 11px; font-family: var(--font-mono);
+            color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;
+        }
+        .form-field input, .form-field textarea {
+            width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border);
+            color: var(--text-primary); font-family: var(--font-body); font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.2s;
+        }
+        .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
+        .form-field textarea { resize: vertical; min-height: 80px; }
+        .form-submit {
+            width: 100%; padding: 14px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--accent-dark));
+            color: white; border: none; font-family: var(--font-display);
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .form-submit:hover { box-shadow: 0 0 40px rgba(249,115,22,0.25); }
+        .cta-micro { margin-top: 12px; font-size: 11px; color: var(--text-muted); text-align: center; }
+
+        /* ====== FOOTER ====== */
+        footer { padding: 40px; border-top: 1px solid var(--border); }
+        .footer-inner {
+            max-width: var(--max-width); margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-left { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.5px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { font-size: 12px; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-body); }
+
+        /* ====== REVEAL ====== */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .packages-grid, .cases-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .cta-inner, .about-grid { grid-template-columns: 1fr; }
+            .about-photo { min-height: 300px; }
+        }
+        @media (max-width: 768px) {
+            :root { --section-pad: 100px; }
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .dark-section, .light-section, .guarantee, .final-cta { padding: var(--section-pad) 20px; }
+            .hero { padding: 120px 20px 60px; }
+            .stats-bar, .trust-section { padding: 60px 20px; }
+            .hero h1 { font-size: 32px; letter-spacing: -1px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .stat-item .stat-number { font-size: 36px; }
+            .problems-grid, .method-grid, .cases-grid, .packages-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-values-grid { grid-template-columns: 1fr; }
+            .cta-inner { grid-template-columns: 1fr; }
+            .hero-actions { flex-direction: column; align-items: center; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            .hero-mockup { margin-top: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ NAV ============ -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">DRYFT</a>
+            <ul class="nav-links">
+                <li><a href="#leistungen">Leistungen</a></li>
+                <li><a href="#pakete">Pakete</a></li>
+                <li><a href="#cases">Projekte</a></li>
+                <li><a href="#prozess">Prozess</a></li>
+                <li><a href="#about">Studio</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#kontakt" class="nav-cta">Erstgespräch buchen</a>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Für D2C-Marken auf Shopify
+            </div>
+            <h1>Wir bauen deine Marke online<span class="accent">.</span><br>Komplett<span class="accent">.</span></h1>
+            <p class="hero-sub">
+                Branding, Shopify Store, E-Mail-Marketing, Kampagnen und Backend-Systeme — alles aus einer Hand, KI-gestützt, in einem Bruchteil der üblichen Zeit.
+            </p>
+            <div class="hero-actions">
+                <a href="#kontakt" class="btn-primary">
+                    Kostenloses Erstgespräch buchen
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#cases" class="btn-ghost">Projekte ansehen</a>
+            </div>
+            <p class="hero-qualifier">Wir arbeiten mit D2C-Brands die bereit sind, online professionell aufzutreten.</p>
+        </div>
+        <div class="hero-mockup reveal">
+            <div class="browser-frame">
+                <div class="browser-bar">
+                    <span class="browser-dot r"></span>
+                    <span class="browser-dot y"></span>
+                    <span class="browser-dot g"></span>
+                    <span class="browser-url">dein-brand.myshopify.com</span>
+                </div>
+                <div class="browser-content">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&q=80" alt="Shopify Store Preview — E-Commerce Beispiel">
+                </div>
+            </div>
+            <div class="hero-mockup-glow"></div>
+        </div>
+    </section>
+
+    <!-- ============ TRUST MARQUEE ============ -->
+    <section class="trust-section">
+        <div class="trust-label">Marken, die uns vertrauen</div>
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <span class="marquee-logo">WAKE PERFORMANCE</span>
+                <span class="marquee-logo">FACEVOLUTION</span>
+                <span class="marquee-logo">RDY4TAKEOFF</span>
+                <span class="marquee-logo">GLOW BOTANICS</span>
+                <span class="marquee-logo">URBAN ROOTS</span>
+                <span class="marquee-logo">VITALÉ</span>
+                <span class="marquee-logo">NØRD SKINCARE</span>
+                <span class="marquee-logo">KINETIC WEAR</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-logo">WAKE PERFORMANCE</span>
+                <span class="marquee-logo">FACEVOLUTION</span>
+                <span class="marquee-logo">RDY4TAKEOFF</span>
+                <span class="marquee-logo">GLOW BOTANICS</span>
+                <span class="marquee-logo">URBAN ROOTS</span>
+                <span class="marquee-logo">VITALÉ</span>
+                <span class="marquee-logo">NØRD SKINCARE</span>
+                <span class="marquee-logo">KINETIC WEAR</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats-bar">
+        <div class="stats-grid reveal">
+            <div class="stat-item">
+                <div class="stat-number"><span class="acc">1</span></div>
+                <div class="stat-label">Studio für alles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="acc">2</span> Wo.</div>
+                <div class="stat-label">Vom Briefing zum Go-Live</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="acc">5</span>+</div>
+                <div class="stat-label">Disziplinen unter einem Dach</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="acc">100</span>%</div>
+                <div class="stat-label">Geld-zurück-Garantie</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROBLEMS ============ -->
+    <section class="dark-section">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-label">Das Problem</div>
+                <h2 class="section-title">Deine Marke ist online zerstückelt.</h2>
+                <p class="section-subtitle">Eine Agentur für den Store, ein Freelancer fürs Branding, ein Tool für E-Mails. Nichts passt zusammen — und du managst alles selbst.</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-num">01</div>
+                    <h3>5 Dienstleister, 0 roten Faden.</h3>
+                    <p>Branding kommt von hier, der Store von da, E-Mail-Marketing ist DIY. Das Ergebnis: Deine Marke fühlt sich online nicht wie eine Marke an.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">02</div>
+                    <h3>Du zahlst doppelt — für halbe Ergebnisse.</h3>
+                    <p>Jeder Dienstleister arbeitet isoliert. Was der eine baut, passt nicht zu dem was der andere liefert. Du zahlst für Reibung, nicht für Ergebnis.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">03</div>
+                    <h3>Du bist Founder, nicht Projektmanager.</h3>
+                    <p>Trotzdem koordinierst du Freelancer, prüfst Designs, testest E-Mail-Flows und fragst dich: Warum mache ich das alles selbst?</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">04</div>
+                    <h3>Dein Store steht — aber deine Marke nicht.</h3>
+                    <p>Der Shop ist live, aber die Conversion ist mau. Kein durchdachtes E-Mail-Marketing, keine konsistente Markenwelt, keine Strategie hinter den Kampagnen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICES — Light ============ -->
+    <section class="light-section" id="leistungen">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-label">Was wir machen</div>
+                <h2 class="section-title">Deine komplette Online-Präsenz.<br>Strategisch. Konsistent. Aus einer Hand.</h2>
+                <p class="section-subtitle">Wir bauen nicht nur Stores. Wir bauen die Markenwelt drumherum — damit jeder Touchpoint konvertiert.</p>
+            </div>
+            <div class="method-grid">
+                <div class="method-card reveal">
+                    <div class="method-num">01 — Branding</div>
+                    <h3>Markenidentität &amp; Positionierung</h3>
+                    <p>Logo, Farbwelt, Typografie, Bildsprache, Tonalität. Eine Markenwelt die sich durch jeden Touchpoint zieht.</p>
+                    <div class="method-visual"><img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=700&h=350&fit=crop&q=80" alt="Branding & Markenidentität" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="method-tags">
+                        <span class="method-tag">Logo &amp; Visual Identity</span>
+                        <span class="method-tag">Brand Strategy</span>
+                        <span class="method-tag">Positionierung</span>
+                    </div>
+                </div>
+                <div class="method-card reveal">
+                    <div class="method-num">02 — Store</div>
+                    <h3>Shopify Store &amp; E-Commerce</h3>
+                    <p>Custom Themes, Conversion-Optimierung, Produktseiten, Checkout-Flow. Dein Store wird nicht nur schön, sondern verkauft.</p>
+                    <div class="method-visual"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&h=350&fit=crop&q=80" alt="Shopify Store Development" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="method-tags">
+                        <span class="method-tag">Custom Liquid Theme</span>
+                        <span class="method-tag">CRO</span>
+                        <span class="method-tag">Produktseiten</span>
+                    </div>
+                </div>
+                <div class="method-card reveal">
+                    <div class="method-num">03 — E-Mail</div>
+                    <h3>E-Mail-Marketing &amp; Automation</h3>
+                    <p>Welcome-Flows, Abandoned-Cart, Post-Purchase, Newsletter. Automatisiert, segmentiert, in deiner Markenstimme.</p>
+                    <div class="method-visual"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=700&h=350&fit=crop&q=80" alt="E-Mail Marketing Automation" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="method-tags">
+                        <span class="method-tag">Klaviyo / ConvertKit</span>
+                        <span class="method-tag">Flow-Setup</span>
+                        <span class="method-tag">Segmentierung</span>
+                    </div>
+                </div>
+                <div class="method-card reveal">
+                    <div class="method-num">04 — Kampagnen</div>
+                    <h3>Performance Creatives &amp; Ads</h3>
+                    <p>Datengetriebene Ad-Strategien, Creative-Produktion, A/B-Testing. Kampagnen die zu deiner Marke passen.</p>
+                    <div class="method-visual"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=350&fit=crop&q=80" alt="Performance Kampagnen & Ads" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="method-tags">
+                        <span class="method-tag">Meta Ads</span>
+                        <span class="method-tag">Creative Strategy</span>
+                        <span class="method-tag">A/B Testing</span>
+                    </div>
+                </div>
+                <div class="method-card full-width reveal">
+                    <div class="method-num">05 — Beratung &amp; Systeme</div>
+                    <h3>Strategische Beratung &amp; Backend-Systeme</h3>
+                    <p>Von der Marktanalyse über die Kanalstrategie bis zur technischen Infrastruktur. Wir denken nicht in einzelnen Maßnahmen, sondern in Systemen die zusammenspielen.</p>
+                    <div class="method-tags">
+                        <span class="method-tag">Marktanalyse</span>
+                        <span class="method-tag">Kanalstrategie</span>
+                        <span class="method-tag">Tech-Stack</span>
+                        <span class="method-tag">Automatisierung</span>
+                        <span class="method-tag">Shopify Backend</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CASES — Dark ============ -->
+    <section class="dark-section" id="cases">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-label">Projekte</div>
+                <h2 class="section-title">Marken, die wir online gebracht haben.</h2>
+                <p class="section-subtitle">Keine Stock-Photos, keine erfundenen Zahlen. Echte Projekte, echte Ergebnisse.</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card reveal">
+                    <div class="case-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=450&fit=crop&q=80" alt="Sport & Wellness Brand — Shopify Store Projekt">
+                    </div>
+                    <div class="case-body">
+                        <div class="case-tag">Sport / Wellness</div>
+                        <h3>Von null zur kompletten Online-Präsenz.</h3>
+                        <p class="case-desc">Brand Identity, Custom Shopify Store, Produktvisualisierung, Verpackungsdesign. Von der Idee zur marktfertigen D2C-Brand.</p>
+                        <div class="case-stats">
+                            <div class="case-stat-item">
+                                <div class="case-stat-val">Komplett</div>
+                                <div class="case-stat-lbl">Brand + Store + Packaging</div>
+                            </div>
+                            <div class="case-stat-item">
+                                <div class="case-stat-val">&lt; 3 Wo.</div>
+                                <div class="case-stat-lbl">Time to Launch</div>
+                            </div>
+                        </div>
+                        <div class="case-quote">Die Geschwindigkeit war absurd. Unsere komplette Marke war online, bevor die letzte Agentur ein Angebot geschickt hätte.</div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-img">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=450&fit=crop&q=80" alt="Premium Beauty Brand — Relaunch Projekt">
+                    </div>
+                    <div class="case-body">
+                        <div class="case-tag">Premium Beauty</div>
+                        <h3>Vom Hersteller-Katalog zur Premium-Brand.</h3>
+                        <p class="case-desc">Komplette Neupositionierung: Neue Markenidentität, Plattformwechsel zu Shopify, Online-Auftritt auf internationalem Niveau.</p>
+                        <div class="case-stats">
+                            <div class="case-stat-item">
+                                <div class="case-stat-val">Relaunch</div>
+                                <div class="case-stat-lbl">Plattform + Brand + Store</div>
+                            </div>
+                            <div class="case-stat-item">
+                                <div class="case-stat-val">Premium</div>
+                                <div class="case-stat-lbl">Rhode / Glossier Level</div>
+                            </div>
+                        </div>
+                        <div class="case-quote">Endlich sieht unsere Online-Präsenz so aus, wie sich unser Produkt anfühlt.</div>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-img">
+                        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=450&fit=crop&q=80" alt="Education Launch-Kampagne Projekt">
+                    </div>
+                    <div class="case-body">
+                        <div class="case-tag">Education / Launch</div>
+                        <h3>Launch-Kampagne. 5 Angles. Ausverkauft.</h3>
+                        <p class="case-desc">Komplette Launch-Strategie für einen digitalen Kurs: Strategy Deck, 5 psychologisch fundierte Creative Angles, 3-Phasen-Mediaplan.</p>
+                        <div class="case-stats">
+                            <div class="case-stat-item">
+                                <div class="case-stat-val">5+</div>
+                                <div class="case-stat-lbl">Creative Angles</div>
+                            </div>
+                            <div class="case-stat-item">
+                                <div class="case-stat-val">3 Phasen</div>
+                                <div class="case-stat-lbl">Test → Scale → Close</div>
+                            </div>
+                        </div>
+                        <div class="case-quote">Von ‚ich habe einen Kurs' zu einer professionellen Launch-Kampagne — in unter zwei Wochen.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GUARANTEE ============ -->
+    <section class="guarantee">
+        <div class="guarantee-inner reveal">
+            <div class="guarantee-badge">Unsere Garantie</div>
+            <h2>Messbare Ergebnisse — oder Geld zurück.</h2>
+            <p>Wir definieren gemeinsam ein messbares Ziel und einen Zeitraum. Wird das Ziel nicht erreicht, bekommst du dein Investment zurück. Keine versteckten Klauseln. Weil wir wissen, dass unser System funktioniert.</p>
+            <a href="#kontakt" class="btn-primary">
+                Erstgespräch buchen
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============ PACKAGES — Light ============ -->
+    <section class="light-section" id="pakete">
+        <div class="section-inner">
+            <div class="section-header-center reveal">
+                <div class="section-label">Pakete</div>
+                <h2 class="section-title">Dein Einstieg. Dein Tempo.</h2>
+                <p class="section-subtitle">Ob schneller Einstieg oder komplette Transformation — wähle das Setup das zu dir passt.</p>
+            </div>
+            <div class="packages-grid">
+                <div class="package-card reveal">
+                    <div class="package-name">Starter</div>
+                    <div class="package-title">Brand Kickstart</div>
+                    <div class="package-price">Ab 490 €</div>
+                    <p class="package-desc">Der schnelle Einstieg: KI-gestützte Analyse plus ein konkretes Ergebnis, das du sofort nutzen kannst.</p>
+                    <ul class="package-features">
+                        <li>KI-gestützte Brand- und Marktanalyse</li>
+                        <li>Store-Audit mit Conversion-Empfehlungen</li>
+                        <li>Branding-Quick-Check oder 15 Ad Creatives</li>
+                        <li>Konkrete Handlungsempfehlungen</li>
+                        <li>Lieferung in 5 Werktagen</li>
+                    </ul>
+                    <button class="package-cta outline">Starter buchen</button>
+                </div>
+                <div class="package-card featured reveal">
+                    <div class="package-badge"></div>
+                    <div class="package-name">Wachstum</div>
+                    <div class="package-title">Online-Präsenz komplett</div>
+                    <div class="package-price">Preis auf Anfrage</div>
+                    <p class="package-desc">Branding, Store, E-Mail, Kampagnen — die komplette Online-Präsenz in 3 strategischen Phasen.</p>
+                    <ul class="package-features">
+                        <li>Phase 1: Branding und Positionierung</li>
+                        <li>Phase 2: Shopify Store, E-Mail-Flows, Backend</li>
+                        <li>Phase 3: Kampagnen, Optimierung, Go-Live</li>
+                        <li>Alles konsistent, alles aus einer Hand</li>
+                        <li>Wöchentliche Strategy-Reviews</li>
+                    </ul>
+                    <button class="package-cta primary">Strategie besprechen</button>
+                </div>
+                <div class="package-card reveal">
+                    <div class="package-name">Skalierung</div>
+                    <div class="package-title">Ziel oder Geld zurück</div>
+                    <div class="package-price">Auf Anfrage</div>
+                    <p class="package-desc">Messbares Ziel, laufende Betreuung aller Kanäle, Geld-zurück-Garantie.</p>
+                    <ul class="package-features">
+                        <li>Gemeinsame Ziel-Definition mit KPIs</li>
+                        <li>Laufende Betreuung: Store, E-Mail, Kampagnen</li>
+                        <li>Branding-Evolution und CRO</li>
+                        <li>Monatliche Strategy- und Performance-Reviews</li>
+                        <li>100% Geld-zurück-Garantie</li>
+                    </ul>
+                    <button class="package-cta outline">Erstgespräch vereinbaren</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROCESS — Light ============ -->
+    <section class="light-section" id="prozess">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-label">Prozess</div>
+                <h2 class="section-title">So entsteht deine Online-Präsenz.</h2>
+                <p class="section-subtitle">Kein Wasserfall. Kein Micromanagement. Ein System, das alles zusammenbringt.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="step-num">01</div>
+                    <h3>Analyse</h3>
+                    <p>KI durchleuchtet deine Marke, deinen Markt, deine Konkurrenz und deinen aktuellen Online-Auftritt.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">02</div>
+                    <h3>Strategie</h3>
+                    <p>Positionierung, Markenwelt, Kanalstrategie. Was braucht deine Marke — und wie muss es zusammenspielen?</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">03</div>
+                    <h3>Umsetzung</h3>
+                    <p>Store, Branding, E-Mail-Flows, Kampagnen — parallel gebaut, mit einem roten Faden. KI beschleunigt, Mensch entscheidet.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-num">04</div>
+                    <h3>Optimierung</h3>
+                    <p>Live-Daten zeigen was funktioniert. Conversion, E-Mail-Performance, Kampagnen — wir optimieren kontinuierlich.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT — Dark ============ -->
+    <section class="dark-section" id="about">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-label">Studio</div>
+                <h2 class="section-title">Ein Studio. Ein Gründer.<br>Alles unter einem Dach.</h2>
+            </div>
+            <div class="about-grid reveal">
+                <div class="about-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&q=80" alt="Moritz Bohmbach — Gründer DRYFT Studio" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.85);">
+                </div>
+                <div class="about-content">
+                    <p><strong>Ich bin Moritz</strong>, und ich habe DRYFT gegründet, weil D2C-Brands etwas Besseres verdienen als fünf verschiedene Dienstleister die nicht miteinander reden.</p>
+                    <p>Ich habe auf beiden Seiten des Tisches gesessen. Als Founder weiß ich, wie frustrierend es ist, wenn Branding, Store und Marketing nicht zusammenpassen — obwohl du dafür bezahlst.</p>
+                    <p>Und als jemand, der tief in KI-Technologie steckt, weiß ich: <strong>Eine komplette Online-Präsenz muss nicht Monate dauern und fünfstellig kosten.</strong></p>
+                    <p>KI ersetzt keine Kreativität und kein strategisches Denken. KI ersetzt die Teile, die in klassischen Setups Wochen dauern. Was bleibt, ist das Wesentliche: echtes Markenverständnis, durchdachte Systeme, Design mit Haltung.</p>
+                </div>
+            </div>
+            <div class="about-values-grid reveal">
+                <div class="about-value">
+                    <h4>Ganzheitlich</h4>
+                    <p>Kein isolierter Store, kein isoliertes Branding. Alles hängt zusammen — und wir bauen es auch so.</p>
+                </div>
+                <div class="about-value">
+                    <h4>Direkt</h4>
+                    <p>Kein Account Manager, kein Ticket-System. Du redest mit mir, ich mache die Arbeit.</p>
+                </div>
+                <div class="about-value">
+                    <h4>Schnell</h4>
+                    <p>Nicht weil ich Abstriche mache, sondern weil mein Prozess radikal anders ist.</p>
+                </div>
+                <div class="about-value">
+                    <h4>Ehrlich</h4>
+                    <p>Wenn etwas keinen Sinn ergibt, sage ich das. Ich verkaufe dir nicht, was du nicht brauchst.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="dark-section" id="faq">
+        <div class="section-inner">
+            <div class="section-header-center reveal">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Häufige Fragen.</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question">Was kostet das Erstgespräch?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Nichts. 30 Minuten, kostenlos, unverbindlich. Wir schauen uns deine Situation an und sagen dir ehrlich, ob und wie wir helfen können.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Macht ihr auch Social Media Management?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Nein. Wir bauen deine Online-Präsenz: Marke, Store, E-Mail, Kampagnen. Social-Media-Accounts betreuen wir bewusst nicht — das ist ein anderes Spiel.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Arbeitet ihr nur mit Shopify?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Unser Fokus liegt klar auf Shopify. Für Branding, E-Mail-Marketing und Kampagnen ist die Plattform aber zweitrangig — da helfen wir überall.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Kann ich auch nur einen Bereich buchen?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Im Starter-Paket ja — da picken wir uns einen konkreten Bereich raus. Unsere Stärke liegt aber im Gesamtpaket: Wenn alles zusammenpasst, performen alle Kanäle besser.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Wie schnell könnt ihr starten?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>In der Regel innerhalb einer Woche nach Auftragsbestätigung. Bei eiligen Projekten auch schneller.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">Wie funktioniert die Geld-zurück-Garantie?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Wir definieren ein messbares Ziel und einen Zeitraum. Wird das Ziel nicht erreicht, bekommst du dein Geld zurück. Keine versteckten Klauseln.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta" id="kontakt">
+        <div class="section-inner">
+            <div class="cta-inner">
+                <div class="cta-content reveal">
+                    <div class="section-label">Nächster Schritt</div>
+                    <h2 class="section-title">Lass uns deine Online-Präsenz bauen.</h2>
+                    <p class="section-subtitle">30 Minuten. Kein Pitch. Wir schauen uns an, wo du stehst und zeigen dir die größten Hebel.</p>
+                    <ul class="cta-checks">
+                        <li>Analyse deiner aktuellen Online-Präsenz</li>
+                        <li>Konkrete Empfehlungen für deine nächsten Schritte</li>
+                        <li>Ehrliche Einschätzung ob und wie wir helfen können</li>
+                    </ul>
+                </div>
+                <div class="cta-contact reveal">
+                    <h3>Erstgespräch buchen</h3>
+                    <div class="form-field">
+                        <label>Name</label>
+                        <input type="text" placeholder="Dein Name">
+                    </div>
+                    <div class="form-field">
+                        <label>E-Mail</label>
+                        <input type="email" placeholder="deine@email.de">
+                    </div>
+                    <div class="form-field">
+                        <label>Website / Store URL</label>
+                        <input type="url" placeholder="https://dein-store.de">
+                    </div>
+                    <div class="form-field">
+                        <label>Wobei können wir helfen?</label>
+                        <textarea placeholder="Kurze Beschreibung deiner Situation..."></textarea>
+                    </div>
+                    <button class="form-submit">Anfrage senden</button>
+                    <p class="cta-micro">moritz@bohmbach.de — Antwort innerhalb von 24 Stunden.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">DRYFT Studio — Moritz Bohmbach — 2026</div>
+            <ul class="footer-links">
+                <li><a href="mailto:moritz@bohmbach.de">moritz@bohmbach.de</a></li>
+                <li><a href="#">Impressum</a></li>
+                <li><a href="#">Datenschutz</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+    </script>
+
+</body>
+</html>
