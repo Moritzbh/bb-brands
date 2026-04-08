@@ -3406,101 +3406,6 @@
             .process-step h4 .char { opacity: 1; transform: none; }
         }
 
-        /* ====== CASE STUDIES ====== */
-        .cases {
-            padding: var(--section-pad) 40px;
-            border-bottom: 1px solid var(--border);
-        }
-        .cases-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 24px; margin-top: 64px;
-        }
-        .case-card {
-            background: var(--bg); padding: 0;
-            display: flex; flex-direction: column; overflow: hidden;
-            transition: all 0.3s;
-            border-radius: var(--radius);
-            border: 1px solid rgba(3, 5, 198, 0.08);
-        }
-        .case-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(3, 5, 198, 0.2);
-            box-shadow: 0 20px 50px rgba(3, 5, 198, 0.1);
-        }
-        .case-visual {
-            aspect-ratio: 4/3; position: relative; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .case-visual.v1 { background: linear-gradient(135deg, #0305C6, #2325E0, #4F51F0); }
-        .case-visual.v2 { background: linear-gradient(135deg, #FF21A6, #FF66C4, #FFB3DF); }
-        .case-visual.v3 { background: linear-gradient(135deg, #0305C6, #6D0FC9, #FF21A6); }
-        .case-visual::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.5) 100%);
-        }
-        .case-mark {
-            font-family: var(--font-display); font-size: 38px; font-weight: 800;
-            color: #fff; letter-spacing: -1.2px;
-            position: relative; z-index: 2; text-align: center; padding: 20px;
-            line-height: 1.1;
-        }
-        .case-mark small {
-            display: block; font-family: var(--font-body); font-size: 10px;
-            font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            color: rgba(255,255,255,0.82); margin-top: 10px;
-        }
-        .case-body {
-            padding: 32px 30px; flex: 1;
-            display: flex; flex-direction: column;
-        }
-        .case-tag {
-            font-family: var(--font-body); font-size: 10px; font-weight: 700; letter-spacing: 2px;
-            text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
-            display: inline-block; padding: 4px 12px;
-            background: rgba(255, 33, 166, 0.08); border-radius: var(--radius-pill);
-        }
-        .case-card h3 {
-            font-family: var(--font-display); font-size: 21px; font-weight: 800;
-            color: var(--primary); margin-bottom: 12px; letter-spacing: -0.5px;
-            line-height: 1.3;
-        }
-        .case-desc {
-            font-size: 14px; font-weight: 400; color: var(--text-body);
-            line-height: 1.7; flex: 1;
-        }
-        .case-ai-strip {
-            display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-            margin-top: 16px; padding: 10px 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px dashed rgba(255, 255, 255, 0.14);
-            border-radius: 10px;
-        }
-        .case-ai-strip-label {
-            font-family: var(--font-mono, var(--font-body));
-            font-size: 10px; font-weight: 700; letter-spacing: 1px;
-            text-transform: uppercase; color: var(--text-muted);
-            margin-right: 4px;
-        }
-        .case-ai-chip {
-            font-family: var(--font-body); font-size: 11px; font-weight: 600;
-            color: var(--text-primary);
-            padding: 4px 9px; border-radius: 999px;
-            background: rgba(255, 33, 166, 0.10);
-            border: 1px solid rgba(255, 33, 166, 0.22);
-        }
-        .case-stats {
-            display: flex; gap: 24px; margin-top: 22px; padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
-        .case-stat-val {
-            font-family: var(--font-display); font-size: 22px; font-weight: 800;
-            color: var(--accent); line-height: 1; letter-spacing: -0.5px;
-        }
-        .case-stat-lbl {
-            font-size: 11px; color: var(--text-muted); margin-top: 6px;
-            letter-spacing: 0.3px; font-weight: 500;
-        }
-
         /* ====== PRICING ====== */
         .pricing {
             padding: var(--section-pad) 40px;
@@ -4029,15 +3934,6 @@
         .stat-card .stat-label { font-family: var(--font-body); font-size: 10px; font-weight: 700; letter-spacing: 0.9px; text-transform: uppercase; color: var(--text-body); }
         .stat-card .stat-meta { font-size: 11px; color: var(--text-muted); line-height: 1.45; margin-top: 2px; }
 
-        /* ====== CASE QUOTE EXTENSION ====== */
-        .case-quote { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
-        .case-quote blockquote { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.6; font-style: italic; padding-left: 16px; border-left: 2px solid var(--accent); }
-        .case-quote-author { display: flex; align-items: center; gap: 12px; }
-        .case-quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 13px; font-family: var(--font-display); letter-spacing: -0.5px; flex-shrink: 0; }
-        .case-quote-meta { display: flex; flex-direction: column; gap: 2px; }
-        .case-quote-name { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--primary); }
-        .case-quote-role { font-size: 11px; color: var(--text-muted); letter-spacing: 0.3px; }
-
         /* ====== GUARANTEES SECTION ====== */
         .guarantees { padding: var(--section-pad) 40px; background: var(--bg-surface); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
         .guarantees::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); pointer-events: none; }
@@ -4209,7 +4105,7 @@
         @media (max-width: 1024px) {
             :root { --section-pad: 110px; }
             .solution-inner, .about-grid { grid-template-columns: 1fr; gap: 56px; }
-            .cases-grid, .packages-grid, .problems-grid { grid-template-columns: 1fr; gap: 1px; }
+            .packages-grid, .problems-grid { grid-template-columns: 1fr; gap: 1px; }
             .packages-grid { gap: 20px; }
             .about-portrait { max-width: 420px; }
             .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -4220,7 +4116,7 @@
             :root { --section-pad: 90px; }
             nav.top-nav { padding: 0 20px; }
             .container, .container-narrow { padding: 0 20px; }
-            section.sect, .hero, .problem, .solution, .services, .cases, .pricing, .about, .faq, .final-cta, .trust-bar, .leadmagnet { padding-left: 20px; padding-right: 20px; }
+            section.sect, .hero, .problem, .solution, .services, .pricing, .about, .faq, .final-cta, .trust-bar, .leadmagnet { padding-left: 20px; padding-right: 20px; }
             .leadmagnet { padding-top: 80px; padding-bottom: 80px; }
             .lm-form-wrap { padding: 30px 24px 28px; }
             .lm-row-2 { grid-template-columns: 1fr; gap: 18px; }
@@ -4324,7 +4220,6 @@
             <ul class="nav-links">
                 <li><a href="#problem">Problem</a></li>
                 <li><a href="#services">Prozess</a></li>
-                <li><a href="#cases">Projekte</a></li>
                 <li><a href="#guarantees">Garantien</a></li>
                 <li><a href="#about">Studio</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -4339,7 +4234,6 @@
     <div class="mobile-overlay" id="mobileOverlay">
         <a href="#problem">Problem</a>
         <a href="#services">Prozess</a>
-        <a href="#cases">Projekte</a>
         <a href="#guarantees">Garantien</a>
         <a href="#about">Studio</a>
         <a href="#faq">FAQ</a>
@@ -4369,7 +4263,6 @@
                         Kostenloses Erstgespräch
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="#cases" class="btn-ghost">Projekte ansehen</a>
                 </div>
                 <div class="hero-guarantees">
                     <div class="hero-guarantee">
@@ -4960,119 +4853,6 @@
         </div>
     </section>
 
-    <!-- ============ CASE STUDIES ============ -->
-    <section class="cases" id="cases">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="eyebrow">Projekte</div>
-                <h2 class="section-title">Drei Marken, drei Ausgangs­lagen,<br>ein <span class="accent">roter Faden</span>.</h2>
-                <p class="section-sub">Von null auf marktreif, Repositionierung einer etablierten Brand, datengetriebener Launch, wie das in der Praxis aussieht.</p>
-            </div>
-            <div class="cases-grid">
-                <article class="case-card reveal">
-                    <div class="case-visual v1">
-                        <div class="case-mark">WAKE<small>Performance Brand</small></div>
-                    </div>
-                    <div class="case-body">
-                        <div class="case-tag">Brand · Store · Visuals · KI im Store</div>
-                        <h3>Wake Performance: Von der Idee zur conversion­optimierten D2C-Marke</h3>
-                        <p class="case-desc">Kein Logo, kein Store, keine Bildsprache, dafür ein innovatives Cooling-Gel-Produkt. Wir haben Brand Identity, Custom Dawn Theme, Produktvisualisierung und Verpackungsdesign in Rekordzeit gebaut. Aus „Ich habe ein Produkt" wurde eine Marke, der Kunden vertrauen.</p>
-                        <div class="case-ai-strip">
-                            <span class="case-ai-strip-label">+ AI Layer</span>
-                            <span class="case-ai-chip">KI-Produktberater</span>
-                            <span class="case-ai-chip">Auto-Tagging</span>
-                        </div>
-                        <div class="case-stats">
-                            <div>
-                                <div class="case-stat-val">0 → Launch</div>
-                                <div class="case-stat-lbl">Komplette Brand</div>
-                            </div>
-                            <div>
-                                <div class="case-stat-val">&lt; 3 Wo.</div>
-                                <div class="case-stat-lbl">Time-to-Market</div>
-                            </div>
-                        </div>
-                        <div class="case-quote">
-                            <blockquote>„Platzhalter-Zitat: Kurzes, ehrliches Founder-Statement zur Zusammenarbeit, wird nach Freigabe durch echtes Testimonial ersetzt."</blockquote>
-                            <div class="case-quote-author">
-                                <div class="case-quote-avatar">WP</div>
-                                <div class="case-quote-meta">
-                                    <span class="case-quote-name">Founder · Wake Performance</span>
-                                    <span class="case-quote-role">Platzhalter, Zitat folgt nach Freigabe</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="case-card reveal">
-                    <div class="case-visual v2">
-                        <div class="case-mark">FacEvolution<small>Premium Beauty</small></div>
-                    </div>
-                    <div class="case-body">
-                        <div class="case-tag">Replatforming · Repositionierung · KI im Store</div>
-                        <h3>FacEvolution: Vom Hersteller-Katalog zur Premium-DTC-Beauty-Brand</h3>
-                        <p class="case-desc">Plattformwechsel von Shoptet zu Shopify plus komplette Repositionierung. Aus einem funktionalen Produkt-Katalog wurde eine Premium-Marke mit Schwarz-Gold-Ästhetik, neuem Claim „Extreme Results. Zero Compromise." und einem Store, der ein Markenerlebnis ist, kein Regal.</p>
-                        <div class="case-ai-strip">
-                            <span class="case-ai-strip-label">+ AI Layer</span>
-                            <span class="case-ai-chip">AI Search</span>
-                            <span class="case-ai-chip">Skin-Berater</span>
-                        </div>
-                        <div class="case-stats">
-                            <div>
-                                <div class="case-stat-val">Shoptet → Shopify</div>
-                                <div class="case-stat-lbl">Saubere Migration</div>
-                            </div>
-                            <div>
-                                <div class="case-stat-val">Premium</div>
-                                <div class="case-stat-lbl">Neu­positionierung</div>
-                            </div>
-                        </div>
-                        <div class="case-quote">
-                            <blockquote>„Platzhalter-Zitat: Kurzes Statement zur Repositionierung und Migrations-Erfahrung, folgt nach Freigabe."</blockquote>
-                            <div class="case-quote-author">
-                                <div class="case-quote-avatar">FE</div>
-                                <div class="case-quote-meta">
-                                    <span class="case-quote-name">Geschäftsführung · FacEvolution</span>
-                                    <span class="case-quote-role">Platzhalter, Zitat folgt nach Freigabe</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="case-card reveal">
-                    <div class="case-visual v3">
-                        <div class="case-mark">rdy4takeoff<small>Digital Course</small></div>
-                    </div>
-                    <div class="case-body">
-                        <div class="case-tag">Strategie · Creatives · Launch</div>
-                        <h3>rdy4takeoff: Ausverkaufte Launch-Kampagne über kalten Traffic</h3>
-                        <p class="case-desc">Christoph hatte einen Online-Kurs, aber keine Go-to-Market-Strategie. Wir haben fünf Creative Angles entwickelt (Price Anchor, ROI, Authority, Scarcity, Native), einen 3-Phasen-Launch-Plan gebaut und die komplette Creative-Produktion übernommen. Aus „ich habe einen Kurs" wurde eine verkaufsfähige Kampagne.</p>
-                        <div class="case-stats">
-                            <div>
-                                <div class="case-stat-val">5+ Angles</div>
-                                <div class="case-stat-lbl">Creative-Strategie</div>
-                            </div>
-                            <div>
-                                <div class="case-stat-val">28 Tage</div>
-                                <div class="case-stat-lbl">3-Phasen-Launch</div>
-                            </div>
-                        </div>
-                        <div class="case-quote">
-                            <blockquote>„Platzhalter-Zitat: Kurzes Statement zu Launch-Erlebnis und Ergebnis, folgt nach Freigabe."</blockquote>
-                            <div class="case-quote-author">
-                                <div class="case-quote-avatar">CR</div>
-                                <div class="case-quote-meta">
-                                    <span class="case-quote-name">Christoph · rdy4takeoff</span>
-                                    <span class="case-quote-role">Platzhalter, Zitat folgt nach Freigabe</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
     <!-- ============ GUARANTEES ============ -->
     <section class="guarantees" id="guarantees">
         <div class="guarantees-container">
@@ -5390,7 +5170,6 @@
                         Kostenloses Erstgespräch buchen
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="#cases" class="btn-secondary">Erst Cases ansehen</a>
                 </div>
             </div>
             <aside class="final-cta-side reveal" aria-hidden="true">
@@ -5454,7 +5233,6 @@
                 <ul>
                     <li><a href="#problem">Problem</a></li>
                     <li><a href="#services">Prozess</a></li>
-                    <li><a href="#cases">Projekte</a></li>
                     <li><a href="#about">Über uns</a></li>
                 </ul>
             </div>
@@ -5462,7 +5240,6 @@
                 <h5>Vertrauen</h5>
                 <ul>
                     <li><a href="#guarantees">Garantien</a></li>
-                    <li><a href="#cases">Case Studies</a></li>
                     <li><a href="#resources">Wissens-Hub</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
