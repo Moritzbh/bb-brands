@@ -64,6 +64,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Preload above-the-fold hero showcase images for fast LCP -->
+    <link rel="preload" as="image" href="assets/hero-showcase-pdp-800.jpg"
+          imagesrcset="assets/hero-showcase-pdp-800.jpg 800w, assets/hero-showcase-pdp-1200.jpg 1200w"
+          imagesizes="(max-width: 1100px) 92vw, 600px" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/hero-showcase-mobile-480.jpg"
+          imagesrcset="assets/hero-showcase-mobile-480.jpg 480w, assets/hero-showcase-mobile-800.jpg 800w"
+          imagesizes="(max-width: 1100px) 48vw, 320px">
+    <link rel="preload" as="image" href="assets/hero-showcase-ad-360.jpg"
+          imagesrcset="assets/hero-showcase-ad-360.jpg 360w, assets/hero-showcase-ad-600.jpg 600w"
+          imagesizes="(max-width: 1100px) 33vw, 220px">
+
     <style>
         /* ====== RESET ====== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1617,30 +1629,58 @@
             max-height: 740px;
             min-height: 560px;
             overflow: visible;
+            position: relative;
+        }
+        .hero-stack--showcase::before {
+            /* ambient glow that grounds the floating cards in the page */
+            content: "";
+            position: absolute;
+            inset: -8% -12% -4% -12%;
+            background:
+                radial-gradient(60% 55% at 55% 45%, rgba(3, 5, 198, 0.18) 0%, rgba(3, 5, 198, 0.05) 40%, rgba(3, 5, 198, 0) 70%),
+                radial-gradient(45% 40% at 30% 80%, rgba(255, 33, 166, 0.18) 0%, rgba(255, 33, 166, 0) 65%);
+            filter: blur(20px);
+            pointer-events: none;
+            z-index: 0;
         }
         .hs-card {
             position: absolute;
             border-radius: 22px;
             overflow: hidden;
             background: #FFFFFF;
-            box-shadow:
-                0 50px 90px -28px rgba(3, 5, 198, 0.30),
-                0 22px 46px -14px rgba(255, 33, 166, 0.18),
-                0 0 0 1px rgba(3, 5, 198, 0.06),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.7);
-            transition: transform 0.6s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease;
+            transition: transform 0.6s cubic-bezier(.2,.8,.2,1), filter 0.4s ease;
             will-change: transform;
+            filter:
+                drop-shadow(0 38px 70px rgba(3, 5, 198, 0.22))
+                drop-shadow(0 14px 30px rgba(255, 33, 166, 0.14));
+            isolation: isolate;
+        }
+        .hs-card::after {
+            /* premium framing: thin inner ring + top highlight + bottom warmth */
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 0 0 rgba(3, 5, 198, 0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 18%, rgba(3,5,198,0.04) 100%);
+            z-index: 2;
         }
         .hs-card img {
             display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: relative;
+            z-index: 1;
         }
         .hs-card:hover {
-            box-shadow:
-                0 60px 110px -28px rgba(3, 5, 198, 0.36),
-                0 26px 56px -14px rgba(255, 33, 166, 0.26);
+            filter:
+                drop-shadow(0 50px 90px rgba(3, 5, 198, 0.30))
+                drop-shadow(0 18px 38px rgba(255, 33, 166, 0.20));
         }
 
         /* main desktop PDP */
@@ -3897,14 +3937,14 @@
             <div class="hero-text">
                 <div class="hero-badge">
                     <span class="dot"></span>
-                    Brand Studio für Shopify · Offizieller Shopify Partner · DACH
+                    Brand Studio für Shopify · Design × KI · Offizieller Shopify Partner
                 </div>
                 <h1>
                     Wir <span class="accent">bauen</span>.<br>
                     Du <span class="accent">verkaufst</span>.
                 </h1>
                 <p class="hero-sub">
-                    BB Brands verwandelt deinen Shopify Store in eine Marke, die Kunden wiedererkennen. Branding, Store, E-Mail und Ads, aus einer Hand. Ein System statt fünf Freelancer.
+                    BB Brands verwandelt deinen Shopify Store in eine Premium-Marke. Exzellentes Design trifft auf KI im Store — für maximale Conversion und skalierbare Margen.
                 </p>
                 <div class="hero-actions">
                     <a href="erstgespraech.html" class="btn-primary">
@@ -3924,7 +3964,7 @@
                     </div>
                     <div class="hero-guarantee">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        <span>KI als Multiplikator</span>
+                        <span>KI im Store, nicht nur im Briefing</span>
                     </div>
                 </div>
             </div>
@@ -3934,17 +3974,32 @@
 
                 <!-- Main desktop PDP mockup -->
                 <div class="hs-card hs-pdp">
-                    <img src="assets/hero-showcase-pdp.png" alt="" loading="eager" fetchpriority="high" decoding="async">
+                    <img
+                        src="assets/hero-showcase-pdp-800.jpg"
+                        srcset="assets/hero-showcase-pdp-800.jpg 800w, assets/hero-showcase-pdp-1200.jpg 1200w"
+                        sizes="(max-width: 1100px) 92vw, 600px"
+                        width="1200" height="670"
+                        alt="" loading="eager" fetchpriority="high" decoding="async">
                 </div>
 
                 <!-- Mobile app mockup, overlapping bottom-left -->
                 <div class="hs-card hs-mobile">
-                    <img src="assets/hero-showcase-mobile.png" alt="" loading="eager" decoding="async">
+                    <img
+                        src="assets/hero-showcase-mobile-480.jpg"
+                        srcset="assets/hero-showcase-mobile-480.jpg 480w, assets/hero-showcase-mobile-800.jpg 800w"
+                        sizes="(max-width: 1100px) 48vw, 320px"
+                        width="800" height="994"
+                        alt="" loading="eager" decoding="async">
                 </div>
 
                 <!-- Ad creative, top-right -->
                 <div class="hs-card hs-ad">
-                    <img src="assets/hero-showcase-ad.png" alt="" loading="eager" decoding="async">
+                    <img
+                        src="assets/hero-showcase-ad-360.jpg"
+                        srcset="assets/hero-showcase-ad-360.jpg 360w, assets/hero-showcase-ad-600.jpg 600w"
+                        sizes="(max-width: 1100px) 33vw, 220px"
+                        width="600" height="804"
+                        alt="" loading="eager" decoding="async">
                 </div>
 
                 <!-- Floating proof cards -->
@@ -4082,12 +4137,20 @@
                         <span>Keine Kreditkarte</span>
                         <span>Kein Newsletter</span>
                     </div>
-                    <button type="button" class="lm-cta" id="lmOpenBtn" aria-haspopup="dialog" aria-controls="lmModal">
+                    <button type="button" class="lm-cta" id="lmOpenBtn" data-lm-open data-magnet="style-guide" aria-haspopup="dialog" aria-controls="lmModal">
                         <span class="lm-cta-shine" aria-hidden="true"></span>
                         <span class="lm-cta-text">Kostenlosen Style Guide anfordern</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                     <p class="lm-cta-micro">In 24h bei dir · Keine Weiterleitung · Kein Newsletter</p>
+                    <div class="lm-second-magnet">
+                        <span class="lm-second-magnet-label">Oder lieber technisch?</span>
+                        <button type="button" class="lm-second-magnet-cta" data-lm-open data-magnet="ai-readiness-check" aria-haspopup="dialog" aria-controls="lmModal">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+                            <span>Kostenloser AI Readiness Check für deinen Store</span>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="lm-showcase reveal" id="lmShowcase">
@@ -4136,7 +4199,7 @@
                 </button>
                 <div class="lm-modal-body">
                     <div class="lm-form-head" id="lmFormHead">
-                        <div class="lm-form-eyebrow">Style Guide anfordern</div>
+                        <div class="lm-form-eyebrow" id="lmFormEyebrow">Style Guide anfordern</div>
                         <h3 id="lmModalTitle">Ein paar Infos — und er ist unterwegs.</h3>
                     </div>
                     <!--
@@ -4146,6 +4209,7 @@
                     -->
                     <form class="lm-form" id="lmForm" action="/api/leads" method="POST" novalidate>
                             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                            <input type="hidden" name="magnet" id="lmMagnetField" value="style-guide">
 
                             <div class="lm-row-2">
                                 <div class="lm-field">
@@ -4198,7 +4262,7 @@
                                     <span class="lm-consent-box" aria-hidden="true"></span>
                                     <span class="lm-consent-text">
                                         <span class="lm-consent-tag required">Pflicht</span>
-                                        Ich willige ein, dass BB Brands meine Angaben sowie öffentlich zugängliche Markenelemente meiner Webseite (Logo, Farben, Typografie, Texte) verarbeitet, um meinen kostenlosen Brand Style Guide zu erstellen und an mich auszuliefern. Dabei werden die relevanten Inhalte zur automatisierten Analyse an <strong>Manus&nbsp;AI</strong> (Butterfly&nbsp;Effect&nbsp;Pte&nbsp;Ltd, Singapur) übermittelt, ein Drittland ohne EU-Angemessenheitsbeschluss. Details und meine Rechte in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+                                        Ich willige ein, dass BB Brands meine Angaben sowie öffentlich zugängliche Inhalte meiner Webseite (Markenelemente, Texte, Store-Struktur) verarbeitet, um meinen kostenlosen Lead-Magnet (Brand Style Guide oder AI Readiness Check) zu erstellen und an mich auszuliefern. Dabei werden die relevanten Inhalte zur automatisierten Analyse an <strong>Manus&nbsp;AI</strong> (Butterfly&nbsp;Effect&nbsp;Pte&nbsp;Ltd, Singapur) übermittelt, ein Drittland ohne EU-Angemessenheitsbeschluss. Details und meine Rechte in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.
                                     </span>
                                 </label>
                                 <label class="lm-consent" id="lmConsentReference">
@@ -4223,7 +4287,7 @@
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                             </div>
                             <h3>Passt! Wir sind dran.</h3>
-                            <p>Du bekommst deinen Brand Style Guide innerhalb der nächsten 24 Stunden per <strong id="lmDeliveryChannel">E-Mail</strong>. Check schon mal deinen Posteingang.</p>
+                            <p><span id="lmSuccessLead">Du bekommst deinen Brand Style Guide</span> innerhalb der nächsten 24 Stunden per <strong id="lmDeliveryChannel">E-Mail</strong>. Check schon mal deinen Posteingang.</p>
                         </div>
                     </div>
                 </div>
@@ -4246,19 +4310,19 @@
                     <p>CPMs <strong>+40–60 % seit 2023</strong>. ROAS von 5x auf 2x. CAC in DE von 20 € auf <strong>30–80 € pro Kunde</strong>. Ein Account-Lock über Nacht kann dein Business lahmlegen, und der Algorithmus entscheidet im Blindflug, was du nicht siehst.</p>
                 </article>
                 <article class="problem-card reveal">
-                    <div class="problem-num">02 / UMSATZ OHNE GEWINN</div>
+                    <div class="problem-num">02 / APP-BLOAT FRISST DIE MARGE</div>
                     <h3>80.000 € Umsatz. Und trotzdem kein Gehalt am Monatsende.</h3>
-                    <p>Der stille Killer im D2C: CAC frisst die First-Order-Marge, Apps kosten <strong>200 €+ pro Monat</strong>, und die Buchhaltung zeigt, was Vanity-Metrics verschweigen. B2C-Schnitt liegt unter <strong>3 % Netto-Marge</strong>, und du bist kein Ausreißer.</p>
+                    <p>CAC frisst die First-Order-Marge, und der App-Stack tut den Rest: <strong>Search-App, Bewertungs-App, Review-Bot, Quiz-App, Chat-App</strong> — schnell <strong>200–500 € pro Monat</strong>, für Funktionen, die KI im Theme heute besser löst. B2C-Schnitt unter <strong>3 % Netto-Marge</strong>. Und du bist kein Ausreißer.</p>
                 </article>
                 <article class="problem-card reveal">
-                    <div class="problem-num">03 / ÜBERFORDERUNG</div>
-                    <h3>Sonntag Abend. Die To-Do-Liste explodiert. Du bist Founder, Designer, Support und Buchhalter in einer Person.</h3>
-                    <p>Das Shopify-Setup ist „confusing and overwhelming". Der dritte Freelancer liefert wieder nicht. Jedes Theme-Update killt den Checkout. Irgendwann ist <em>„ich mach's halt selbst"</em> keine Entscheidung mehr, sondern Resignation.</p>
+                    <div class="problem-num">03 / DU BIST DER SUPPORT</div>
+                    <h3>Sonntag Abend. 40 ungelesene Kunden-DMs. Du bist Founder, Designer und Support-Bot in einer Person.</h3>
+                    <p>Jede Frage zur Größe, jede Reklamation, jede Produktberatung landet bei dir. Kein KI-Berater im Store, der die Standard-Fragen abfängt. Kein automatischer Support, der nachts antwortet. Du wirst nicht zum Unternehmer, du wirst zum manuellen Bottleneck deiner eigenen Marke.</p>
                 </article>
                 <article class="problem-card reveal">
-                    <div class="problem-num">04 / KEINE ECHTE MARKE</div>
+                    <div class="problem-num">04 / GENERIC STORE, GENERIC ERLEBNIS</div>
                     <h3>500 Besucher. Null Sales. Und du fragst dich, ob's am Store liegt.</h3>
-                    <p><strong>67 %</strong> der Käufer brechen ab, weil der Store nicht vertrauenswürdig aussieht. Gutes UI steigert die Conversion um <strong>200 %</strong>. Aber dein Store sieht aus wie zehntausend andere, oder schlimmer: wie ein Dropshipping-Experiment, das jeder in drei Sekunden durchschaut.</p>
+                    <p><strong>67 %</strong> der Käufer brechen ab, weil der Store nicht vertrauenswürdig aussieht. Gutes UI steigert die Conversion um <strong>200 %</strong>. Dein Store sieht aus wie zehntausend andere — gleiches Theme, gleiche Suche, gleicher Chat-Bubble unten rechts. Kein Design, das hängen bleibt. Kein Erlebnis, das weiterempfohlen wird.</p>
                 </article>
             </div>
         </div>
@@ -4286,8 +4350,8 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </div>
                         <div>
-                            <h4>KI als Multiplikator, nicht als Alibi</h4>
-                            <p>KI beschleunigt Recherche, Analyse und Ausführung. Die Strategie und das Design bleiben handgemacht, deshalb liefern wir in Tagen, nicht Monaten, ohne bei der Qualität Abstriche zu machen.</p>
+                            <h4>KI im Store, nicht nur im Briefing</h4>
+                            <p>Andere nutzen KI für die Recherche, wir bauen sie in den Store ein. AI Search, KI-Produktberater, automatischer Support — direkt in deinem Shopify-Theme. Exzellentes Design, kombiniert mit Technologie, die für deine Kunden arbeitet.</p>
                         </div>
                     </div>
                     <div class="solution-point">
@@ -4325,6 +4389,8 @@
                     <span>E-Mail</span>
                     <span>Ads</span>
                     <span>Content</span>
+                    <span>AI Search</span>
+                    <span>AI Support</span>
                 </div>
             </div>
         </div>
@@ -4359,7 +4425,7 @@
                         <span class="process-dot"></span>
                         <span class="process-tab-text">
                             <span class="process-tab-phase">Phase 03</span>
-                            <span class="process-tab-name">Store Build</span>
+                            <span class="process-tab-name">Store &amp; AI Ops</span>
                         </span>
                     </button>
                     <button class="process-tab" data-step="4" type="button">
@@ -4401,11 +4467,13 @@
                     </div>
                     <div class="process-step" data-step="3">
                         <span class="process-day-tag">Tag 8 – 16</span>
-                        <h4>Shopify Store Build</h4>
-                        <p>Custom Liquid Theme, Performance-optimiert, mobile-first, Conversion-fokussiert. Jede Sektion mit einem Ziel: den Besucher zum Kauf führen, ohne aufdringlich zu wirken. Keine App-Armee, keine 29-Euro-Monats-Abos für jede Kleinigkeit.</p>
+                        <h4>Shopify Store Build &amp; AI Operations</h4>
+                        <p>Custom Liquid Theme, Performance-optimiert, mobile-first, Conversion-fokussiert. Jede Sektion mit einem Ziel: den Besucher zum Kauf führen, ohne aufdringlich zu wirken. Direkt im Theme: <strong>AI Search</strong>, <strong>KI-Produktberater</strong>, <strong>automatisierter Support</strong> und <strong>Auto-Tagging</strong> — Funktionen, für die andere fünf Apps stapeln. Keine App-Armee, keine 29-Euro-Monats-Abos für jede Kleinigkeit.</p>
                         <div class="process-chips">
                             <span class="process-chip">Custom Theme</span>
-                            <span class="process-chip">Mobile-first</span>
+                            <span class="process-chip">AI Search</span>
+                            <span class="process-chip">KI-Produktberater</span>
+                            <span class="process-chip">AI Support</span>
                             <span class="process-chip">CRO-ready</span>
                         </div>
                     </div>
@@ -4941,13 +5009,40 @@
         // ====== LEAD MAGNET MODAL ======
         (function () {
             const modal = document.getElementById('lmModal');
-            const openBtn = document.getElementById('lmOpenBtn');
-            if (!modal || !openBtn) return;
+            const openers = document.querySelectorAll('[data-lm-open]');
+            if (!modal || !openers.length) return;
             const closers = modal.querySelectorAll('[data-lm-close]');
             const firstField = modal.querySelector('#lm-name');
+            const magnetField = document.getElementById('lmMagnetField');
+            const eyebrowEl = document.getElementById('lmFormEyebrow');
+            const titleEl = document.getElementById('lmModalTitle');
+            const submitText = modal.querySelector('.lm-submit-text');
             let lastFocus = null;
 
-            const openModal = () => {
+            // Per-magnet Texte fuer Modal + Submit-Button
+            const MAGNET_COPY = {
+                'style-guide': {
+                    eyebrow: 'Style Guide anfordern',
+                    title: 'Ein paar Infos — und er ist unterwegs.',
+                    submit: 'Kostenlosen Style Guide anfordern'
+                },
+                'ai-readiness-check': {
+                    eyebrow: 'AI Readiness Check anfordern',
+                    title: 'Wir analysieren deinen Store auf KI-Potenzial.',
+                    submit: 'AI Readiness Check anfordern'
+                }
+            };
+
+            const applyMagnet = (magnet) => {
+                const copy = MAGNET_COPY[magnet] || MAGNET_COPY['style-guide'];
+                if (magnetField) magnetField.value = magnet;
+                if (eyebrowEl) eyebrowEl.textContent = copy.eyebrow;
+                if (titleEl) titleEl.textContent = copy.title;
+                if (submitText) submitText.textContent = copy.submit;
+            };
+
+            const openModal = (magnet) => {
+                applyMagnet(magnet || 'style-guide');
                 lastFocus = document.activeElement;
                 modal.hidden = false;
                 // Force reflow so transition runs
@@ -4965,7 +5060,9 @@
                 }, 380);
             };
 
-            openBtn.addEventListener('click', openModal);
+            openers.forEach(btn => {
+                btn.addEventListener('click', () => openModal(btn.getAttribute('data-magnet')));
+            });
             closers.forEach(el => el.addEventListener('click', closeModal));
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
@@ -4983,7 +5080,6 @@
             const channelLabel = document.getElementById('lmDeliveryChannel');
             const submitBtn = form.querySelector('.lm-submit');
             const submitText = form.querySelector('.lm-submit-text');
-            const originalBtnText = submitText.textContent;
 
             // Phone field highlight + required toggle based on delivery choice
             const updatePhoneState = () => {
@@ -5001,8 +5097,14 @@
             });
             updatePhoneState();
 
-            const showSuccess = (channel) => {
+            const showSuccess = (channel, magnet) => {
                 channelLabel.textContent = channel === 'whatsapp' ? 'WhatsApp' : 'E-Mail';
+                const successLead = document.getElementById('lmSuccessLead');
+                if (successLead) {
+                    successLead.textContent = magnet === 'ai-readiness-check'
+                        ? 'Du bekommst deinen AI Readiness Check'
+                        : 'Du bekommst deinen Brand Style Guide';
+                }
                 form.hidden = true;
                 if (formHead) formHead.hidden = true;
                 successEl.hidden = false;
@@ -5034,9 +5136,12 @@
 
                 const formData = new FormData(form);
                 const delivery = formData.get('delivery');
+                const magnet = formData.get('magnet') || 'style-guide';
+                const previousBtnText = submitText.textContent;
 
                 // Build JSON payload for /api/leads
                 const payload = {
+                    magnet: magnet,
                     name: formData.get('name'),
                     company: formData.get('company'),
                     website: formData.get('website'),
@@ -5061,7 +5166,7 @@
                     });
                     const data = await res.json().catch(() => ({}));
                     if (res.ok && data.ok) {
-                        showSuccess(delivery);
+                        showSuccess(delivery, magnet);
                     } else if (res.status === 400 && data.errors) {
                         const msgs = Object.values(data.errors).join(' · ');
                         throw new Error(msgs);
@@ -5070,8 +5175,8 @@
                     }
                 } catch (err) {
                     submitBtn.disabled = false;
-                    submitText.textContent = originalBtnText;
-                    alert('Da ist leider etwas schiefgelaufen: ' + err.message + '\n\nSchreib uns direkt an moritz@bbbrands.de. Wir senden dir den Style Guide trotzdem.');
+                    submitText.textContent = previousBtnText;
+                    alert('Da ist leider etwas schiefgelaufen: ' + err.message + '\n\nSchreib uns direkt an moritz@bbbrands.de. Wir kümmern uns trotzdem um dich.');
                 }
             });
         })();
