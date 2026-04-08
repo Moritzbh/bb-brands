@@ -21,3 +21,4 @@ npm-debug.log*
 
 # Large media (host externally instead)
 assets/*.mov
+.env*.local

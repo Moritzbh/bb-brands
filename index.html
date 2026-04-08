@@ -1661,80 +1661,6 @@
         }
 
         /* ====== TRUST BAR ====== */
-        /* ====== SHOPIFY PARTNER STRIPE ====== */
-        .sp-stripe {
-            padding: 26px 40px;
-            background: linear-gradient(90deg, #0305C6 0%, #1A1CD8 50%, #0305C6 100%);
-            color: #fff;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        .sp-stripe::before {
-            content: '';
-            position: absolute; inset: 0;
-            background:
-                radial-gradient(600px 200px at 20% 50%, rgba(255,33,166,0.18), transparent 60%),
-                radial-gradient(500px 180px at 80% 50%, rgba(255,222,89,0.10), transparent 60%);
-            pointer-events: none;
-        }
-        .sp-stripe-inner {
-            max-width: var(--max-width); margin: 0 auto;
-            display: flex; align-items: center; gap: 28px;
-            flex-wrap: wrap; justify-content: center;
-            position: relative; z-index: 1;
-        }
-        .sp-stripe-badge {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: rgba(255,255,255,0.10);
-            border: 1px solid rgba(255,255,255,0.22);
-            color: #fff;
-            padding: 9px 16px; border-radius: 999px;
-            font-family: var(--font-body);
-            font-size: 12px; font-weight: 700;
-            letter-spacing: 0.6px; text-transform: uppercase;
-            backdrop-filter: blur(8px);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .sp-stripe-bag {
-            width: 18px; height: 18px;
-            color: #FFDE59;
-        }
-        .sp-stripe-text {
-            color: rgba(255,255,255,0.92);
-            font-family: var(--font-body);
-            font-size: 14px; line-height: 1.55;
-            max-width: 640px;
-            margin: 0;
-        }
-        .sp-stripe-text strong { color: #FFDE59; font-weight: 700; }
-        .sp-stripe-link {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: #FF21A6;
-            color: #fff;
-            padding: 11px 18px;
-            border-radius: 999px;
-            font-family: var(--font-body);
-            font-size: 13px; font-weight: 700;
-            text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 6px 20px rgba(255,33,166,0.35);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .sp-stripe-link:hover {
-            background: #FF45B7;
-            transform: translateY(-1px);
-            box-shadow: 0 10px 26px rgba(255,33,166,0.45);
-        }
-        @media (max-width: 768px) {
-            .sp-stripe { padding: 22px 20px; }
-            .sp-stripe-inner { gap: 16px; }
-            .sp-stripe-text { font-size: 13px; text-align: center; }
-        }
-
         .trust-bar {
             padding: 72px 40px;
             border-top: 1px solid var(--border);
@@ -1767,8 +1693,8 @@
             opacity: 1;
             filter: grayscale(0%);
         }
-        .trust-logo--wake img { height: 42px; }
-        .trust-logo--reerect img { height: 38px; }
+        .trust-logo--wake img { height: 28px; }
+        .trust-logo--reerect img { height: 26px; }
 
         /* ====== LEAD MAGNET ====== */
         .leadmagnet {
@@ -3397,6 +3323,25 @@
             font-size: 13px; font-weight: 300; color: var(--text-body);
             line-height: 1.75; max-width: 320px;
         }
+        .footer-partner-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-top: 18px;
+            padding: 10px 14px;
+            background: rgba(3, 5, 198, 0.06);
+            border: 1px solid rgba(3, 5, 198, 0.18);
+            border-radius: 12px;
+            color: var(--bb-blue);
+        }
+        .footer-partner-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .footer-partner-badge > div { display: flex; flex-direction: column; line-height: 1.1; }
+        .footer-partner-eyebrow {
+            font-size: 9px; font-weight: 700; letter-spacing: 1.2px;
+            text-transform: uppercase; color: var(--text-body);
+        }
+        .footer-partner-name {
+            font-size: 13px; font-weight: 800;
+            color: var(--bb-blue); margin-top: 2px;
+        }
         .footer-col h5 {
             font-family: var(--font-body); font-size: 10px; font-weight: 800;
             color: var(--accent); letter-spacing: 2px; text-transform: uppercase;
@@ -3568,10 +3513,10 @@
             .hero-guarantees { gap: 8px; margin-top: 36px; }
             .hero-guarantee { padding: 9px 14px; font-size: 11px; gap: 7px; }
             .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; justify-content: center; }
-            .trust-logos { gap: 48px; }
-            .trust-logo { height: 36px; }
-            .trust-logo--wake img { height: 32px; }
-            .trust-logo--reerect img { height: 28px; }
+            .trust-logos { gap: 56px; }
+            .trust-logo { height: 28px; }
+            .trust-logo--wake img { height: 22px; }
+            .trust-logo--reerect img { height: 20px; }
             .problem-card { padding: 36px 28px; }
             .process-stage {
                 grid-template-columns: 1fr;
@@ -4033,25 +3978,6 @@
         </div>
     </header>
 
-    <!-- ============ SHOPIFY PARTNER STRIPE ============ -->
-    <section class="sp-stripe" aria-label="Shopify Partner">
-        <div class="sp-stripe-inner">
-            <div class="sp-stripe-badge">
-                <svg class="sp-stripe-bag" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M19.4 7.34c-.02-.16-.16-.25-.27-.26l-2.27-.17-1.66-1.66c-.16-.16-.48-.11-.6-.08l-.85.26C13.27 4.4 12.66 3.8 11.7 3.8c-.03 0-.05 0-.08.01-.03-.04-.06-.07-.09-.1-.21-.23-.49-.34-.81-.33-.62.02-1.24.46-1.74 1.25-.36.55-.62 1.25-.7 1.78l-1.79.55c-.55.17-.57.19-.64.71-.05.4-1.5 11.61-1.5 11.61l11.27 1.95 4.88-1.21S19.42 7.5 19.4 7.34zm-4.55-1.12-.91.28c0-.07 0-.14-.01-.22 0-.6-.08-1.09-.21-1.47.54.06.91.69 1.13 1.41zm-1.51.47-1.95.6c.19-.72.55-1.43 1-1.9.16-.18.4-.37.67-.48.26.55.32 1.32.28 1.78zm-1.66-2.39c.21 0 .39.05.54.14-.25.13-.49.32-.72.57-.6.65-1.06 1.65-1.24 2.62l-1.61.5c.32-1.49 1.55-3.81 3.03-3.83z" fill="currentColor"/>
-                </svg>
-                Offizieller Shopify Partner
-            </div>
-            <p class="sp-stripe-text">
-                BB Brands ist im offiziellen Shopify Partner Programm. Theme-Builds, Custom-Sections, Checkout-Optimierung und Performance-Tuning — direkt von einem zertifizierten Studio. <strong>Empfohlen, weil's hält.</strong>
-            </p>
-            <a href="erstgespraech.html" class="sp-stripe-link">
-                Store-Audit anfragen
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-        </div>
-    </section>
-
     <!-- ============ TRUST BAR ============ -->
     <section class="trust-bar" aria-label="Referenzkunden">
         <p class="trust-label">Vertraut von D2C-Marken im DACH-Raum</p>
@@ -4060,7 +3986,7 @@
                 <img src="assets/wake-performance-logo.png" alt="Wake Performance" loading="lazy">
             </span>
             <span class="trust-logo trust-logo--reerect" aria-label="Reerect">
-                <img src="assets/reerect-logo.svg" alt="Reerect" loading="lazy">
+                <img src="assets/reerect-logo.png" alt="Reerect" loading="lazy">
             </span>
         </div>
     </section>
@@ -4157,7 +4083,7 @@
                         <div class="lm-window-frame">
                             <video
                                 class="lm-window-video"
-                                src="assets/arctive-preview.mov"
+                                src="https://jm1dlc1r0alm6hwf.public.blob.vercel-storage.com/video/arctive-preview.mov"
                                 autoplay
                                 loop
                                 muted
@@ -4888,6 +4814,15 @@
             <div class="footer-brand">
                 <a href="#" class="logo"><img src="assets/bb-logo.jpg" alt="BB Brands" class="logo-img">BB Brands</a>
                 <p>Brand Studio für D2C-Marken auf Shopify. Branding, Store, E-Mail und Ads, aus einer Hand. DACH-weit, KI-gestützt, founder-led mit A-Crew.</p>
+                <div class="footer-partner-badge" aria-label="Offizieller Shopify Partner">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19.4 7.34c-.02-.16-.16-.25-.27-.26l-2.27-.17-1.66-1.66c-.16-.16-.48-.11-.6-.08l-.85.26C13.27 4.4 12.66 3.8 11.7 3.8c-.03 0-.05 0-.08.01-.03-.04-.06-.07-.09-.1-.21-.23-.49-.34-.81-.33-.62.02-1.24.46-1.74 1.25-.36.55-.62 1.25-.7 1.78l-1.79.55c-.55.17-.57.19-.64.71-.05.4-1.5 11.61-1.5 11.61l11.27 1.95 4.88-1.21S19.42 7.5 19.4 7.34z" fill="currentColor"/>
+                    </svg>
+                    <div>
+                        <span class="footer-partner-eyebrow">Offizieller</span>
+                        <span class="footer-partner-name">Shopify Partner</span>
+                    </div>
+                </div>
             </div>
             <div class="footer-col">
                 <h5>Studio</h5>
