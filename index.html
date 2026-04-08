@@ -1611,6 +1611,259 @@
             color: #FFB400;
         }
 
+        /* ===== HERO SHOWCASE (image-driven) ===== */
+        .hero-stack--showcase {
+            aspect-ratio: 1 / 1.02;
+            max-height: 740px;
+            min-height: 560px;
+            overflow: visible;
+        }
+        .hs-card {
+            position: absolute;
+            border-radius: 22px;
+            overflow: hidden;
+            background: #FFFFFF;
+            box-shadow:
+                0 50px 90px -28px rgba(3, 5, 198, 0.30),
+                0 22px 46px -14px rgba(255, 33, 166, 0.18),
+                0 0 0 1px rgba(3, 5, 198, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+            transition: transform 0.6s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease;
+            will-change: transform;
+        }
+        .hs-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hs-card:hover {
+            box-shadow:
+                0 60px 110px -28px rgba(3, 5, 198, 0.36),
+                0 26px 56px -14px rgba(255, 33, 166, 0.26);
+        }
+
+        /* main desktop PDP */
+        .hs-pdp {
+            top: 4%;
+            left: 3%;
+            width: 92%;
+            aspect-ratio: 16 / 9;
+            transform: rotate(-1.6deg);
+            z-index: 2;
+            animation: hs-float-slow 9s ease-in-out infinite;
+        }
+        .hs-pdp:hover { transform: rotate(0deg) translateY(-6px); }
+
+        /* mobile mockup overlapping bottom-left */
+        .hs-mobile {
+            bottom: -3%;
+            left: -8%;
+            width: 48%;
+            aspect-ratio: 4 / 5;
+            transform: rotate(-5deg);
+            z-index: 4;
+            border-radius: 26px;
+            animation: hs-float-mid 7s ease-in-out infinite;
+        }
+        .hs-mobile:hover { transform: rotate(-2deg) translateY(-6px); }
+
+        /* ad creative top-right */
+        .hs-ad {
+            top: -3%;
+            right: -7%;
+            width: 33%;
+            aspect-ratio: 3 / 4;
+            transform: rotate(5deg);
+            z-index: 5;
+            border-radius: 18px;
+            animation: hs-float-fast 5.5s ease-in-out infinite;
+        }
+        .hs-ad:hover { transform: rotate(2deg) translateY(-6px); }
+
+        @keyframes hs-float-slow {
+            0%, 100% { transform: rotate(-1.6deg) translateY(0); }
+            50%      { transform: rotate(-1.6deg) translateY(-8px); }
+        }
+        @keyframes hs-float-mid {
+            0%, 100% { transform: rotate(-5deg) translateY(0); }
+            50%      { transform: rotate(-5deg) translateY(-10px); }
+        }
+        @keyframes hs-float-fast {
+            0%, 100% { transform: rotate(5deg) translateY(0); }
+            50%      { transform: rotate(5deg) translateY(-12px); }
+        }
+
+        /* brand chip */
+        .hs-chip {
+            position: absolute;
+            bottom: 6%;
+            right: 2%;
+            z-index: 6;
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 18px 11px 12px;
+            background: rgba(255, 255, 255, 0.96);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(3, 5, 198, 0.10);
+            border-radius: 999px;
+            box-shadow:
+                0 22px 48px -16px rgba(3, 5, 198, 0.28),
+                0 8px 18px -6px rgba(255, 33, 166, 0.18);
+            font-family: var(--font-body);
+        }
+        .hs-chip-mark {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--bb-blue), var(--bb-pink));
+            color: #fff;
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: -0.4px;
+            box-shadow: 0 6px 14px rgba(255, 33, 166, 0.35);
+        }
+        .hs-chip-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .hs-chip-name {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 0.4px;
+        }
+        .hs-chip-tag {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-body);
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        /* ===== FLOATING SELLING POINTS (rund um Showcase) ===== */
+        .float-pill {
+            position: absolute;
+            z-index: 11;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px 9px 11px;
+            background: #FFFFFF;
+            border: 1px solid rgba(3, 5, 198, 0.10);
+            border-radius: 999px;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            box-shadow:
+                0 18px 40px -14px rgba(3, 5, 198, 0.30),
+                0 6px 14px -4px rgba(255, 33, 166, 0.14),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            animation: proof-float 6s ease-in-out infinite;
+        }
+        .float-pill svg { color: var(--accent); flex-shrink: 0; }
+        .float-pill--festpreis { top: 26%; left: -8%; animation-delay: 0.4s; }
+        .float-pill--team      { top: 46%; right: -12%; animation-delay: 1.4s; }
+        .float-pill--dach      { bottom: 8%; left: 22%; animation-delay: 2.2s; }
+
+        /* Sticky-note style — gelber Post-It */
+        .float-note {
+            position: absolute;
+            z-index: 12;
+            padding: 12px 14px 11px;
+            background: linear-gradient(180deg, #FFF6BF 0%, #FFE680 100%);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            color: #0A0A0A;
+            max-width: 168px;
+            box-shadow:
+                0 18px 36px -12px rgba(0, 0, 0, 0.22),
+                0 6px 14px -4px rgba(0, 0, 0, 0.10),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            animation: proof-float 7s ease-in-out infinite;
+        }
+        .float-note::before {
+            content: "";
+            position: absolute;
+            top: -6px; left: 50%;
+            width: 38px; height: 12px;
+            background: rgba(255, 33, 166, 0.50);
+            transform: translateX(-50%) rotate(-2deg);
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+        }
+        .float-note-label {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 4px;
+        }
+        .float-note-value {
+            display: block;
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--bb-blue);
+            line-height: 1.15;
+            letter-spacing: -0.3px;
+        }
+        .float-note--launch {
+            top: -2%;
+            right: 28%;
+            transform: rotate(5deg);
+            animation-delay: 0.9s;
+        }
+        .float-note--aov {
+            bottom: 20%;
+            right: 4%;
+            transform: rotate(-4deg);
+            animation-delay: 2.6s;
+        }
+
+        /* Round icon badge — Shopify Partner / Trust Stamp */
+        .float-badge {
+            position: absolute;
+            z-index: 11;
+            width: 64px; height: 64px;
+            display: grid;
+            place-items: center;
+            background: #FFFFFF;
+            border-radius: 50%;
+            border: 1.5px solid rgba(3, 5, 198, 0.12);
+            box-shadow:
+                0 22px 40px -14px rgba(3, 5, 198, 0.32),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+            font-family: var(--font-body);
+            font-size: 8px;
+            font-weight: 900;
+            color: var(--primary);
+            text-align: center;
+            line-height: 1.15;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 6px;
+            animation: proof-float 6.5s ease-in-out infinite;
+        }
+        .float-badge .badge-star {
+            display: block;
+            color: var(--accent);
+            font-size: 14px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        .float-badge--shopify {
+            top: 8%;
+            right: -8%;
+            animation-delay: 1.8s;
+        }
+
         /* ===== STACK RESPONSIVE ===== */
         @media (max-width: 1100px) {
             .hero--split .hero-inner {
@@ -1627,37 +1880,44 @@
             .hero--split .hero-actions { justify-content: center; }
             .hero--split .hero-guarantees { justify-content: center; }
             .hero-stack {
-                max-width: 580px;
+                max-width: 620px;
                 margin: 0 auto;
                 width: 100%;
             }
         }
         @media (max-width: 640px) {
             .hero--split { padding: 120px 18px 60px; }
-            .hero-stack { aspect-ratio: 1 / 1.7; max-height: none; }
-            .stack-card { padding: 16px 16px 14px; border-radius: 16px; }
-            .stack-card--brand { width: 100%; }
-            .stack-card--shop { bottom: 310px; width: 96%; }
-            .stack-ads-wrap { width: 100%; }
-            .ads-fan { height: 175px; }
-            .ad-card { width: 116px; }
-            .ad-card--main { transform: translateX(-50%) rotate(0deg); }
-            .ad-card--left { left: 2%; transform: rotate(-6deg); }
-            .ad-card--right { right: 2%; transform: rotate(6deg); }
-            .ad-image { height: 72px; }
-            .shop-pdp { grid-template-columns: 104px 1fr; gap: 12px; }
-            .shop-image { width: 104px; height: 104px; }
-            .shop-title { font-size: 12px; }
-            .shop-price { font-size: 16px; }
-            .typo-display { font-size: 32px; }
-            .brand-grid { grid-template-columns: 1.7fr 1fr; gap: 12px; }
-            .palette-circle { border-width: 1.5px; }
-            .palette-hex { font-size: 7px; }
+            .hero-stack--showcase {
+                aspect-ratio: 1 / 1.05;
+                max-height: none;
+                min-height: 440px;
+            }
+            .hs-pdp { top: 6%; left: 2%; width: 96%; }
+            .hs-mobile { bottom: -2%; left: -4%; width: 50%; border-radius: 22px; }
+            .hs-ad { top: -2%; right: -4%; width: 36%; border-radius: 16px; }
+            .hs-chip { bottom: 4%; right: 4%; padding: 8px 12px 8px 8px; gap: 8px; }
+            .hs-chip-mark { width: 28px; height: 28px; font-size: 12px; }
+            .hs-chip-name { font-size: 11px; }
+            .hs-chip-tag { font-size: 8px; }
             .proof-card { padding: 9px 14px; gap: 10px; z-index: 12; }
             .proof-value { font-size: 13px; }
             .proof-label { font-size: 7px; }
-            .proof-card--roas { top: 22%; left: -3%; }
+            .proof-card--roas { top: 1%; left: -2%; }
             .proof-card--cvr { display: none; }
+
+            /* Mobile: weniger Floats, kompaktere Größen */
+            .float-pill { font-size: 10px; padding: 7px 13px 7px 9px; gap: 6px; }
+            .float-pill--festpreis { top: -1%; left: 4%; }
+            .float-pill--team      { display: none; }
+            .float-pill--dach      { bottom: 14%; left: 38%; }
+            .float-note { padding: 9px 11px 8px; max-width: 130px; }
+            .float-note-label { font-size: 8px; }
+            .float-note-value { font-size: 12px; }
+            .float-note--launch { top: 1%; right: 3%; }
+            .float-note--aov    { display: none; }
+            .float-badge { width: 50px; height: 50px; font-size: 7px; padding: 4px; }
+            .float-badge .badge-star { font-size: 11px; margin-bottom: 1px; }
+            .float-badge--shopify { top: 32%; right: -4%; }
         }
 
         /* ====== TRUST BAR ====== */
@@ -3669,295 +3929,25 @@
                 </div>
             </div>
 
-            <!-- RIGHT: STACK VISUAL -->
-            <div class="hero-stack" aria-hidden="true">
-                <!-- ===== ARCTIVE FULL PDP — case study showcase ===== -->
-                <div class="pdp-frame">
-                    <!-- announcement bar -->
-                    <div class="pdp-anno">
-                        <span>Trusted by Athletes</span>
-                        <span>Limitierte Edition</span>
-                        <span>Versand ab 39 €</span>
-                    </div>
-                    <!-- nav -->
-                    <div class="pdp-nav">
-                        <div class="pdp-nav-logo">ARCTIVE</div>
-                        <div class="pdp-nav-links">
-                            <span class="active">Pure 90</span>
-                            <span>Stack</span>
-                            <span>Über uns</span>
-                        </div>
-                        <div class="pdp-nav-icons">
-                            <div class="pdp-nav-icon">♡</div>
-                            <div class="pdp-nav-icon">⌕</div>
-                            <div class="pdp-nav-icon">⌃<span class="badge-dot">2</span></div>
-                        </div>
-                    </div>
-                    <!-- main grid: gallery + info -->
-                    <div class="pdp-main">
-                        <div class="pdp-gallery">
-                            <div class="pdp-thumbs">
-                                <div class="pdp-thumb active"><div class="pdp-thumb-bottle" style="--swatch-c:#FF2D78;"></div></div>
-                                <div class="pdp-thumb"><div class="pdp-thumb-bottle" style="--swatch-c:#00E5FF;"></div></div>
-                                <div class="pdp-thumb"><div class="pdp-thumb-bottle" style="--swatch-c:#A3E635;"></div></div>
-                                <div class="pdp-thumb">+5</div>
-                            </div>
-                            <div class="pdp-hero-img">
-                                <span class="pdp-img-tag">Neu · −17 %</span>
-                                <div class="pdp-bottle">
-                                    <div>
-                                        <div class="pb-logo">ARCTIVE</div>
-                                        <div class="pb-cat">Whey Isolate</div>
-                                    </div>
-                                    <div class="pb-name">PURE<br>90</div>
-                                    <div class="pb-foot">900 g · 30 P</div>
-                                </div>
-                                <div class="pdp-img-trust">
-                                    <span>Lab tested</span>
-                                    <span>Made in DE</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pdp-info">
-                            <div class="pdp-cat">Whey Isolate · Bestseller</div>
-                            <div class="pdp-title">PURE 90</div>
-                            <div class="pdp-sub">Premium Whey Isolate für maximale Definition. Schnelle Aufnahme, klare Mikrofiltration, ohne Füllstoffe.</div>
-                            <ul class="pdp-bullets">
-                                <li>90 % Protein pro Portion</li>
-                                <li>Laktosefrei · laborgeprüft</li>
-                                <li>0 g Aspartam · 0,8 g Zucker</li>
-                            </ul>
-                            <div class="pdp-rating-row">
-                                <span class="stars">★★★★★</span>
-                                <span>4,8 / 5 · 3.412 Bewertungen</span>
-                            </div>
-                            <div class="pdp-price-row">
-                                <span class="pdp-price">€49,90</span>
-                                <span class="pdp-price-old">€59,90</span>
-                                <span class="pdp-price-save">SPARE 17 %</span>
-                            </div>
-                            <div class="pdp-portion">€1,66 / Portion · inkl. MwSt.</div>
-                            <div class="pdp-bundle-label">Wähle dein Bundle</div>
-                            <div class="pdp-bundles">
-                                <div class="pdp-bundle">
-                                    <div class="bb-name">1× Single</div>
-                                    <div class="bb-old">&nbsp;</div>
-                                    <div class="bb-price">€49,90</div>
-                                    <div class="bb-portion">€1,66 / P</div>
-                                </div>
-                                <div class="pdp-bundle active">
-                                    <span class="bb-flag">Bestseller</span>
-                                    <div class="bb-name">2× Stack</div>
-                                    <div class="bb-old">€99,80</div>
-                                    <div class="bb-price">€89,90</div>
-                                    <div class="bb-portion">€1,49 / P</div>
-                                    <span class="bb-save">−10 %</span>
-                                </div>
-                                <div class="pdp-bundle">
-                                    <div class="bb-name">3× Cycle</div>
-                                    <div class="bb-old">€149,70</div>
-                                    <div class="bb-price">€119,90</div>
-                                    <div class="bb-portion">€1,33 / P</div>
-                                    <span class="bb-save">−20 %</span>
-                                </div>
-                            </div>
-                            <div class="pdp-cta">In den Warenkorb</div>
-                            <div class="pdp-delivery">Bestellung heute · Versand morgen</div>
-                        </div>
-                    </div>
-                    <!-- bottom trust strip -->
-                    <div class="pdp-trust-strip">
-                        <div class="pdp-trust-cell">
-                            <div class="pdp-trust-icon">♡</div>
-                            <div class="pdp-trust-label">Athleten<br>geprüft</div>
-                        </div>
-                        <div class="pdp-trust-cell">
-                            <div class="pdp-trust-icon">⚙</div>
-                            <div class="pdp-trust-label">Made in<br>Germany</div>
-                        </div>
-                        <div class="pdp-trust-cell">
-                            <div class="pdp-trust-icon">⛨</div>
-                            <div class="pdp-trust-label">Labor-<br>geprüft</div>
-                        </div>
-                        <div class="pdp-trust-cell">
-                            <div class="pdp-trust-icon">⌀</div>
-                            <div class="pdp-trust-label">30 Tage<br>Garantie</div>
-                        </div>
-                    </div>
-                    <!-- brand chip overlay -->
-                    <div class="pdp-brand-chip">
-                        <div class="chip-mark">A</div>
-                        <div class="chip-text">
-                            <span class="chip-name">ARCTIVE</span>
-                            <span class="chip-tag">Brand · Shop · Ads · BB</span>
-                        </div>
-                    </div>
+            <!-- RIGHT: IMAGE SHOWCASE -->
+            <div class="hero-stack hero-stack--showcase" aria-hidden="true">
+
+                <!-- Main desktop PDP mockup -->
+                <div class="hs-card hs-pdp">
+                    <img src="assets/hero-showcase-pdp.png" alt="" loading="eager" fetchpriority="high" decoding="async">
                 </div>
 
-                <!-- legacy stack content kept hidden so old CSS classes resolve cleanly -->
-                <div style="display:none;" aria-hidden="true">
-                <!-- ===== LAYER 03: KI CREATIVES (TOP) — ARCTIVE Ads ===== -->
-                <div class="stack-ads-wrap">
-                    <span class="stack-tag stack-tag--ads">03 · KI Creatives</span>
-                    <div class="ads-fan">
-                        <div class="ad-card ad-card--left">
-                            <div class="ad-head">
-                                <div class="ad-avatar" style="background:linear-gradient(135deg,#00E5FF,#8B5CF6);box-shadow:0 2px 6px rgba(0,229,255,0.45);"></div>
-                                <span class="ad-handle">arctive •</span>
-                            </div>
-                            <div class="ad-image ad-image--arctive" style="background:radial-gradient(ellipse at 50% 60%,rgba(0,229,255,0.35) 0%,transparent 65%),linear-gradient(160deg,#0F0F15 0%,#050507 100%);">
-                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:8px 9px;text-align:left;z-index:2;">
-                                    <span style="font-size:7px;font-weight:900;color:#00E5FF;letter-spacing:0.6px;text-transform:uppercase;line-height:1.1;">Spürst du<br>dein Pre?</span>
-                                    <span style="display:inline-block;align-self:flex-start;background:#00E5FF;color:#050507;font-size:7px;font-weight:900;padding:3px 5px;border-radius:3px;letter-spacing:0.4px;">8g CITRULLIN</span>
-                                </div>
-                            </div>
-                            <div class="ad-meta">
-                                <span class="ad-icons">♡ 💬 ↗</span>
-                                <span class="ad-cta" style="color:#050507;">Edge holen →</span>
-                            </div>
-                        </div>
-                        <div class="ad-card ad-card--main">
-                            <span class="ad-badge">KI ✨</span>
-                            <div class="ad-head">
-                                <div class="ad-avatar" style="background:linear-gradient(135deg,#FF2D78,#8B5CF6);box-shadow:0 2px 6px rgba(255,45,120,0.45);"></div>
-                                <span class="ad-handle">arctive •</span>
-                            </div>
-                            <div class="ad-image ad-image--arctive" style="background:radial-gradient(ellipse at 50% 55%,rgba(255,45,120,0.35) 0%,transparent 65%),linear-gradient(160deg,#0F0F15 0%,#050507 100%);">
-                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:6px;text-align:center;">
-                                    <span style="font-size:18px;font-weight:900;color:#FF2D78;line-height:0.95;letter-spacing:-0.5px;">90%</span>
-                                    <span style="font-size:7px;font-weight:800;color:#fff;letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;">Protein</span>
-                                    <span style="font-size:6px;font-weight:700;color:#00E5FF;letter-spacing:0.4px;text-transform:uppercase;margin-top:3px;">0g Zucker</span>
-                                </div>
-                            </div>
-                            <div class="ad-meta">
-                                <span class="ad-icons">♡ 💬 ↗</span>
-                                <span class="ad-cta" style="color:#050507;">Stack sichern →</span>
-                            </div>
-                        </div>
-                        <div class="ad-card ad-card--right">
-                            <span class="ad-badge ad-badge--neu">Neu</span>
-                            <div class="ad-head">
-                                <div class="ad-avatar" style="background:linear-gradient(135deg,#8B5CF6,#A3E635);box-shadow:0 2px 6px rgba(139,92,246,0.45);"></div>
-                                <span class="ad-handle">arctive •</span>
-                            </div>
-                            <div class="ad-image ad-image--arctive" style="background:radial-gradient(ellipse at 50% 60%,rgba(139,92,246,0.32) 0%,transparent 65%),linear-gradient(160deg,#0F0F15 0%,#050507 100%);">
-                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:7px 8px;text-align:left;">
-                                    <span style="font-size:7px;font-weight:900;color:#8B5CF6;letter-spacing:0.5px;text-transform:uppercase;line-height:1.15;">Dein Pre ist<br>unter-dosiert</span>
-                                    <div style="display:flex;gap:4px;align-self:stretch;">
-                                        <div style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,45,120,0.35);border-radius:3px;padding:3px 2px;text-align:center;">
-                                            <div style="font-size:9px;font-weight:900;color:#FF2D78;line-height:1;">2g</div>
-                                            <div style="font-size:5px;font-weight:700;color:#fff;opacity:0.6;letter-spacing:0.3px;">ANDERE</div>
-                                        </div>
-                                        <div style="flex:1;background:rgba(0,229,255,0.10);border:1px solid rgba(0,229,255,0.45);border-radius:3px;padding:3px 2px;text-align:center;">
-                                            <div style="font-size:9px;font-weight:900;color:#00E5FF;line-height:1;">8g</div>
-                                            <div style="font-size:5px;font-weight:700;color:#00E5FF;letter-spacing:0.3px;">EDGE V3</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ad-meta">
-                                <span class="ad-icons">♡ 💬 ↗</span>
-                                <span class="ad-cta" style="color:#050507;">Studie ↗</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Mobile app mockup, overlapping bottom-left -->
+                <div class="hs-card hs-mobile">
+                    <img src="assets/hero-showcase-mobile.png" alt="" loading="eager" decoding="async">
                 </div>
 
-                <!-- ===== LAYER 02: SHOP ERLEBNIS (MIDDLE) — ARCTIVE PURE 90 ===== -->
-                <div class="stack-card stack-card--shop">
-                    <span class="stack-tag">02 · Shop Erlebnis</span>
-                    <div class="shop-pdp">
-                        <div class="shop-image shop-image--arctive">
-                            <span class="shop-image-tag">NEU</span>
-                            <div class="arctive-bottle">
-                                <div class="ab-logo">ARCTIVE</div>
-                                <div>
-                                    <div class="ab-name">PURE 90</div>
-                                    <div class="ab-tag">Whey Isolate</div>
-                                </div>
-                                <div class="ab-tag" style="opacity:0.7;">900g</div>
-                            </div>
-                        </div>
-                        <div class="shop-info">
-                            <div>
-                                <div class="shop-rating">
-                                    <span class="stars">★★★★★</span>
-                                    <span>4,8 (3.412)</span>
-                                </div>
-                                <div class="shop-title" style="color:#050507;">PURE 90 — Whey Isolate</div>
-                                <div class="shop-price" style="color:#050507;">€49,90 <span class="old">€59,90</span></div>
-                            </div>
-                            <div>
-                                <div class="shop-swatches" title="Geschmack">
-                                    <span class="sw active" style="background:#3E2723;box-shadow:0 0 0 2px #FF2D78;" title="Schoko Royale"></span>
-                                    <span class="sw" style="background:#F5DEB3" title="Vanille XO"></span>
-                                    <span class="sw" style="background:#FF6B9D" title="Erdbeer Crush"></span>
-                                    <span class="sw" style="background:#5D4037" title="Cookies & Cream"></span>
-                                </div>
-                                <div class="shop-sizes">
-                                    <span>450G</span>
-                                    <span class="active" style="background:#050507;border-color:#050507;color:#fff;">900G</span>
-                                    <span>2KG</span>
-                                </div>
-                                <button class="shop-cta" type="button" style="background:#050507;color:#00E5FF;box-shadow:0 6px 16px rgba(5,5,7,0.32);">In den Warenkorb</button>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Ad creative, top-right -->
+                <div class="hs-card hs-ad">
+                    <img src="assets/hero-showcase-ad.png" alt="" loading="eager" decoding="async">
                 </div>
 
-                <!-- ===== LAYER 01: BRAND FUNDAMENT (BOTTOM) — ARCTIVE Case ===== -->
-                <div class="stack-card stack-card--brand">
-                    <span class="stack-tag">01 · Brand Fundament</span>
-                    <div class="brand-head">
-                        <div class="brand-logo-row">
-                            <div class="brand-logo-mark" style="background:#050507;color:#00E5FF;box-shadow:0 4px 12px rgba(0,229,255,0.32);">A</div>
-                            <div class="brand-logo-text" style="color:#050507;letter-spacing:1px;">ARCTIVE</div>
-                        </div>
-                        <span class="brand-meta">CASE · SUPPLEMENTS</span>
-                    </div>
-                    <div class="brand-grid">
-                        <div class="brand-palette">
-                            <div class="palette-swatch">
-                                <div class="palette-circle" style="background:#00E5FF"></div>
-                                <span class="palette-hex">00E5FF</span>
-                            </div>
-                            <div class="palette-swatch">
-                                <div class="palette-circle" style="background:#FF2D78"></div>
-                                <span class="palette-hex">FF2D78</span>
-                            </div>
-                            <div class="palette-swatch">
-                                <div class="palette-circle" style="background:#8B5CF6"></div>
-                                <span class="palette-hex">8B5CF6</span>
-                            </div>
-                            <div class="palette-swatch">
-                                <div class="palette-circle" style="background:#A3E635"></div>
-                                <span class="palette-hex">A3E635</span>
-                            </div>
-                            <div class="palette-swatch">
-                                <div class="palette-circle" style="background:#050507"></div>
-                                <span class="palette-hex">050507</span>
-                            </div>
-                        </div>
-                        <div class="brand-typo" style="background:#050507;border-color:#050507;">
-                            <div class="typo-display" style="color:#00E5FF;font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-2px;">Aa</div>
-                            <div class="typo-meta" style="color:#fff;opacity:0.7;">INTER · BLACK 900</div>
-                        </div>
-                    </div>
-                    <div class="brand-footer">
-                        <div class="brand-icons" style="color:#050507;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 22 2 22"/></svg>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8"/></svg>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2"/></svg>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div class="brand-voice">"Defy your limits. <span class="pink" style="color:#FF2D78;">Fuel your edge.</span>"</div>
-                    </div>
-                </div>
-                </div><!-- /legacy stack hidden -->
-
-                <!-- ===== FLOATING PROOF CARDS ===== -->
+                <!-- Floating proof cards -->
                 <div class="proof-card proof-card--roas">
                     <div>
                         <span class="proof-label">ROAS Wachstum</span>
@@ -3974,6 +3964,46 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- BB brand chip -->
+                <div class="hs-chip">
+                    <div class="hs-chip-mark">BB</div>
+                    <div class="hs-chip-text">
+                        <span class="hs-chip-name">BB BRANDS</span>
+                        <span class="hs-chip-tag">Brand · Shop · Ads · KI</span>
+                    </div>
+                </div>
+
+                <!-- Floating selling-point pills -->
+                <div class="float-pill float-pill--festpreis">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Festpreis-Garantie
+                </div>
+                <div class="float-pill float-pill--team">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    1 Team statt 5 Freelancer
+                </div>
+                <div class="float-pill float-pill--dach">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Made in DACH
+                </div>
+
+                <!-- Sticky-note style proofs -->
+                <div class="float-note float-note--launch">
+                    <span class="float-note-label">Live in</span>
+                    <span class="float-note-value">14 Tagen<br>statt 14 Wochen</span>
+                </div>
+                <div class="float-note float-note--aov">
+                    <span class="float-note-label">AOV-Wachstum</span>
+                    <span class="float-note-value">+312 %<br>in 6 Wochen</span>
+                </div>
+
+                <!-- Round trust badge: Shopify Partner -->
+                <div class="float-badge float-badge--shopify">
+                    <span class="badge-star">★</span>
+                    Shopify<br>Partner
+                </div>
+
             </div>
         </div>
     </header>
