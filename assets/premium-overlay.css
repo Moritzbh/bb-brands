@@ -1,0 +1,371 @@
+/* =========================================================
+   BB BRANDS — PREMIUM OVERLAY
+   Non-destructive visual refinement. Loaded AFTER the inline
+   <style> block so these rules override without touching
+   the existing HTML structure or copy.
+   ========================================================= */
+
+/* ---------- 1. FONT IMPORTS (serif display accent) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+/* ---------- 2. PREMIUM TOKEN OVERRIDES ---------- */
+:root {
+    /* Warm ivory editorial base */
+    --bg:            #FAF8F3;
+    --bg-surface:    #F1EEE6;
+    --bg-elevated:   #FFFFFF;
+    --bg-card:       #FFFFFF;
+    --ivory:         #FAF8F3;
+    --cream:         #F1EEE6;
+
+    /* Deep blue-tinted ink */
+    --bb-black:      #0B0B12;
+    --text-primary:  #0B0B12;
+    --ink:           #0B0B12;
+
+    /* Hairlines */
+    --border:        rgba(11, 11, 18, 0.07);
+    --border-hover:  rgba(3, 5, 198, 0.28);
+    --hairline:      rgba(11, 11, 18, 0.06);
+    --highlight:     rgba(255, 255, 255, 0.9);
+
+    /* Radii — slightly more editorial */
+    --radius:        18px;
+    --radius-image:  22px;
+
+    /* Premium shadow stacks */
+    --shadow-soft:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 1px 2px rgba(11, 11, 18, 0.04),
+        0 20px 48px -28px rgba(3, 5, 198, 0.20);
+    --shadow-card:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 1px 3px rgba(11, 11, 18, 0.04),
+        0 24px 60px -32px rgba(3, 5, 198, 0.22),
+        0 10px 30px -20px rgba(11, 11, 18, 0.10);
+    --shadow-hover:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        0 2px 4px rgba(11, 11, 18, 0.06),
+        0 40px 90px -32px rgba(3, 5, 198, 0.32),
+        0 16px 40px -20px rgba(255, 33, 166, 0.14);
+
+    --ease-premium: cubic-bezier(.22, .61, .36, 1);
+}
+
+/* ---------- 3. BASE BODY + GRAIN ---------- */
+html, body {
+    background: var(--bg) !important;
+    color: var(--ink);
+}
+
+/* Subtle noise grain across the whole page — gives print/editorial feel */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.055;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.85 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 4. TYPOGRAPHY — serif italic accent ---------- */
+.hero h1 .accent,
+.section-title .accent,
+.hero--split h1 .accent {
+    font-family: 'Instrument Serif', 'Plus Jakarta Sans', serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    letter-spacing: -1.5px !important;
+    /* Keep the orange gradient, just softer.
+       NOTE: must NOT use the `background` shorthand here — it would reset
+       background-clip back to border-box and the text becomes invisible. */
+    background-image: linear-gradient(92deg, #F97316 0%, #FB923C 50%, #FDBA74 100%) !important;
+    background-color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    padding-right: 0.08em; /* italic slant breathing room */
+}
+
+.hero h1,
+.hero--split h1 {
+    font-weight: 700 !important;
+    letter-spacing: -3.2px !important;
+    color: var(--ink) !important;
+}
+
+.section-title {
+    font-weight: 700 !important;
+    letter-spacing: -2px !important;
+    color: var(--ink) !important;
+}
+
+.hero-sub,
+.section-sub {
+    color: #55555C !important;
+    font-weight: 350 !important;
+}
+
+/* Eyebrow chip — warmer, more editorial */
+.eyebrow {
+    background: rgba(11, 11, 18, 0.04) !important;
+    color: var(--ink) !important;
+    border: 1px solid rgba(11, 11, 18, 0.08);
+    backdrop-filter: blur(6px);
+}
+.eyebrow::before {
+    background: var(--bb-pink) !important;
+}
+
+/* ---------- 5. NAV — deeper glass ---------- */
+nav.top-nav {
+    background: rgba(250, 248, 243, 0.72) !important;
+    backdrop-filter: saturate(180%) blur(24px) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(24px) !important;
+}
+nav.top-nav.scrolled {
+    background: rgba(250, 248, 243, 0.88) !important;
+    border-bottom: 1px solid rgba(11, 11, 18, 0.06) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 30px -20px rgba(3, 5, 198, 0.15);
+}
+.nav-links a {
+    font-weight: 500 !important;
+    letter-spacing: 0.1px;
+    color: #55555C !important;
+}
+.nav-links a:hover { color: var(--bb-blue) !important; }
+
+/* ---------- 6. BUTTONS — multi-layer premium ---------- */
+.btn-primary,
+.nav-cta,
+.lm-submit {
+    background: linear-gradient(180deg, #0A0CD8 0%, #0305C6 55%, #0204A0 100%) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+        0 1px 2px rgba(3, 5, 198, 0.5),
+        0 10px 28px -8px rgba(3, 5, 198, 0.42),
+        0 24px 64px -20px rgba(3, 5, 198, 0.35) !important;
+    transition: all 0.35s var(--ease-premium) !important;
+    letter-spacing: 0.3px !important;
+}
+.btn-primary:hover,
+.nav-cta:hover,
+.lm-submit:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, #FF4FB8 0%, #FF21A6 55%, #E0158E 100%) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 1px 2px rgba(255, 33, 166, 0.5),
+        0 14px 36px -8px rgba(255, 33, 166, 0.45),
+        0 30px 80px -22px rgba(255, 33, 166, 0.4) !important;
+}
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(11, 11, 18, 0.10) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 8px 24px -16px rgba(11, 11, 18, 0.15) !important;
+}
+
+/* ---------- 7. HERO — softer atmosphere ---------- */
+.hero {
+    background: var(--bg) !important;
+}
+.hero-grid-bg {
+    opacity: 0.35 !important;
+    background-image:
+        linear-gradient(rgba(11, 11, 18, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11, 11, 18, 0.06) 1px, transparent 1px) !important;
+    background-size: 72px 72px !important;
+}
+.hero-wave-canvas {
+    opacity: 0.55 !important;
+    filter: blur(60px) contrast(1.15) saturate(1.35) !important;
+}
+.hero-wave-fade {
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(250, 248, 243, 0.10) 15%,
+        rgba(250, 248, 243, 0.30) 35%,
+        rgba(250, 248, 243, 0.60) 55%,
+        rgba(250, 248, 243, 0.85) 75%,
+        var(--bg) 100%) !important;
+}
+
+.hero-badge {
+    background: rgba(255, 255, 255, 0.72) !important;
+    border: 1px solid rgba(11, 11, 18, 0.08) !important;
+    backdrop-filter: blur(14px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 10px 28px -16px rgba(3, 5, 198, 0.18);
+    color: var(--ink) !important;
+}
+
+.hero-guarantee {
+    background: rgba(255, 255, 255, 0.68) !important;
+    border: 1px solid rgba(11, 11, 18, 0.08) !important;
+    color: var(--ink) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 8px 22px -14px rgba(3, 5, 198, 0.15) !important;
+    backdrop-filter: blur(12px);
+}
+
+/* ---------- 8. SECTION BACKGROUNDS ---------- */
+.problem,
+.solution,
+.services,
+.guarantees,
+.about,
+.resources,
+.faq,
+.final-cta,
+.stats-row,
+.leadmagnet {
+    background: var(--bg) !important;
+    border-bottom-color: rgba(11, 11, 18, 0.06) !important;
+}
+
+/* Alternating warmth — every other section slightly warmer */
+.solution,
+.guarantees,
+.resources,
+.final-cta {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--cream) 50%, var(--bg) 100%) !important;
+}
+
+/* ---------- 9. CARDS — premium surface ---------- */
+.problem-card,
+.stat-card,
+.service-card,
+.guarantee-card,
+.resource-card,
+.faq-item,
+.about-card {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(11, 11, 18, 0.06) !important;
+    box-shadow: var(--shadow-card) !important;
+    transition: all 0.45s var(--ease-premium) !important;
+}
+.problem-card:hover,
+.stat-card:hover,
+.service-card:hover,
+.guarantee-card:hover,
+.resource-card:hover,
+.about-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(3, 5, 198, 0.15) !important;
+    box-shadow: var(--shadow-hover) !important;
+}
+
+/* Card titles use the ink color */
+.problem-card h3,
+.stat-card h3,
+.service-card h3,
+.guarantee-card h3,
+.resource-card h3,
+.about-card h3,
+.faq-question {
+    color: var(--ink) !important;
+}
+
+/* Stat numbers — keep original sans, only refine color */
+.stat-card .stat-num {
+    color: var(--bb-blue) !important;
+}
+.stat-card .stat-num .stat-suffix {
+    font-family: 'Instrument Serif', serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    color: #F97316 !important;
+}
+
+/* ---------- 10. FOOTER ---------- */
+footer {
+    background: var(--cream) !important;
+    border-top: 1px solid rgba(11, 11, 18, 0.08) !important;
+    position: relative;
+}
+footer::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(3, 5, 198, 0.25), rgba(255, 33, 166, 0.25), transparent);
+}
+footer h5 {
+    color: var(--ink) !important;
+    letter-spacing: 0.2px;
+}
+footer p, footer a, .footer-copy {
+    color: #55555C !important;
+}
+footer a:hover {
+    color: var(--bb-blue) !important;
+}
+
+/* ---------- 11. LINKS & DETAIL REFINEMENT ---------- */
+::selection { background: #0305C6; color: #FAF8F3; }
+
+/* FAQ items — gentler */
+.faq-item {
+    border-radius: 18px !important;
+    padding: 4px 8px !important;
+}
+
+/* Trust / micro elements */
+.trust-label {
+    color: #55555C !important;
+    letter-spacing: 2px;
+}
+
+/* ---------- 12. STACK / SHOWCASE cards ---------- */
+.stack-card,
+.hs-card {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 50px 120px -30px rgba(3, 5, 198, 0.28),
+        0 24px 60px -20px rgba(11, 11, 18, 0.18),
+        0 10px 30px -12px rgba(255, 33, 166, 0.14) !important;
+    border: 1px solid rgba(11, 11, 18, 0.08) !important;
+}
+
+/* Float pills + notes in hero showcase — premium ivory */
+.float-pill,
+.float-note,
+.proof-card {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border: 1px solid rgba(11, 11, 18, 0.08) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        0 12px 32px -14px rgba(3, 5, 198, 0.22),
+        0 6px 16px -8px rgba(11, 11, 18, 0.10) !important;
+    backdrop-filter: blur(14px) saturate(180%);
+    color: var(--ink) !important;
+}
+
+/* ---------- 13. FORMS / INPUTS ---------- */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(11, 11, 18, 0.10) !important;
+    border-radius: 14px !important;
+    transition: all 0.3s var(--ease-premium);
+}
+input:focus, textarea:focus, select:focus {
+    border-color: var(--bb-blue) !important;
+    box-shadow: 0 0 0 4px rgba(3, 5, 198, 0.10) !important;
+    outline: none !important;
+}
+
+/* ---------- 14. SMALL POLISH ---------- */
+img { border-radius: inherit; }
+.logo { color: var(--ink) !important; }
+
+/* Reduce motion respect */
+@media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
