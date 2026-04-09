@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2C-Brand-Launch in 21 Tagen — BB Brands</title>
+    <meta name="description" content="Der komplette Fahrplan vom ersten Logo bis zum laufenden Shopify-Store mit ersten Verkäufen. Drei Wochen, drei Phasen, eine ehrliche Checkliste.">
+    <link rel="canonical" href="https://bb-brands.de/wissen-d2c-launch.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="D2C-Brand-Launch in 21 Tagen — BB Brands">
+    <meta property="og:description" content="Drei Wochen, drei Phasen, eine ehrliche Checkliste. Vom Logo bis zum ersten Verkauf.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #FFFFFF; --bg-surface: #F5F5F7;
+            --primary: #0305C6; --primary-dark: #0204A0;
+            --accent: #FF21A6; --accent-text: #F97316;
+            --text-primary: #0A0A0A; --text-body: #4B5563;
+            --text-muted: #9CA3AF;
+            --border: rgba(10,10,10,0.08); --border-strong: rgba(10,10,10,0.16);
+            --radius: 16px; --radius-pill: 100px;
+            --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); font-size: 16px; line-height: 1.7; }
+        a { color: inherit; text-decoration: none; }
+
+        .page { max-width: 760px; margin: 0 auto; padding: 48px 32px 120px; }
+
+        .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 64px; }
+        .crumbs { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+        .crumbs a { transition: color .2s; }
+        .crumbs a:hover { color: var(--accent); }
+        .crumbs span { margin: 0 8px; }
+        .top-bar-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; background: var(--primary); color: #fff;
+            border-radius: var(--radius-pill); font-weight: 700; font-size: 12px;
+            transition: all .25s; box-shadow: 0 6px 18px rgba(3,5,198,.22);
+        }
+        .top-bar-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+        .article-header { margin-bottom: 56px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--accent-text);
+            padding: 6px 14px; border-radius: var(--radius-pill);
+            background: rgba(249,115,22,.1); margin-bottom: 24px;
+        }
+        .eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--accent-text); border-radius: 2px; }
+
+        h1 {
+            font-family: var(--font-display); font-size: clamp(34px, 5vw, 56px);
+            font-weight: 800; letter-spacing: -1.5px; line-height: 1.06;
+            color: var(--primary); margin-bottom: 24px;
+        }
+        h1 .accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent-text); }
+
+        .lead {
+            font-size: 19px; font-weight: 300; color: var(--text-body);
+            line-height: 1.7; margin-bottom: 32px; max-width: 640px;
+        }
+
+        .meta {
+            display: flex; gap: 18px; flex-wrap: wrap; align-items: center;
+            padding: 16px 0; border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            font-size: 13px; color: var(--text-muted); font-weight: 500;
+        }
+        .meta strong { color: var(--text-primary); font-weight: 600; }
+
+        article p { font-size: 17px; line-height: 1.8; color: var(--text-body); margin-bottom: 22px; max-width: 680px; }
+        article p strong { color: var(--text-primary); font-weight: 600; }
+
+        article h2 {
+            font-family: var(--font-display); font-size: 30px; font-weight: 800;
+            letter-spacing: -.8px; color: var(--primary);
+            margin: 56px 0 20px; line-height: 1.2;
+        }
+        article h2 .num {
+            display: inline-block; font-family: var(--font-serif); font-style: italic;
+            color: var(--accent-text); font-weight: 400; margin-right: 12px;
+        }
+        article h3 {
+            font-family: var(--font-display); font-size: 19px; font-weight: 700;
+            letter-spacing: -.3px; color: var(--text-primary);
+            margin: 32px 0 12px;
+        }
+
+        article ul { margin: 0 0 24px 0; padding: 0; list-style: none; max-width: 680px; }
+        article ul li {
+            position: relative; padding-left: 28px; margin-bottom: 12px;
+            font-size: 16px; color: var(--text-body); line-height: 1.7;
+        }
+        article ul li::before {
+            content: ''; position: absolute; left: 0; top: 11px;
+            width: 14px; height: 2px; background: var(--accent-text); border-radius: 2px;
+        }
+
+        .callout {
+            margin: 32px 0; padding: 24px 28px;
+            background: var(--bg-surface); border-left: 3px solid var(--accent-text);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .callout p { margin: 0; font-size: 15px; line-height: 1.7; color: var(--text-primary); }
+        .callout p strong { color: var(--primary); }
+
+        .phase {
+            margin: 40px 0; padding: 32px 32px 28px;
+            background: linear-gradient(135deg, rgba(3,5,198,.04) 0%, rgba(249,115,22,.05) 100%);
+            border: 1px solid var(--border); border-radius: var(--radius);
+        }
+        .phase-tag {
+            display: inline-block; font-size: 11px; font-weight: 700;
+            letter-spacing: 1.6px; text-transform: uppercase; color: var(--primary);
+            padding: 5px 12px; background: #fff; border-radius: var(--radius-pill);
+            margin-bottom: 14px; border: 1px solid var(--border);
+        }
+        .phase h3 { margin: 0 0 16px; font-size: 22px; color: var(--primary); }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            margin-top: 88px; padding: 48px 40px;
+            background: var(--primary); color: #fff;
+            border-radius: var(--radius); position: relative; overflow: hidden;
+        }
+        .bottom-cta::before {
+            content: ''; position: absolute; top: -50%; right: -10%;
+            width: 60%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,33,166,.4) 0%, transparent 60%);
+            filter: blur(40px); pointer-events: none;
+        }
+        .bottom-cta-inner { position: relative; }
+        .bottom-cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 12px; }
+        .bottom-cta h2 {
+            font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 36px);
+            font-weight: 800; letter-spacing: -.8px; line-height: 1.18;
+            color: #fff; margin-bottom: 14px;
+        }
+        .bottom-cta h2 .accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #FFDE59; }
+        .bottom-cta p { font-size: 15px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,.84); margin-bottom: 28px; max-width: 540px; }
+        .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+        .cta-primary, .cta-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 28px; border-radius: var(--radius-pill);
+            font-weight: 800; font-size: 13px; letter-spacing: .2px; transition: all .25s;
+        }
+        .cta-primary { background: #fff; color: var(--primary); box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(0,0,0,.28); }
+        .cta-secondary { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.24); }
+        .cta-secondary:hover { background: rgba(255,255,255,.18); }
+
+        /* Next-step nav */
+        .next-step {
+            margin-top: 32px; padding: 24px 28px;
+            background: var(--bg-surface); border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 20px; flex-wrap: wrap;
+        }
+        .next-step-text small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+        .next-step-text strong { font-size: 16px; color: var(--primary); font-weight: 700; }
+        .next-step-arrow { color: var(--accent-text); font-size: 18px; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .page { padding: 32px 22px 80px; }
+            .bottom-cta { padding: 36px 26px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="top-bar">
+            <div class="crumbs"><a href="index.html">BB Brands</a><span>/</span><a href="wissen.html">Wissens-Hub</a></div>
+            <a href="erstgespraech.html" class="top-bar-cta">Erstgespräch buchen</a>
+        </div>
+
+        <header class="article-header">
+            <div class="eyebrow">Guide</div>
+            <h1>D2C-Brand-Launch in <span class="accent">21 Tagen.</span></h1>
+            <p class="lead">Drei Wochen vom ersten Logo bis zum laufenden Shopify-Store mit ersten Verkäufen. Hier ist der Fahrplan, den wir intern für jeden Brand-Launch nutzen — inklusive der Stellen, an denen die meisten Founder scheitern.</p>
+            <div class="meta">
+                <span>📖 <strong>9 Min.</strong> Lesezeit</span>
+                <span>·</span>
+                <span>Für Founder vor dem Launch</span>
+                <span>·</span>
+                <span>Aktualisiert April 2026</span>
+            </div>
+        </header>
+
+        <article>
+            <p>21 Tage klingt nach Marketing-Versprechen. Ist es nicht. Es ist die Zeit, die wir brauchen, wenn drei Bedingungen erfüllt sind: Du hast ein Produkt, das tatsächlich existiert. Du triffst Entscheidungen innerhalb von 24 Stunden. Und du verstehst, dass „Launch" nicht „perfekt" heißt, sondern „live und messbar".</p>
+
+            <p>Was du in 21 Tagen <strong>nicht</strong> bekommst: ein über Monate gewachsenes Brand-Ökosystem, eine Influencer-Kampagne mit zehn Creators, oder einen ROAS von 5 in der ersten Woche. Was du bekommst: ein Fundament, das skaliert, ohne dass du es nach drei Monaten wegwerfen musst. Hier ist wie.</p>
+
+            <div class="phase">
+                <span class="phase-tag">Phase 1 · Tag 1–7</span>
+                <h3>Brand &amp; Identity — bevor du eine Zeile Code anfasst</h3>
+            </div>
+
+            <h2><span class="num">01</span>Positionierung steht zuerst</h2>
+            <p>Bevor irgendjemand ein Logo zeichnet, beantwortest du drei Fragen schriftlich, in maximal je drei Sätzen: Für wen ist das Produkt? Welches Problem löst es konkret? Warum du und nicht der nächste Konkurrent? Wenn du das nicht in einer halben Stunde aufschreiben kannst, hast du kein Branding-Problem, du hast ein Produkt-Problem.</p>
+
+            <h2><span class="num">02</span>Brand System statt Logo-Pingpong</h2>
+            <p>Wir bauen kein Logo isoliert. Wir bauen vier Schichten parallel: Logo &amp; Wortmarke, Farbsystem mit <strong>genau einem</strong> Signal-Akzent, Typografie-Stack (max. 2 Schriften), Bildsprache-Regeln. Das landet in einem interaktiven Brand Style Guide, nicht in einem PDF, das nach drei Wochen niemand mehr findet.</p>
+
+            <ul>
+                <li>Logo-Lockup mit allen erlaubten Varianten und Mindestabständen</li>
+                <li>Primärfarbe + 1 Akzent + neutrale Skala (8 Töne reichen)</li>
+                <li>Display-Schrift + Body-Schrift, beide aus Google Fonts (lädt schneller, kostet nichts)</li>
+                <li>Bildsprache als Mood: 12 Referenzbilder, drei No-Gos</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Häufiger Fehler:</strong> Founder verlieben sich in eine Designrichtung, die nicht skaliert. Wenn dein Brand-System nur in Instagram-Reels gut aussieht, aber auf der Versandverpackung scheitert, war es kein System, sondern eine Stimmung.</p>
+            </div>
+
+            <div class="phase">
+                <span class="phase-tag">Phase 2 · Tag 8–14</span>
+                <h3>Store &amp; Tech — bauen, was Geld einbringt</h3>
+            </div>
+
+            <h2><span class="num">03</span>Shopify-Setup ohne App-Bloat</h2>
+            <p>Ein neuer Store braucht <strong>vier Apps</strong>, nicht vierzig. Im Standard: ein Theme (idealerweise Dawn-basiert oder ein gut gepflegtes Premium-Theme), ein Review-Tool, ein E-Mail-Tool (Klaviyo), eine Analytics-Erweiterung. Alles andere ist Tech-Schulden, die du nach sechs Monaten wegmistest.</p>
+
+            <h2><span class="num">04</span>Die Produktseite ist deine Hauptkasse</h2>
+            <p>80 % der Conversion-Entscheidung passiert auf der PDP. Wir bauen sie in dieser Reihenfolge: Galerie mit ersten drei Bildern in Daumen-Reichweite, Headline mit Benefit (nicht Produktname), Preis + Vertrauens-Stack (Bewertungen, Versand, Garantie), Buy-Button, dann erst Beschreibung. Niemand scrollt deine Produktbeschreibung, bevor er den Preis kennt.</p>
+
+            <ul>
+                <li>Drei Trust-Badges direkt über dem Buy-Button (Versand, Rückgabe, Garantie)</li>
+                <li>Größenberater oder KI-Berater statt 600 Wörter Fließtext</li>
+                <li>Mobile zuerst — desktop ist Bonus</li>
+                <li>Sticky Add-to-Cart auf dem Phone</li>
+            </ul>
+
+            <h2><span class="num">05</span>E-Mail-Flows, bevor der erste Besucher kommt</h2>
+            <p>Drei Flows reichen für den Launch: Welcome (3 Mails), Abandoned Cart (2 Mails), Post-Purchase (2 Mails). Sieben Mails. Alle anderen Flows machst du, wenn du Daten hast — nicht bevor.</p>
+
+            <div class="phase">
+                <span class="phase-tag">Phase 3 · Tag 15–21</span>
+                <h3>Launch &amp; Ads — das Spiel beginnt erst hier</h3>
+            </div>
+
+            <h2><span class="num">06</span>Creative-System statt Creative-Friedhof</h2>
+            <p>Du brauchst nicht 30 Ads für den Launch. Du brauchst <strong>5 Hooks gegen 2 Funnels</strong>. Drei Statics, zwei Videos. Pro Hook ein klares Versprechen, eine klare Zielgruppe, ein klares Bild. Das ist dein Test-Set für die ersten 14 Tage Live-Betrieb.</p>
+
+            <h2><span class="num">07</span>Pixel, Tracking, Daten-Setup</h2>
+            <p>Conversion API, nicht nur Pixel. Server-Side über Shopify-nativen Connector. Custom Conversions für Add-to-Cart, Initiate Checkout, Purchase. Wenn das nicht steht, fliegst du blind und Meta optimiert auf Mülldaten.</p>
+
+            <h2><span class="num">08</span>Soft Launch &gt; Big Bang</h2>
+            <p>Tag 19: Live für E-Mail-Liste und enge Community (Friends &amp; Family Code). Tag 20: Erste Ads bei kleinem Budget (50–100 € pro Tag), Daten beobachten. Tag 21: Wenn die ersten Verkäufe sauber durchlaufen, Budget hochziehen. Wenn nicht, fixen statt skalieren.</p>
+
+            <div class="callout">
+                <p><strong>Die ehrliche Wahrheit:</strong> Die meisten Brands sterben nicht am Launch. Sie sterben in Woche 4–8, wenn die erste Welle vorbei ist und niemand das Creative-System weiterführt. Plane Tag 22 mit. Sonst war der Launch ein Strohfeuer.</p>
+            </div>
+
+            <h2><span class="num">09</span>Was du nach 21 Tagen messen solltest</h2>
+            <ul>
+                <li><strong>Conversion Rate</strong> auf der PDP (Ziel: ≥ 2 % Cold-Traffic)</li>
+                <li><strong>ROAS</strong> auf Kampagnen-Ebene (nicht Account-Ebene täuschen lassen)</li>
+                <li><strong>Cost-per-Acquisition</strong> versus deinen tatsächlichen Marge</li>
+                <li><strong>Hook-Performance</strong> einzeln, nicht aggregiert</li>
+                <li><strong>E-Mail-Revenue-Anteil</strong> (sollte nach Tag 21 schon &gt; 15 % sein)</li>
+            </ul>
+        </article>
+
+        <div class="bottom-cta">
+            <div class="bottom-cta-inner">
+                <div class="bottom-cta-eyebrow">Nächster Schritt</div>
+                <h2>Bereit für deinen <span class="accent">Launch?</span></h2>
+                <p>Wenn du dir die 21 Tage nicht alleine zutraust — wir machen das ständig. Wir sprechen 30 Minuten über deinen Stand, deine Engpässe und ob wir der richtige Partner sind. Kein Pitch.</p>
+                <div class="cta-row">
+                    <a href="erstgespraech.html" class="cta-primary">
+                        Erstgespräch buchen
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="index.html#gratis-guide" class="cta-secondary">
+                        Style Guide kostenlos anfordern
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <a href="wissen-brand-system.html" class="next-step">
+            <div class="next-step-text">
+                <small>Weiterlesen · Schritt 2 im Wissens-Hub</small>
+                <strong>Das BB-Brands-Brand-System verstehen</strong>
+            </div>
+            <span class="next-step-arrow">→</span>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness Check für deinen Store — BB Brands</title>
+    <meta name="description" content="Wir analysieren deinen Shopify-Store auf vier KI-Hebel und schicken dir die Empfehlung persönlich auf WhatsApp. Kostenlos, in 24h, ohne Buzzword-Bingo.">
+    <link rel="canonical" href="https://bb-brands.de/wissen-ai-check.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI Readiness Check für deinen Store — BB Brands">
+    <meta property="og:description" content="Vier KI-Hebel, eine konkrete Empfehlung. Kostenlos, persönlich auf WhatsApp.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #FFFFFF; --bg-surface: #F5F5F7;
+            --primary: #0305C6; --primary-dark: #0204A0;
+            --accent: #FF21A6; --accent-text: #F97316;
+            --whatsapp: #25D366; --whatsapp-dark: #128C7E;
+            --text-primary: #0A0A0A; --text-body: #4B5563;
+            --text-muted: #9CA3AF;
+            --border: rgba(10,10,10,0.08); --border-strong: rgba(10,10,10,0.16);
+            --radius: 16px; --radius-pill: 100px;
+            --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); font-size: 16px; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+
+        .page { max-width: 1180px; margin: 0 auto; padding: 48px 32px 120px; }
+
+        .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 64px; }
+        .crumbs { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+        .crumbs a { transition: color .2s; }
+        .crumbs a:hover { color: var(--accent); }
+        .crumbs span { margin: 0 8px; }
+        .top-bar-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; background: var(--primary); color: #fff;
+            border-radius: var(--radius-pill); font-weight: 700; font-size: 12px;
+            transition: all .25s; box-shadow: 0 6px 18px rgba(3,5,198,.22);
+        }
+        .top-bar-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+        .layout {
+            display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px;
+            align-items: start;
+        }
+        @media (max-width: 980px) { .layout { grid-template-columns: 1fr; gap: 40px; } }
+
+        /* LEFT — Pitch */
+        .pitch { max-width: 540px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--accent-text);
+            padding: 6px 14px; border-radius: var(--radius-pill);
+            background: rgba(249,115,22,.1); margin-bottom: 24px;
+        }
+        .eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--accent-text); border-radius: 2px; }
+
+        h1 {
+            font-family: var(--font-display); font-size: clamp(34px, 5vw, 54px);
+            font-weight: 800; letter-spacing: -1.5px; line-height: 1.06;
+            color: var(--primary); margin-bottom: 22px;
+        }
+        h1 .accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent-text); }
+
+        .lead {
+            font-size: 17px; font-weight: 300; color: var(--text-body);
+            line-height: 1.75; margin-bottom: 36px;
+        }
+
+        .levers { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+        .lever {
+            display: grid; grid-template-columns: 38px 1fr; gap: 16px;
+            padding: 18px 20px; background: var(--bg-surface);
+            border-radius: var(--radius); border: 1px solid var(--border);
+        }
+        .lever-icon {
+            width: 38px; height: 38px; border-radius: 10px;
+            background: linear-gradient(135deg, #F97316, #FF21A6);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; flex-shrink: 0;
+        }
+        .lever-icon svg { width: 18px; height: 18px; }
+        .lever h4 { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+        .lever p { font-size: 13px; color: var(--text-body); line-height: 1.6; margin: 0; }
+
+        .trust-row {
+            display: flex; gap: 18px; flex-wrap: wrap;
+            font-size: 12px; color: var(--text-muted); font-weight: 500;
+            padding-top: 24px; border-top: 1px solid var(--border);
+        }
+        .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
+        .trust-row svg { color: var(--accent-text); }
+
+        /* RIGHT — Form */
+        .form-card {
+            background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 36px 36px 32px;
+            box-shadow: 0 18px 48px rgba(3,5,198,.06);
+            position: sticky; top: 32px;
+        }
+        .form-header { margin-bottom: 26px; }
+        .form-header .form-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+            text-transform: uppercase; color: var(--whatsapp-dark);
+            background: rgba(37,211,102,.1); padding: 5px 12px;
+            border-radius: var(--radius-pill); margin-bottom: 14px;
+        }
+        .form-header h2 {
+            font-family: var(--font-display); font-size: 24px; font-weight: 800;
+            letter-spacing: -.5px; color: var(--primary); line-height: 1.22;
+            margin-bottom: 8px;
+        }
+        .form-header p { font-size: 14px; color: var(--text-body); line-height: 1.6; }
+
+        form .row { margin-bottom: 18px; }
+        form label {
+            display: block; font-size: 12px; font-weight: 700; letter-spacing: .4px;
+            color: var(--primary); margin-bottom: 8px; text-transform: uppercase;
+        }
+        form label .req { color: var(--accent); }
+        form input[type="text"], form input[type="url"], form select, form textarea {
+            width: 100%; padding: 13px 16px;
+            border: 1.5px solid var(--border); border-radius: 12px;
+            font-family: inherit; font-size: 15px; color: var(--text-primary);
+            background: #fff; transition: border-color .2s, box-shadow .2s;
+            -webkit-appearance: none; appearance: none;
+        }
+        form input:focus, form select:focus, form textarea:focus {
+            outline: none; border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(3,5,198,.08);
+        }
+        form input.error, form select.error, form textarea.error {
+            border-color: var(--accent);
+        }
+        form select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236B7280' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 42px;
+        }
+        form textarea { resize: vertical; min-height: 84px; line-height: 1.6; }
+
+        .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .check-grid label.option {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px; border: 1.5px solid var(--border);
+            border-radius: 12px; cursor: pointer; transition: all .2s;
+            font-size: 13px; font-weight: 600; color: var(--text-body);
+            text-transform: none; letter-spacing: 0;
+            margin-bottom: 0;
+        }
+        .check-grid label.option:hover { border-color: var(--primary); }
+        .check-grid input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); flex-shrink: 0; }
+        .check-grid input[type="checkbox"]:checked + span { color: var(--primary); }
+        .check-grid label.option:has(input:checked) { border-color: var(--primary); background: rgba(3,5,198,.04); }
+
+        .submit-btn {
+            width: 100%; margin-top: 8px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 18px 24px; background: var(--whatsapp); color: #fff;
+            border-radius: var(--radius-pill); font-family: inherit;
+            font-size: 15px; font-weight: 800; letter-spacing: .2px;
+            cursor: pointer; transition: all .25s; border: none;
+            box-shadow: 0 12px 32px rgba(37,211,102,.32);
+        }
+        .submit-btn:hover { background: var(--whatsapp-dark); transform: translateY(-2px); box-shadow: 0 18px 44px rgba(37,211,102,.42); }
+        .submit-btn svg { width: 20px; height: 20px; }
+
+        .form-micro {
+            margin-top: 14px; text-align: center;
+            font-size: 12px; color: var(--text-muted); line-height: 1.6;
+        }
+
+        /* Bottom CTA strip */
+        .bottom-strip {
+            margin-top: 88px; padding: 36px 40px;
+            background: var(--bg-surface); border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 24px; flex-wrap: wrap;
+        }
+        .bottom-strip-text strong { display: block; font-family: var(--font-display); font-size: 18px; color: var(--primary); margin-bottom: 4px; font-weight: 800; }
+        .bottom-strip-text span { font-size: 14px; color: var(--text-body); }
+        .bottom-strip-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 24px; background: var(--primary); color: #fff;
+            border-radius: var(--radius-pill); font-weight: 700; font-size: 13px;
+            transition: all .25s;
+        }
+        .bottom-strip-btn:hover { background: var(--accent); transform: translateY(-1px); }
+
+        @media (max-width: 768px) {
+            .page { padding: 32px 22px 80px; }
+            .form-card { padding: 28px 22px 24px; position: static; }
+            .check-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="top-bar">
+            <div class="crumbs"><a href="index.html">BB Brands</a><span>/</span><a href="wissen.html">Wissens-Hub</a></div>
+            <a href="erstgespraech.html" class="top-bar-cta">Erstgespräch buchen</a>
+        </div>
+
+        <div class="layout">
+
+            <!-- LEFT: Pitch -->
+            <div class="pitch">
+                <div class="eyebrow">Kostenlose Analyse</div>
+                <h1>AI Readiness Check<br>für <span class="accent">deinen Store.</span></h1>
+                <p class="lead">Wir analysieren deinen Shopify-Store auf vier konkrete KI-Hebel und schicken dir die Empfehlung persönlich auf WhatsApp. Kein generisches PDF, keine 200-Wörter-Auto-Mail. Eine echte Einschätzung von einem Menschen, in 24 Stunden.</p>
+
+                <div class="levers">
+                    <div class="lever">
+                        <div class="lever-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                        </div>
+                        <div>
+                            <h4>AI Search</h4>
+                            <p>Findet deine Suche heute, was ein Kunde wirklich sucht — auch wenn er es nicht so nennt wie du?</p>
+                        </div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Produktberater</h4>
+                            <p>Kann ein KI-Berater im Theme die Standardfragen 24/7 abfangen — Größe, Material, Versand?</p>
+                        </div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+                        </div>
+                        <div>
+                            <h4>Support-Automation</h4>
+                            <p>Welche der Top-10-Tickets pro Woche kann eine KI selbstständig schließen, ohne dass es jemand merkt?</p>
+                        </div>
+                    </div>
+                    <div class="lever">
+                        <div class="lever-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                        </div>
+                        <div>
+                            <h4>Auto-Tagging &amp; Kategorisierung</h4>
+                            <p>Können neue Produkte automatisch korrekt verschlagwortet werden, statt drei Stunden manueller Pflege pro Drop?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trust-row">
+                    <span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        100 % kostenlos
+                    </span>
+                    <span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Antwort in 24h
+                    </span>
+                    <span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Kein Newsletter
+                    </span>
+                </div>
+            </div>
+
+            <!-- RIGHT: Form -->
+            <div>
+                <div class="form-card">
+                    <div class="form-header">
+                        <span class="form-eyebrow">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.9-.4-1.6-.7-2.4-1.5-.6-.5-1-1.2-1.4-1.8-.1-.3 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.8.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.2-.1-.4-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.3c1.4.7 2.9 1.1 4.6 1.1 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+                            Direkt auf WhatsApp
+                        </span>
+                        <h2>Deine Daten, in 90 Sekunden.</h2>
+                        <p>Damit wir nicht raten: ein paar Infos, dann öffnet sich WhatsApp mit deiner fertig vorbereiteten Anfrage.</p>
+                    </div>
+
+                    <form id="aiCheckForm" novalidate>
+                        <div class="row">
+                            <label for="name">Vorname <span class="req">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Z.B. Sarah" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="shop">Shop-URL <span class="req">*</span></label>
+                            <input type="url" id="shop" name="shop" placeholder="https://deinshop.de" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="branche">Was verkaufst du? <span class="req">*</span></label>
+                            <select id="branche" name="branche" required>
+                                <option value="">Bitte wählen…</option>
+                                <option>Fashion &amp; Apparel</option>
+                                <option>Beauty &amp; Skincare</option>
+                                <option>Sport &amp; Performance</option>
+                                <option>Home &amp; Living</option>
+                                <option>Food &amp; Beverage</option>
+                                <option>Health &amp; Supplements</option>
+                                <option>Electronics &amp; Gadgets</option>
+                                <option>Anderes</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <label>Welche KI-Hebel interessieren dich am meisten? <span class="req">*</span></label>
+                            <div class="check-grid">
+                                <label class="option"><input type="checkbox" name="lever" value="AI Search"><span>AI Search</span></label>
+                                <label class="option"><input type="checkbox" name="lever" value="Produktberater"><span>Produktberater</span></label>
+                                <label class="option"><input type="checkbox" name="lever" value="Support-Automation"><span>Support</span></label>
+                                <label class="option"><input type="checkbox" name="lever" value="Auto-Tagging"><span>Auto-Tagging</span></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="problem">Was ist gerade dein größtes Thema?</label>
+                            <textarea id="problem" name="problem" placeholder="Z.B. Support ertrinkt in Größenfragen, Suche findet die richtigen Produkte nicht…"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.9-.4-1.6-.7-2.4-1.5-.6-.5-1-1.2-1.4-1.8-.1-.3 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.8.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.2-.1-.4-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.3c1.4.7 2.9 1.1 4.6 1.1 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+                            Auf WhatsApp anfordern
+                        </button>
+                        <p class="form-micro">Es öffnet sich WhatsApp mit deiner fertigen Nachricht. Du musst nur auf „Senden" tippen.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-strip">
+            <div class="bottom-strip-text">
+                <strong>Lieber direkt sprechen?</strong>
+                <span>30 Minuten Erstgespräch — wir schauen uns deinen Store live an.</span>
+            </div>
+            <a href="erstgespraech.html" class="bottom-strip-btn">
+                Erstgespräch buchen
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const WA_NUMBER = '491608725947';
+            const form = document.getElementById('aiCheckForm');
+            if (!form) return;
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = form.name.value.trim();
+                const shop = form.shop.value.trim();
+                const branche = form.branche.value;
+                const levers = Array.from(form.querySelectorAll('input[name="lever"]:checked')).map(i => i.value);
+                const problem = form.problem.value.trim();
+
+                // Validation
+                let valid = true;
+                [['name', name], ['shop', shop], ['branche', branche]].forEach(([key, val]) => {
+                    const el = form[key];
+                    if (!val) { el.classList.add('error'); valid = false; }
+                    else { el.classList.remove('error'); }
+                });
+                if (levers.length === 0) {
+                    form.querySelectorAll('.check-grid label.option').forEach(l => l.style.borderColor = '#FF21A6');
+                    valid = false;
+                } else {
+                    form.querySelectorAll('.check-grid label.option').forEach(l => l.style.borderColor = '');
+                }
+                if (!valid) return;
+
+                // Build WhatsApp message
+                const lines = [
+                    `Hi Moritz! Ich komme über euren Wissens-Hub und würde gerne den kostenlosen AI Readiness Check anfordern.`,
+                    ``,
+                    `Hier meine Infos:`,
+                    `• Name: ${name}`,
+                    `• Shop: ${shop}`,
+                    `• Branche: ${branche}`,
+                    `• KI-Hebel die mich interessieren: ${levers.join(', ')}`
+                ];
+                if (problem) {
+                    lines.push(`• Mein größtes Thema gerade: ${problem}`);
+                }
+                lines.push('', 'Freue mich auf deine Einschätzung. 🙌');
+
+                const message = lines.join('\n');
+                const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            });
+
+            // Clear error on input
+            form.querySelectorAll('input, select, textarea').forEach(el => {
+                el.addEventListener('input', () => el.classList.remove('error'));
+                el.addEventListener('change', () => el.classList.remove('error'));
+            });
+        })();
+    </script>
+</body>
+</html>

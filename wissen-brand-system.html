@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das BB-Brands-Brand-System — BB Brands</title>
+    <meta name="description" content="Wie ein Styleguide aussieht, der nicht nur PDF-Deko ist, sondern Ads, Web und Verpackung trägt. Vier Schichten, ein Live-Beispiel, kein Buzzword-Bingo.">
+    <link rel="canonical" href="https://bb-brands.de/wissen-brand-system.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Das BB-Brands-Brand-System — BB Brands">
+    <meta property="og:description" content="Vier Schichten, die zusammen ein Brand-System ergeben, das im Alltag funktioniert. Mit Live-Beispiel ARCTIVE.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #FFFFFF; --bg-surface: #F5F5F7;
+            --primary: #0305C6; --primary-dark: #0204A0;
+            --accent: #FF21A6; --accent-text: #F97316;
+            --text-primary: #0A0A0A; --text-body: #4B5563;
+            --text-muted: #9CA3AF;
+            --border: rgba(10,10,10,0.08); --border-strong: rgba(10,10,10,0.16);
+            --radius: 16px; --radius-pill: 100px;
+            --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); font-size: 16px; line-height: 1.7; }
+        a { color: inherit; text-decoration: none; }
+
+        .page { max-width: 760px; margin: 0 auto; padding: 48px 32px 120px; }
+
+        .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 64px; }
+        .crumbs { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+        .crumbs a { transition: color .2s; }
+        .crumbs a:hover { color: var(--accent); }
+        .crumbs span { margin: 0 8px; }
+        .top-bar-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; background: var(--primary); color: #fff;
+            border-radius: var(--radius-pill); font-weight: 700; font-size: 12px;
+            transition: all .25s; box-shadow: 0 6px 18px rgba(3,5,198,.22);
+        }
+        .top-bar-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+        .article-header { margin-bottom: 56px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--accent-text);
+            padding: 6px 14px; border-radius: var(--radius-pill);
+            background: rgba(249,115,22,.1); margin-bottom: 24px;
+        }
+        .eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--accent-text); border-radius: 2px; }
+
+        h1 {
+            font-family: var(--font-display); font-size: clamp(34px, 5vw, 56px);
+            font-weight: 800; letter-spacing: -1.5px; line-height: 1.06;
+            color: var(--primary); margin-bottom: 24px;
+        }
+        h1 .accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent-text); }
+
+        .lead { font-size: 19px; font-weight: 300; color: var(--text-body); line-height: 1.7; margin-bottom: 32px; max-width: 640px; }
+
+        .meta {
+            display: flex; gap: 18px; flex-wrap: wrap; align-items: center;
+            padding: 16px 0; border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            font-size: 13px; color: var(--text-muted); font-weight: 500;
+        }
+        .meta strong { color: var(--text-primary); font-weight: 600; }
+
+        article p { font-size: 17px; line-height: 1.8; color: var(--text-body); margin-bottom: 22px; max-width: 680px; }
+        article p strong { color: var(--text-primary); font-weight: 600; }
+
+        article h2 {
+            font-family: var(--font-display); font-size: 30px; font-weight: 800;
+            letter-spacing: -.8px; color: var(--primary);
+            margin: 56px 0 20px; line-height: 1.2;
+        }
+        article h2 .num { display: inline-block; font-family: var(--font-serif); font-style: italic; color: var(--accent-text); font-weight: 400; margin-right: 12px; }
+        article ul { margin: 0 0 24px 0; padding: 0; list-style: none; max-width: 680px; }
+        article ul li {
+            position: relative; padding-left: 28px; margin-bottom: 12px;
+            font-size: 16px; color: var(--text-body); line-height: 1.7;
+        }
+        article ul li::before {
+            content: ''; position: absolute; left: 0; top: 11px;
+            width: 14px; height: 2px; background: var(--accent-text); border-radius: 2px;
+        }
+
+        .callout {
+            margin: 32px 0; padding: 24px 28px;
+            background: var(--bg-surface); border-left: 3px solid var(--accent-text);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .callout p { margin: 0; font-size: 15px; line-height: 1.7; color: var(--text-primary); }
+        .callout p strong { color: var(--primary); }
+
+        /* Layer Cards */
+        .layers { margin: 32px 0 8px; display: flex; flex-direction: column; gap: 18px; }
+        .layer {
+            display: grid; grid-template-columns: 64px 1fr; gap: 22px;
+            padding: 26px 28px; border: 1px solid var(--border); border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(3,5,198,.03) 0%, rgba(249,115,22,.04) 100%);
+            transition: all .25s;
+        }
+        .layer:hover { border-color: var(--border-strong); transform: translateX(3px); }
+        .layer-num {
+            font-family: var(--font-serif); font-style: italic; font-size: 44px;
+            font-weight: 400; color: var(--accent-text); line-height: 1; padding-top: 4px;
+        }
+        .layer h3 {
+            font-family: var(--font-display); font-size: 20px; font-weight: 800;
+            letter-spacing: -.4px; color: var(--primary); margin-bottom: 8px;
+        }
+        .layer p { font-size: 15px; line-height: 1.7; color: var(--text-body); margin: 0; max-width: none; }
+
+        /* Live Example */
+        .live-box {
+            margin: 40px 0;
+            border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+            background: var(--bg-surface);
+        }
+        .live-chrome {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 18px; border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+        .live-dots { display: flex; gap: 6px; }
+        .live-dots span { width: 10px; height: 10px; border-radius: 50%; background: #E5E7EB; }
+        .live-dots span:nth-child(1) { background: #FF5F57; }
+        .live-dots span:nth-child(2) { background: #FEBC2E; }
+        .live-dots span:nth-child(3) { background: #28C840; }
+        .live-url { font-size: 12px; color: var(--text-muted); font-family: ui-monospace, monospace; }
+        .live-body { padding: 32px 28px; text-align: center; }
+        .live-body h4 { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+        .live-body p { font-size: 14px; color: var(--text-body); margin-bottom: 18px; max-width: 460px; margin-left: auto; margin-right: auto; }
+        .live-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 22px; background: var(--primary); color: #fff;
+            border-radius: var(--radius-pill); font-weight: 700; font-size: 13px;
+            transition: all .25s;
+        }
+        .live-link:hover { background: var(--accent); transform: translateY(-1px); }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            margin-top: 88px; padding: 48px 40px;
+            background: var(--primary); color: #fff;
+            border-radius: var(--radius); position: relative; overflow: hidden;
+        }
+        .bottom-cta::before {
+            content: ''; position: absolute; top: -50%; right: -10%;
+            width: 60%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,33,166,.4) 0%, transparent 60%);
+            filter: blur(40px); pointer-events: none;
+        }
+        .bottom-cta-inner { position: relative; }
+        .bottom-cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 12px; }
+        .bottom-cta h2 {
+            font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 36px);
+            font-weight: 800; letter-spacing: -.8px; line-height: 1.18;
+            color: #fff; margin-bottom: 14px;
+        }
+        .bottom-cta h2 .accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #FFDE59; }
+        .bottom-cta p { font-size: 15px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,.84); margin-bottom: 28px; max-width: 540px; }
+        .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+        .cta-primary, .cta-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 28px; border-radius: var(--radius-pill);
+            font-weight: 800; font-size: 13px; letter-spacing: .2px; transition: all .25s;
+        }
+        .cta-primary { background: #fff; color: var(--primary); box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(0,0,0,.28); }
+        .cta-secondary { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.24); }
+        .cta-secondary:hover { background: rgba(255,255,255,.18); }
+
+        .next-step {
+            margin-top: 32px; padding: 24px 28px;
+            background: var(--bg-surface); border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 20px; flex-wrap: wrap;
+        }
+        .next-step-text small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+        .next-step-text strong { font-size: 16px; color: var(--primary); font-weight: 700; }
+        .next-step-arrow { color: var(--accent-text); font-size: 18px; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .page { padding: 32px 22px 80px; }
+            .bottom-cta { padding: 36px 26px; }
+            .layer { grid-template-columns: 1fr; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="top-bar">
+            <div class="crumbs"><a href="index.html">BB Brands</a><span>/</span><a href="wissen.html">Wissens-Hub</a></div>
+            <a href="erstgespraech.html" class="top-bar-cta">Erstgespräch buchen</a>
+        </div>
+
+        <header class="article-header">
+            <div class="eyebrow">Framework</div>
+            <h1>Das BB-Brands-<br><span class="accent">Brand-System.</span></h1>
+            <p class="lead">Wie ein Styleguide aussieht, der nicht nur PDF-Deko ist, sondern Ads, Web und Verpackung trägt. Vier Schichten, ein Live-Beispiel und die ehrliche Erklärung, warum die meisten Brand Books schon tot sind, bevor sie verschickt werden.</p>
+            <div class="meta">
+                <span>📖 <strong>7 Min.</strong> Lesezeit</span>
+                <span>·</span>
+                <span>Mit ARCTIVE-Live-Beispiel</span>
+                <span>·</span>
+                <span>Aktualisiert April 2026</span>
+            </div>
+        </header>
+
+        <article>
+            <p>Die meisten Brand Books sterben innerhalb von vier Wochen. Sie liegen als 60-Seiten-PDF in einer Cloud, niemand findet sie, niemand öffnet sie, und der Designer, der zwei Monate später das Verpackungsdesign macht, fragt im Slack: „Habt ihr irgendwo die Hex-Codes?"</p>
+
+            <p>Das Problem ist nicht, dass diese Dokumente schlecht gemacht sind. Das Problem ist, dass sie Dokumente sind. Ein Brand-System muss <strong>im Werkzeug leben, in dem du arbeitest</strong> — sonst ist es kein System, sondern ein Andenken an einen teuren Workshop.</p>
+
+            <h2><span class="num">01</span>Was wir unter „System" verstehen</h2>
+            <p>Ein Brand-System ist die kleinste Menge an Regeln, die nötig ist, damit fünf verschiedene Menschen an fünf verschiedenen Touchpoints zur gleichen Marke kommen — ohne dass du daneben sitzt. Nicht mehr, nicht weniger. Wenn das Logo auf der Verpackung anders gespacet ist als im Newsletter, hast du kein System.</p>
+
+            <p>Wir bauen jedes Brand-System in vier Schichten. Jede Schicht baut auf der darunterliegenden auf. Wenn du eine Schicht überspringst, bricht alles, was darüber liegt.</p>
+
+            <div class="layers">
+                <div class="layer">
+                    <div class="layer-num">01</div>
+                    <div>
+                        <h3>Foundation — Wer sind wir, für wen, warum?</h3>
+                        <p>Positionierung in drei Sätzen. Zielgruppen-Profil mit echten Verhaltensmustern (nicht „Frauen, 25–45, urban"). Brand-Werte als Filter für Entscheidungen, nicht als Wand-Tattoo. Drei Seiten, kein Roman. Wenn das nicht steht, ist alles darüber Geschmack.</p>
+                    </div>
+                </div>
+
+                <div class="layer">
+                    <div class="layer-num">02</div>
+                    <div>
+                        <h3>Design Tokens — die kleinste sichtbare Einheit</h3>
+                        <p>Farben mit Hex, RGB, HSL und Verwendungsregeln. Typografie als Type-Scale (nicht „Heading 1, Heading 2"). Spacing-Skala. Border-Radius-Stufen. Schatten-Tokens. Alles als Code-Snippets, die ein Entwickler in 5 Minuten ins Theme zieht. Keine PDFs.</p>
+                    </div>
+                </div>
+
+                <div class="layer">
+                    <div class="layer-num">03</div>
+                    <div>
+                        <h3>Pattern Library — wiederkehrende Bausteine</h3>
+                        <p>Buttons in 3 Varianten. Cards in 2 Varianten. Section-Header. Trust-Badges. Newsletter-Modul. Jeweils mit Beispiel, Code und Don'ts. Das ist die Schicht, die im Alltag den Unterschied macht — weil niemand mehr „neu erfinden" muss, was schon dreimal entschieden wurde.</p>
+                    </div>
+                </div>
+
+                <div class="layer">
+                    <div class="layer-num">04</div>
+                    <div>
+                        <h3>Living Examples — Marke im echten Kontext</h3>
+                        <p>Eine Beispiel-PDP, ein Beispiel-Newsletter, ein Beispiel-Ad-Set, eine Beispiel-Verpackung. Real, nicht als Mockup. Damit jeder neue Mensch im Team in 10 Minuten versteht, wie sich die Marke anfühlt, wenn sie ankommt.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2><span class="num">02</span>Warum interaktiv statt PDF</h2>
+            <p>Wir liefern Brand-Systeme als interaktives HTML-Dokument, gehostet unter eigener URL. Drei Gründe, ehrlich:</p>
+
+            <ul>
+                <li><strong>Copy-to-Clipboard.</strong> Hex-Codes, Snippets und Type-Tokens sind ein Klick weit weg, nicht ein PDF-Download.</li>
+                <li><strong>Versionierung.</strong> Wir aktualisieren live. Was gestern stimmte, stimmt heute auch noch — oder steht klar als „deprecated".</li>
+                <li><strong>Teilbarkeit.</strong> Du schickst einen Link. Dein Designer, dein Entwickler, deine Druckerei und dein Newsletter-Tool sehen alle die gleiche Quelle der Wahrheit.</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Praxis-Beobachtung:</strong> Bei ARCTIVE Performance hat das Brand-System nach 3 Wochen die wahrgenommene Premium-Positionierung sichtbar verändert — gleicher Traffic, signifikant höherer AOV. Nicht durch ein neues Logo. Sondern dadurch, dass <em>alles</em> sich endlich gleich anfühlte.</p>
+            </div>
+
+            <div class="live-box">
+                <div class="live-chrome">
+                    <div class="live-dots"><span></span><span></span><span></span></div>
+                    <div class="live-url">brand-guide.bb-brands.de/arctive</div>
+                </div>
+                <div class="live-body">
+                    <h4>Schau dir ein echtes Beispiel an</h4>
+                    <p>Der ARCTIVE Brand Style Guide — komplett interaktiv, live, geteilt. Genau das, was wir auch für dich bauen würden.</p>
+                    <a href="preview/arctive-style-guide.html" target="_blank" rel="noopener" class="live-link">
+                        Live ansehen
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <h2><span class="num">03</span>Wann ein Brand-System scheitert</h2>
+            <p>Drei Muster sehen wir immer wieder, und jedes davon ist tödlich:</p>
+
+            <ul>
+                <li><strong>Zu viele Optionen.</strong> Drei Logo-Varianten, fünf Schriften, sieben Farben „je nach Kontext". Das ist kein System, das ist ein Buffet. Niemand entscheidet sich für nichts und alles sieht trotzdem unterschiedlich aus.</li>
+                <li><strong>Keine Living Examples.</strong> Wenn das Brand-Book nicht zeigt, wie eine echte Produktseite oder Mail aussieht, übersetzt jeder die Regeln anders. Ergebnis: visueller Wildwuchs trotz „Brand Guide".</li>
+                <li><strong>Im falschen Format.</strong> Ein 60-MB-PDF, das niemand öffnet, weil es 30 Sekunden lädt. Ein Figma-File, in das die Druckerei keinen Zugriff hat. Ein Notion, das beim Designer gegen die Paywall läuft. Format ist nicht egal.</li>
+            </ul>
+
+            <h2><span class="num">04</span>Was du heute in 5 Minuten tun kannst</h2>
+            <p>Bevor du irgendjemanden anrufst: Teste, ob dein aktuelles Brand-System diesen Stress-Test besteht. Frag drei Menschen aus deinem Umfeld (Designer, Entwickler, Praktikant), den Newsletter, eine Produktseite und ein Ad zu skizzieren — nur mit deinem Brand-Book als Quelle. Wenn die Ergebnisse ähnlich aussehen, hast du ein System. Wenn nicht, weißt du, woran du als Nächstes arbeitest.</p>
+        </article>
+
+        <div class="bottom-cta">
+            <div class="bottom-cta-inner">
+                <div class="bottom-cta-eyebrow">Nächster Schritt</div>
+                <h2>Willst du das <span class="accent">live sehen?</span></h2>
+                <p>Wir bauen dir den kompletten Brand Style Guide kostenlos in 24 Stunden. Genau so, wie wir ihn sonst nur für zahlende Kunden liefern. Kein Newsletter, keine Kreditkarte, keine Haken.</p>
+                <div class="cta-row">
+                    <a href="index.html#gratis-guide" class="cta-primary">
+                        Style Guide kostenlos anfordern
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="erstgespraech.html" class="cta-secondary">
+                        Lieber direkt sprechen
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <a href="wissen-ai-check.html" class="next-step">
+            <div class="next-step-text">
+                <small>Weiterlesen · Schritt 3 im Wissens-Hub</small>
+                <strong>AI Readiness Check für deinen Store anfordern</strong>
+            </div>
+            <span class="next-step-arrow">→</span>
+        </a>
+    </div>
+</body>
+</html>

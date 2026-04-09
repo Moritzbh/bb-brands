@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wissens-Hub — BB Brands</title>
+    <meta name="description" content="Vier Wege, BB Brands kennenzulernen, ohne dich gleich auf ein Erstgespräch festzunageln. Guide, Framework, AI Check, Brand Audit. Kostenlos. Ohne E-Mail-Pflicht.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bb-brands.de/wissen.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Wissens-Hub — BB Brands">
+    <meta property="og:description" content="Vier Wege uns kennenzulernen: Guide, Framework, AI Check, Brand Audit. Kostenlos, ohne Newsletter.">
+    <meta property="og:url" content="https://bb-brands.de/wissen.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #FFFFFF;
+            --bg-surface: #F5F5F7;
+            --primary: #0305C6;
+            --primary-dark: #0204A0;
+            --accent: #FF21A6;
+            --accent-text: #F97316;
+            --text-primary: #0A0A0A;
+            --text-body: #6B7280;
+            --text-muted: #9CA3AF;
+            --border: rgba(10,10,10,0.08);
+            --border-strong: rgba(10,10,10,0.16);
+            --radius: 16px;
+            --radius-pill: 100px;
+            --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); font-size: 16px; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .page { max-width: 1180px; margin: 0 auto; padding: 48px 40px 120px; }
+
+        .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 80px; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase;
+            color: var(--text-muted); font-weight: 600; transition: color .2s;
+        }
+        .back-link:hover { color: var(--accent); }
+        .top-bar-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 22px; background: var(--primary); color: #fff;
+            border-radius: var(--radius-pill); font-weight: 700; font-size: 13px;
+            letter-spacing: .2px; transition: all .25s;
+            box-shadow: 0 6px 18px rgba(3,5,198,.22);
+        }
+        .top-bar-cta:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(255,33,166,.32); }
+
+        .hero { max-width: 760px; margin-bottom: 80px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--accent-text);
+            padding: 6px 14px; border-radius: var(--radius-pill);
+            background: rgba(249, 115, 22, 0.1); margin-bottom: 24px;
+        }
+        .eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--accent-text); border-radius: 2px; }
+
+        h1 {
+            font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px);
+            font-weight: 800; letter-spacing: -2px; line-height: 1.04;
+            color: var(--primary); margin-bottom: 24px;
+        }
+        h1 .accent {
+            font-family: var(--font-serif); font-style: italic; font-weight: 400;
+            color: var(--accent-text);
+        }
+        .hero p {
+            font-size: 19px; font-weight: 300; color: var(--text-body);
+            line-height: 1.7; max-width: 640px;
+        }
+
+        /* Customer-Journey-Hint */
+        .journey-strip {
+            display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+            margin: 32px 0 0; padding: 18px 22px;
+            border: 1px solid var(--border); border-radius: var(--radius);
+            background: var(--bg-surface); max-width: 720px;
+        }
+        .journey-strip svg { flex-shrink: 0; }
+        .journey-strip p {
+            font-size: 14px; color: var(--text-body); line-height: 1.6; margin: 0;
+        }
+        .journey-strip strong { color: var(--primary); font-weight: 700; }
+
+        /* Grid */
+        .grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+        }
+        @media (max-width: 880px) { .grid { grid-template-columns: 1fr; gap: 20px; } }
+
+        .card {
+            display: flex; flex-direction: column;
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden;
+            transition: all .3s; position: relative;
+        }
+        .card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 48px rgba(10,10,10,.08);
+        }
+        .card-step {
+            position: absolute; top: 18px; right: 18px;
+            font-size: 10px; font-weight: 800; letter-spacing: 1.4px;
+            text-transform: uppercase; color: var(--text-muted);
+            background: rgba(255,255,255,.92); padding: 5px 10px;
+            border-radius: var(--radius-pill); border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+        }
+        .card-thumb {
+            aspect-ratio: 16 / 9; background: var(--bg-surface);
+            background-size: cover; background-position: center;
+            position: relative;
+        }
+        .card-thumb.t1 { background-image: linear-gradient(135deg, #0305C6 0%, #2325E0 100%); }
+        .card-thumb.t2 { background-image: linear-gradient(135deg, #F97316 0%, #FF21A6 100%); }
+        .card-thumb.t3 { background-image: linear-gradient(135deg, #0204A0 0%, #F97316 100%); }
+        .card-thumb.t4 { background-image: linear-gradient(135deg, #FF21A6 0%, #0305C6 100%); }
+        .card-tag {
+            position: absolute; bottom: 16px; left: 16px;
+            font-size: 11px; font-weight: 700; letter-spacing: 1.4px;
+            text-transform: uppercase; color: #fff;
+            background: rgba(0,0,0,.32); padding: 6px 12px;
+            border-radius: var(--radius-pill); backdrop-filter: blur(8px);
+        }
+        .card-body { padding: 32px 32px 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-body h3 {
+            font-family: var(--font-display); font-size: 24px; font-weight: 800;
+            letter-spacing: -.6px; color: var(--primary); line-height: 1.22;
+            margin-bottom: 12px;
+        }
+        .card-body p {
+            font-size: 15px; font-weight: 300; color: var(--text-body);
+            line-height: 1.7; margin-bottom: 20px; flex-grow: 1;
+        }
+        .card-meta {
+            display: flex; gap: 14px; flex-wrap: wrap;
+            font-size: 12px; color: var(--text-muted); font-weight: 500;
+            padding-top: 16px; border-top: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .card-meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .card-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 700; letter-spacing: .3px;
+            color: var(--primary); transition: gap .25s;
+        }
+        .card-link svg { transition: transform .25s; }
+        .card:hover .card-link svg { transform: translateX(4px); }
+        .card:hover .card-link { color: var(--accent); }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            margin-top: 100px; padding: 56px 48px;
+            background: var(--primary); color: #fff;
+            border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 40px; flex-wrap: wrap;
+            position: relative; overflow: hidden;
+        }
+        .bottom-cta::before {
+            content: ''; position: absolute; top: -50%; right: -10%;
+            width: 60%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,33,166,.4) 0%, transparent 60%);
+            filter: blur(40px); pointer-events: none;
+        }
+        .bottom-cta-text { position: relative; max-width: 540px; }
+        .bottom-cta h2 {
+            font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px);
+            font-weight: 800; letter-spacing: -.8px; line-height: 1.18;
+            margin-bottom: 12px;
+        }
+        .bottom-cta h2 .accent {
+            font-family: var(--font-serif); font-style: italic; font-weight: 400;
+            color: #FFDE59;
+        }
+        .bottom-cta p {
+            font-size: 15px; font-weight: 300; line-height: 1.7;
+            color: rgba(255,255,255,.84);
+        }
+        .bottom-cta-btn {
+            position: relative;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 32px; background: #fff; color: var(--primary);
+            border-radius: var(--radius-pill); font-weight: 800; font-size: 14px;
+            letter-spacing: .2px; transition: all .25s; flex-shrink: 0;
+            box-shadow: 0 12px 32px rgba(0,0,0,.18);
+        }
+        .bottom-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(0,0,0,.28); }
+
+        @media (max-width: 768px) {
+            .page { padding: 32px 20px 80px; }
+            .top-bar { margin-bottom: 56px; }
+            .hero { margin-bottom: 56px; }
+            .bottom-cta { padding: 40px 28px; flex-direction: column; align-items: flex-start; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="top-bar">
+            <a href="index.html" class="back-link">&larr; Zurück zu BB Brands</a>
+            <a href="erstgespraech.html" class="top-bar-cta">Erstgespräch buchen</a>
+        </div>
+
+        <div class="hero">
+            <div class="eyebrow">Wissens-Hub</div>
+            <h1>Bevor wir reden, <span class="accent">lies dich ein.</span></h1>
+            <p>Vier Wege, BB Brands kennenzulernen — vom 5-Minuten-Read bis zum kostenlosen Audit. Such dir den passenden Einstieg in deine Customer Journey aus. Kein Newsletter, keine E-Mail-Pflicht, kein Pitch.</p>
+
+            <div class="journey-strip">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0305C6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+                <p><strong>So liest du den Hub:</strong> Je weiter du nach unten gehst, desto näher kommst du dem direkten Gespräch. Oben Wissen, unten Aktion.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+
+            <a href="wissen-d2c-launch.html" class="card">
+                <span class="card-step">Schritt 1 · Lesen</span>
+                <div class="card-thumb t1">
+                    <span class="card-tag">Guide</span>
+                </div>
+                <div class="card-body">
+                    <h3>D2C-Brand-Launch in 21 Tagen</h3>
+                    <p>Der komplette Fahrplan: Vom ersten Logo bis zum laufenden Shopify-Store mit ersten Verkäufen. Drei Wochen, drei Phasen, eine ehrliche Checkliste.</p>
+                    <div class="card-meta">
+                        <span>📖 9 Min. Read</span>
+                        <span>·</span>
+                        <span>Für Founder vor dem Launch</span>
+                    </div>
+                    <span class="card-link">Guide lesen
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </div>
+            </a>
+
+            <a href="wissen-brand-system.html" class="card">
+                <span class="card-step">Schritt 2 · Verstehen</span>
+                <div class="card-thumb t3">
+                    <span class="card-tag">Framework</span>
+                </div>
+                <div class="card-body">
+                    <h3>Das BB-Brands-Brand-System</h3>
+                    <p>Wie ein Styleguide aussieht, der nicht nur PDF-Deko ist, sondern Ads, Web und Verpackung trägt. Vier Schichten, ein Live-Beispiel, kein Buzzword-Bingo.</p>
+                    <div class="card-meta">
+                        <span>📖 7 Min. Read</span>
+                        <span>·</span>
+                        <span>Mit ARCTIVE-Beispiel</span>
+                    </div>
+                    <span class="card-link">Framework sehen
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </div>
+            </a>
+
+            <a href="wissen-ai-check.html" class="card">
+                <span class="card-step">Schritt 3 · Anfordern</span>
+                <div class="card-thumb t2">
+                    <span class="card-tag">Kostenlose Analyse</span>
+                </div>
+                <div class="card-body">
+                    <h3>AI Readiness Check für deinen Store</h3>
+                    <p>Wir analysieren deinen Shopify-Store auf vier KI-Hebel: Search, Produktberater, Support, Auto-Tagging. Konkrete Empfehlung statt Buzzword-Bingo, persönlich auf WhatsApp.</p>
+                    <div class="card-meta">
+                        <span>⚡ 90 Sek. Anfrage</span>
+                        <span>·</span>
+                        <span>Antwort in 24h</span>
+                    </div>
+                    <span class="card-link">Check anfordern
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </div>
+            </a>
+
+            <a href="https://wa.me/491608725947?text=Hi%20Moritz%2C%20ich%20komme%20%C3%BCber%20euren%20Wissens-Hub%20und%20w%C3%BCrde%20gerne%20einen%20kostenlosen%20Brand%20Audit%20anfordern.%20Ich%20schick%20dir%20gleich%20kurz%20meinen%20Shop-Link%20und%20meine%20gr%C3%B6%C3%9Fte%20Baustelle.%20Wann%20passt%27s%20bei%20dir%3F%20%F0%9F%99%8C" target="_blank" rel="noopener" class="card">
+                <span class="card-step">Schritt 4 · Sprechen</span>
+                <div class="card-thumb t4">
+                    <span class="card-tag">Brand Audit</span>
+                </div>
+                <div class="card-body">
+                    <h3>Kostenloser Brand-Audit per WhatsApp</h3>
+                    <p>30 Minuten. Dein Shop auf dem Schirm. Wir zeigen dir, was sofort skaliert und was du loslassen darfst. Direkter Start auf WhatsApp, kein Formular dazwischen.</p>
+                    <div class="card-meta">
+                        <span>💬 Direkt auf WhatsApp</span>
+                        <span>·</span>
+                        <span>Antwort meist in &lt;2h</span>
+                    </div>
+                    <span class="card-link">Audit auf WhatsApp starten
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="bottom-cta">
+            <div class="bottom-cta-text">
+                <h2>Schon entschieden? <span class="accent">Lass uns reden.</span></h2>
+                <p>Wenn du lieber direkt einsteigst statt vorher zu lesen — buche dir 30 Minuten. Kein Pitch-Deck, kein Smalltalk. Wir schauen uns an, wo du stehst.</p>
+            </div>
+            <a href="erstgespraech.html" class="bottom-cta-btn">
+                Erstgespräch buchen
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
