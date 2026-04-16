@@ -191,13 +191,16 @@
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #0A0A0A; --bg-surface: #111113;
-            --bg-card: #141417;
+            /* LIGHT THEME for longform reading
+             * Dark accent zones (Top-Bar-CTA, Bottom-CTA) keep their brand colors
+             * because they use hardcoded values or --primary, not --bg. */
+            --bg: #FFFFFF; --bg-surface: #F8F8FA;
+            --bg-card: #F5F5F7;
             --primary: #5B6BFF; --primary-dark: #3D4FE6;
             --accent: #FF21A6; --accent-text: #FB923C;
-            --text-primary: #FAFAFA; --text-body: #A1A1AA;
+            --text-primary: #0A0A0A; --text-body: #2A2A2A;
             --text-muted: #71717A;
-            --border: rgba(255,255,255,0.08); --border-strong: rgba(91,107,255,0.32);
+            --border: rgba(0,0,0,0.08); --border-strong: rgba(91,107,255,0.28);
             --radius: 16px; --radius-pill: 100px;
             --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
             --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
@@ -485,10 +488,12 @@
             article table { font-size: 13px; }
             article table th, article table td { padding: 10px 12px; }
         }
+        /* Bewusst KEIN premium-overlay-v2.css / premium-cleanup.css / premium-reveal.js
+         * Diese sind fürs Homepage-Marketing (Film-Grain, Hero-Gradients, Scroll-Reveal,
+         * Bold-Gradient-Stroke) gebaut. Für Longform-Reading stören sie
+         * (unlesbarer Bold-Text, unerwünschte Animations). Blog-Artikel sind
+         * bewusst clean & lesbar. */
     </style>
-    <link rel="stylesheet" href="assets/premium-overlay-v2.css">
-    <link rel="stylesheet" href="assets/premium-cleanup.css">
-    <script src="assets/premium-reveal.js" defer></script>
 </head>
 <body>
     <div class="page">
