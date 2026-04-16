@@ -1,0 +1,79 @@
+# bb-brands.de — robots.txt
+# Last updated: 2026-04-16
+# Strategy: Maximize discoverability for search + AI citation engines.
+
+# ──────────────────────────────────────────────
+# Standard Search Engines — allow everything except admin/api
+# ──────────────────────────────────────────────
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /preview/
+
+# ──────────────────────────────────────────────
+# AI Crawlers — explicitly ALLOW for GEO citation
+# Strategy: We want to be cited by ChatGPT, Perplexity, Claude, Gemini.
+# Trade-off: Our content may be used for training. Accepted.
+# ──────────────────────────────────────────────
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Google Extended (Gemini training)
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Common Crawl (feeds many AI training datasets)
+User-agent: CCBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ──────────────────────────────────────────────
+# Sitemap
+# ──────────────────────────────────────────────
+Sitemap: https://bb-brands.de/sitemap.xml
