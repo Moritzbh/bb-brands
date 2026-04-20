@@ -35,8 +35,13 @@ const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'info@bb-brands.de';
 const NOTIFY_FROM = process.env.NOTIFY_FROM || 'BB Brands Lead <leads@bb-brands.de>';
 
 // Push notifications via ntfy.sh (optional — runs only if NTFY_TOPIC is set)
-const NTFY_TOPIC = process.env.NTFY_TOPIC || '';
-const NTFY_SERVER = process.env.NTFY_SERVER || 'https://ntfy.sh';
+// Sanitize: trim whitespace + strip accidental https://... Präfix (User-Error-Resilient)
+const NTFY_TOPIC_RAW = process.env.NTFY_TOPIC || '';
+const NTFY_TOPIC = NTFY_TOPIC_RAW
+  .trim()
+  .replace(/^https?:\/\/[^/]+\//, '') // strip "https://ntfy.sh/" if accidentally included
+  .replace(/^\/+/, '');               // strip leading slashes
+const NTFY_SERVER = (process.env.NTFY_SERVER || 'https://ntfy.sh').trim().replace(/\/+$/, '');
 
 const HASH_KEY = 'bb:leads';
 
@@ -479,12 +484,17 @@ async function sendWhatsAppLeadEmail(record) {
 
 // ----- ntfy.sh push notifier (optional) --------------------
 async function sendPushNotification(record) {
-  if (!NTFY_TOPIC) return; // silent skip — wenn NTFY_TOPIC nicht gesetzt, keine Push
+  if (!NTFY_TOPIC) {
+    console.log('[ntfy] skipped — NTFY_TOPIC not configured');
+    return;
+  }
 
   const payload = buildPushPayload(record);
+  const publishUrl = `${NTFY_SERVER}/${NTFY_TOPIC}`;
+  console.log(`[ntfy] publishing to ${publishUrl} for lead ${record.id} (magnet=${record.magnet})`);
 
   try {
-    const resp = await fetch(`${NTFY_SERVER}/${NTFY_TOPIC}`, {
+    const resp = await fetch(publishUrl, {
       method: 'POST',
       headers: {
         // ntfy nutzt HTTP-Headers für Metadata. Latin-1-safe damit Umlaute nicht crashen.
@@ -501,9 +511,10 @@ async function sendPushNotification(record) {
       const errText = await resp.text();
       throw new Error(`ntfy ${resp.status}: ${errText}`);
     }
+    console.log(`[ntfy] publish ok — lead ${record.id}`);
   } catch (err) {
     // Fehler nicht weiterwerfen — Push ist best-effort, blockiert nicht den Lead-Save
-    console.error('[ntfy] send failed:', err.message);
+    console.error('[ntfy] send failed:', err.message, '| URL:', publishUrl);
   }
 }
 
