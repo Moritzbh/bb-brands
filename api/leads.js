@@ -642,17 +642,16 @@ function buildPushPayload(record) {
   };
 }
 
-// HTTP-Header dürfen strikt genommen nur Latin-1 sein. ntfy empfiehlt
-// RFC 2047 encoded-words für Unicode — aber simple ASCII-Fallback reicht.
+// HTTP-Header sind strikt Latin-1. Für Unicode (Emojis, Sonderzeichen)
+// nutzen wir RFC 2047 encoded-words: =?UTF-8?B?<base64>?=
+// ntfy.sh dekodiert das automatisch.
 function encodeLatin1Header(s) {
-  try {
-    // Test: kann der String als Latin-1 rausgehen?
-    Buffer.from(s, 'latin1').toString('latin1');
-    return s;
-  } catch {
-    // Fallback: nur ASCII behalten
-    return s.replace(/[^\x20-\x7E]/g, '?');
-  }
+  if (!s) return '';
+  // Pure ASCII → 1:1 durchlassen (spart Platz, ntfy zeigt direkt)
+  if (/^[\x20-\x7E]*$/.test(s)) return s;
+  // Non-ASCII → RFC 2047 Base64-encoded UTF-8
+  const base64 = Buffer.from(s, 'utf-8').toString('base64');
+  return `=?UTF-8?B?${base64}?=`;
 }
 
 // ----- raw body reader (fallback for when Vercel doesn't parse) -----
