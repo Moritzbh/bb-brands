@@ -34,6 +34,10 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'info@bb-brands.de';
 const NOTIFY_FROM = process.env.NOTIFY_FROM || 'BB Brands Lead <leads@bb-brands.de>';
 
+// Push notifications via ntfy.sh (optional — runs only if NTFY_TOPIC is set)
+const NTFY_TOPIC = process.env.NTFY_TOPIC || '';
+const NTFY_SERVER = process.env.NTFY_SERVER || 'https://ntfy.sh';
+
 const HASH_KEY = 'bb:leads';
 
 const PAIN_LABELS = {
@@ -41,6 +45,29 @@ const PAIN_LABELS = {
   shop: 'Shopify Store & CVR',
   ads: 'Meta & Performance Ads',
   ai: 'KI im Store & Support',
+};
+
+// Push-Notification Labels (Human-readable)
+const UMSATZ_PUSH_LABELS = {
+  '<5k': '<5k/Mo',
+  '5-25k': '5–25k/Mo',
+  '25-100k': '25–100k/Mo',
+  '100k+': '100k+/Mo',
+  'unklar': 'Umsatz unklar',
+};
+const BAUSTELLE_PUSH_LABELS = {
+  'store-neu': 'Shop neu',
+  'store-optimize': 'Shop optimieren',
+  'store-rebuild': 'Shop Rebuild',
+  'branding': 'Branding',
+  'ads': 'Ads',
+  'mehrere': 'Mehrere Bereiche',
+};
+const TIMELINE_PUSH_LABELS = {
+  'sofort': '2 Wochen',
+  '1-monat': '~1 Monat',
+  '2-3-monate': '2–3 Monate',
+  'explorativ': 'Explorativ',
 };
 
 // Erstgespräch-Form enums (aus website/erstgespraech.html)
@@ -203,6 +230,12 @@ module.exports = async function handler(req, res) {
         };
 
         await redis('HSET', HASH_KEY, id, JSON.stringify(record));
+
+        // Fire-and-forget Push-Notification (blockiert Response nicht)
+        sendPushNotification(record).catch((err) =>
+          console.error('[/api/leads] push notify failed:', err)
+        );
+
         return jsonResponse(res, 200, { ok: true, id });
       }
 
@@ -249,6 +282,11 @@ module.exports = async function handler(req, res) {
         // Fire-and-forget email notification (don't block response on failure)
         sendWhatsAppLeadEmail(record).catch((err) =>
           console.error('[/api/leads] email notify failed:', err)
+        );
+
+        // Fire-and-forget Push-Notification
+        sendPushNotification(record).catch((err) =>
+          console.error('[/api/leads] push notify failed:', err)
         );
 
         return jsonResponse(res, 200, { ok: true, id });
@@ -298,6 +336,11 @@ module.exports = async function handler(req, res) {
       };
 
       await redis('HSET', HASH_KEY, id, JSON.stringify(record));
+
+      // Fire-and-forget Push-Notification
+      sendPushNotification(record).catch((err) =>
+        console.error('[/api/leads] push notify failed:', err)
+      );
 
       return jsonResponse(res, 200, { ok: true, id });
     }
@@ -431,6 +474,90 @@ async function sendWhatsAppLeadEmail(record) {
   if (!resp.ok) {
     const errText = await resp.text();
     throw new Error(`Resend ${resp.status}: ${errText}`);
+  }
+}
+
+// ----- ntfy.sh push notifier (optional) --------------------
+async function sendPushNotification(record) {
+  if (!NTFY_TOPIC) return; // silent skip — wenn NTFY_TOPIC nicht gesetzt, keine Push
+
+  let title = 'Neuer Lead · BB Brands';
+  let message = '';
+  let priority = 'default';
+  let tags = 'bell';
+
+  if (record.magnet === 'erstgespraech') {
+    title = `Lead · ${record.brand || record.name}`;
+    const parts = [
+      record.name,
+      record.email ? `✉ ${record.email}` : null,
+      record.umsatz ? `Umsatz: ${UMSATZ_PUSH_LABELS[record.umsatz] || record.umsatz}` : null,
+      record.baustelle ? `Baustelle: ${BAUSTELLE_PUSH_LABELS[record.baustelle] || record.baustelle}` : null,
+      record.timeline ? `Timeline: ${TIMELINE_PUSH_LABELS[record.timeline] || record.timeline}` : null,
+      record.wasVerkauft ? `→ ${record.wasVerkauft}` : null,
+    ].filter(Boolean);
+    message = parts.join('\n');
+    // sofort-Timeline → High Priority (Sound + Vibration stärker)
+    priority = record.timeline === 'sofort' ? 'high' : 'default';
+    tags = 'fire,moneybag';
+  } else if (record.magnet === 'whatsapp-chat') {
+    title = `WhatsApp-Lead · ${record.brand}`;
+    const painLabel = PAIN_LABELS[record.pain] || record.pain;
+    message = [
+      record.name,
+      `📱 ${record.phone}`,
+      `Engpass: ${painLabel}`,
+      record.website ? record.website : null,
+    ].filter(Boolean).join('\n');
+    priority = 'high';
+    tags = 'speech_balloon';
+  } else {
+    // style-guide / ai-readiness-check
+    const magnetLabel = record.magnet === 'ai-readiness-check' ? 'AI-Check' : 'Style-Guide';
+    title = `${magnetLabel} · ${record.company || record.name}`;
+    message = [
+      record.name,
+      record.email ? `✉ ${record.email}` : null,
+      record.phone ? `📱 ${record.phone}` : null,
+      record.website ? record.website : null,
+    ].filter(Boolean).join('\n');
+    tags = 'rocket';
+  }
+
+  try {
+    const resp = await fetch(`${NTFY_SERVER}/${NTFY_TOPIC}`, {
+      method: 'POST',
+      headers: {
+        // ntfy nutzt HTTP-Headers für Metadata. Latin-1-safe damit Umlaute nicht crashen.
+        'Title': encodeLatin1Header(title),
+        'Priority': priority,
+        'Tags': tags,
+        'Click': 'https://bb-brands.de/admin',
+        'Actions': 'view, Admin öffnen, https://bb-brands.de/admin, clear=true',
+        'Content-Type': 'text/plain; charset=utf-8',
+      },
+      body: message,
+    });
+    if (!resp.ok) {
+      const errText = await resp.text();
+      throw new Error(`ntfy ${resp.status}: ${errText}`);
+    }
+  } catch (err) {
+    // Fehler nicht weiterwerfen — Push ist best-effort, blockiert nicht den Lead-Save
+    console.error('[ntfy] send failed:', err.message);
+  }
+}
+
+// HTTP-Header dürfen strikt genommen nur Latin-1 sein. ntfy empfiehlt
+// RFC 2047 encoded-words für Unicode — aber simple ASCII-Fallback reicht.
+function encodeLatin1Header(s) {
+  try {
+    // Test: kann der String als Latin-1 rausgehen?
+    Buffer.from(s, 'latin1').toString('latin1');
+    return s;
+  } catch {
+    // Fallback: nur ASCII behalten
+    return s.replace(/[^\x20-\x7E]/g, '?');
   }
 }
 
