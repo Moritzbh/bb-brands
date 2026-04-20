@@ -137,6 +137,22 @@ function isUrl(s) {
   }
 }
 
+// Extrahiert Attribution-Felder (UTMs + Referrer + Landing + Submit-Page) aus Request-Body.
+// Wird von allen 3 Magnet-Handlern gleich benutzt, damit jeder Lead Herkunft hat.
+function extractAttribution(body) {
+  return {
+    utmSource: str(body.utm_source, 120),
+    utmMedium: str(body.utm_medium, 120),
+    utmCampaign: str(body.utm_campaign, 120),
+    utmContent: str(body.utm_content, 120),
+    utmTerm: str(body.utm_term, 120),
+    referrer: str(body.referrer, 300),
+    referrerDomain: str(body.referrer_domain, 120),
+    landingPath: str(body.landing_path, 300),
+    submitPath: str(body.submit_path, 300),
+  };
+}
+
 function checkAdmin(req) {
   const auth = req.headers['authorization'] || req.headers['Authorization'] || '';
   const token = auth.replace(/^Bearer\s+/i, '');
@@ -202,6 +218,7 @@ module.exports = async function handler(req, res) {
             body.consentContact === true ||
             body.consentContact === 'true' ||
             body.consentContact === 'on',
+          ...extractAttribution(body),
         };
 
         const errors = {};
@@ -258,6 +275,7 @@ module.exports = async function handler(req, res) {
           phone: str(body.phone, 60),
           source: str(body.source, 60) || 'unknown',
           consentChat: body.consentChat === true || body.consentChat === 'true' || body.consentChat === 'on',
+          ...extractAttribution(body),
         };
 
         const errors = {};
@@ -309,6 +327,7 @@ module.exports = async function handler(req, res) {
         delivery: body.delivery === 'whatsapp' ? 'whatsapp' : 'email',
         consentGuide: body.consentGuide === true || body.consentGuide === 'true' || body.consentGuide === 'on',
         consentReference: body.consentReference === true || body.consentReference === 'true' || body.consentReference === 'on',
+        ...extractAttribution(body),
       };
 
       // Validation
@@ -543,6 +562,21 @@ function buildPushPayload(record) {
     record.timeline === 'sofort' ||
     record.magnet === 'whatsapp-chat';
 
+  // Shared: Source-Zeile für Push (kompakt)
+  // Priorisiert: UTM-Source > manuelles attribution-Feld > Referrer-Domain > "Direct"
+  function formatSource() {
+    if (record.utmSource) {
+      const parts = [record.utmSource];
+      if (record.utmMedium) parts.push(record.utmMedium);
+      if (record.utmCampaign) parts.push(`"${record.utmCampaign}"`);
+      return `🔗 ${parts.join(' · ')}`;
+    }
+    if (record.attribution) return `🔗 ${record.attribution}`;
+    if (record.referrerDomain) return `🔗 via ${record.referrerDomain}`;
+    return '🔗 Direct';
+  }
+  const sourceLine = formatSource();
+
   // Shared: Action-Buttons bauen (max 3 — ntfy-Limit)
   // Labels bewusst ohne Umlaute, damit HTTP-Header Latin-1 safe bleibt.
   const actions = [];
@@ -571,7 +605,8 @@ function buildPushPayload(record) {
       record.timeline ? `⏱ Timeline: ${TIMELINE_PUSH_LABELS[record.timeline] || record.timeline}` : null,
       record.budget ? `💶 Budget: ${record.budget}` : null,
       record.wasVerkauft ? `\n📝 ${record.wasVerkauft}` : null,
-      time ? `\n🕐 ${time} Uhr` : null,
+      `\n${sourceLine}`,
+      time ? `🕐 ${time} Uhr` : null,
     ].filter(Boolean);
     return {
       title,
@@ -593,7 +628,8 @@ function buildPushPayload(record) {
       painLabel ? `🎯 Engpass: ${painLabel}` : null,
       record.website ? `🌐 ${record.website}` : null,
       record.context ? `\n💬 ${record.context}` : null,
-      time ? `\n🕐 ${time} Uhr` : null,
+      `\n${sourceLine}`,
+      time ? `🕐 ${time} Uhr` : null,
     ].filter(Boolean);
     // WhatsApp-Primary: Chat direkt öffnen
     const waAction = phoneClean

@@ -4258,6 +4258,8 @@
     <link rel="stylesheet" href="assets/premium-overlay-v2.css">
     <link rel="stylesheet" href="assets/premium-cleanup.css">
     <script src="assets/premium-reveal.js" defer></script>
+    <!-- Attribution-Tracker: UTMs + Referrer + Landing-Page erfassen -->
+    <script src="/assets/attribution.js"></script>
 </head>
 <body>
 
@@ -5779,6 +5781,7 @@
                 if (form.querySelector('input[name="_gotcha"]').value) return;
 
                 const fd = new FormData(form);
+                const attr = (window.bbAttribution && window.bbAttribution.getAll()) || {};
                 const data = {
                     magnet: 'whatsapp-chat',
                     name: fd.get('name'),
@@ -5788,7 +5791,17 @@
                     context: fd.get('context') || '',
                     phone: fd.get('phone'),
                     source: fd.get('source') || 'unknown',
-                    consentChat: consentInput.checked
+                    consentChat: consentInput.checked,
+                    // Herkunft / Journey
+                    utm_source: attr.utm_source || '',
+                    utm_medium: attr.utm_medium || '',
+                    utm_campaign: attr.utm_campaign || '',
+                    utm_content: attr.utm_content || '',
+                    utm_term: attr.utm_term || '',
+                    referrer: attr.referrer || '',
+                    referrer_domain: attr.referrer_domain || '',
+                    landing_path: attr.landing_path || '',
+                    submit_path: attr.submit_path || ''
                 };
 
                 const waMessage = buildWaMessage(data);
@@ -5941,6 +5954,9 @@
                 const magnet = formData.get('magnet') || 'style-guide';
                 const previousBtnText = submitText.textContent;
 
+                // Attribution-Daten holen
+                const attr = (window.bbAttribution && window.bbAttribution.getAll()) || {};
+
                 // Build JSON payload for /api/leads
                 const payload = {
                     magnet: magnet,
@@ -5952,6 +5968,16 @@
                     delivery: 'whatsapp',
                     consentGuide: formData.get('consentGuide') === 'on',
                     consentReference: formData.get('consentReference') === 'on',
+                    // Herkunft / Journey
+                    utm_source: attr.utm_source || '',
+                    utm_medium: attr.utm_medium || '',
+                    utm_campaign: attr.utm_campaign || '',
+                    utm_content: attr.utm_content || '',
+                    utm_term: attr.utm_term || '',
+                    referrer: attr.referrer || '',
+                    referrer_domain: attr.referrer_domain || '',
+                    landing_path: attr.landing_path || '',
+                    submit_path: attr.submit_path || '',
                 };
 
                 submitBtn.disabled = true;

@@ -789,6 +789,8 @@
             .modal-radios.cols-2 { grid-template-columns: 1fr; }
         }
     </style>
+    <!-- Attribution-Tracker: UTMs + Referrer + Landing-Page beim ersten Load erfassen -->
+    <script src="/assets/attribution.js"></script>
 </head>
 <body>
     <div class="page">
@@ -1168,6 +1170,9 @@
                     return;
                 }
 
+                // Attribution-Daten aus dem Tracker-Script holen
+                const attr = (window.bbAttribution && window.bbAttribution.getAll()) || {};
+
                 const payload = {
                     magnet: 'erstgespraech',
                     _gotcha: fd.get('_gotcha') || '',
@@ -1182,6 +1187,16 @@
                     budget: fd.get('budget') || '',
                     attribution: fd.get('attribution') || '',
                     consentContact: form.querySelector('#consentContact').checked,
+                    // Herkunft / Journey
+                    utm_source: attr.utm_source || '',
+                    utm_medium: attr.utm_medium || '',
+                    utm_campaign: attr.utm_campaign || '',
+                    utm_content: attr.utm_content || '',
+                    utm_term: attr.utm_term || '',
+                    referrer: attr.referrer || '',
+                    referrer_domain: attr.referrer_domain || '',
+                    landing_path: attr.landing_path || '',
+                    submit_path: attr.submit_path || '',
                 };
 
                 btn.classList.add('is-loading');
