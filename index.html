@@ -390,6 +390,26 @@
             border-color: var(--primary);
             background: rgba(91, 107, 255, 0.04);
         }
+        /* Secondary button — dezenter als btn-primary, für Quick-Path "WhatsApp" CTAs */
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 26px;
+            background: rgba(91, 107, 255, 0.06);
+            color: var(--primary);
+            border: 1.5px solid rgba(91, 107, 255, 0.18);
+            font-family: var(--font-body); font-size: 13px; font-weight: 600;
+            transition: all 0.2s;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background: rgba(91, 107, 255, 0.10);
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+        .btn-secondary svg { color: #25D366; flex-shrink: 0; }
+        /* btn-call ist eine reine Marker-Klasse für das Tracking — visueller Style kommt von btn-primary */
+
         .hero-guarantees {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
             margin: 48px auto 0; max-width: 720px;
@@ -4268,13 +4288,12 @@
         <div class="nav-inner">
             <a href="#" class="logo"><img src="assets/bb-logo.jpg" alt="BB Brands" class="logo-img">BB Brands</a>
             <ul class="nav-links">
-                <li><a href="#problem">Problem</a></li>
                 <li><a href="#services">Prozess</a></li>
                 <li><a href="#guarantees">Garantien</a></li>
-                <li><a href="#about">Studio</a></li>
+                <li><a href="wissen.html">Wissen</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
-            <button type="button" class="nav-cta btn-whatsapp" data-wa-open data-wa-source="nav" aria-haspopup="dialog" aria-controls="waModal">Auf WhatsApp schreiben</button>
+            <a href="erstgespraech.html" class="nav-cta nav-cta-primary">Erstgespräch buchen <span aria-hidden="true">→</span></a>
             <button class="nav-burger" id="navBurger" aria-label="Menü öffnen" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
@@ -4282,12 +4301,11 @@
     </nav>
 
     <div class="mobile-overlay" id="mobileOverlay">
-        <a href="#problem">Problem</a>
         <a href="#services">Prozess</a>
         <a href="#guarantees">Garantien</a>
-        <a href="#about">Studio</a>
+        <a href="wissen.html">Wissen</a>
         <a href="#faq">FAQ</a>
-        <a href="#" data-wa-open data-wa-source="mobile-nav" style="color: #25D366;">Auf WhatsApp schreiben</a>
+        <a href="erstgespraech.html" style="color: var(--c-primary, #0305C6); font-weight: 700;">Erstgespräch buchen →</a>
     </div>
 
     <!-- ============ HERO ============ -->
@@ -4312,9 +4330,13 @@
                     BB Brands verwandelt deinen Shopify Store in eine Premium-Marke. Exzellentes Design trifft auf KI im Store — für maximale Conversion und skalierbare Margen.
                 </p>
                 <div class="hero-actions">
-                    <button type="button" class="btn-primary btn-whatsapp" data-wa-open data-wa-source="hero" aria-haspopup="dialog" aria-controls="waModal">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
-                        Schreib uns auf WhatsApp
+                    <a href="erstgespraech.html" class="btn-primary btn-call" data-cta-source="hero">
+                        30-Min Erstgespräch buchen
+                        <span aria-hidden="true" style="margin-left: 4px;">→</span>
+                    </a>
+                    <button type="button" class="btn-secondary btn-whatsapp" data-wa-open data-wa-source="hero-secondary" aria-haspopup="dialog" aria-controls="waModal">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
+                        Lieber sofort schreiben? WhatsApp
                     </button>
                 </div>
                 <div class="hero-guarantees">
@@ -4464,178 +4486,6 @@
         </div>
     </section>
 
-    <!-- ============ LEAD MAGNET ============ -->
-    <section class="leadmagnet" id="gratis-guide" aria-label="Kostenloser Brand Style Guide">
-        <div class="lm-bg-glow" aria-hidden="true"></div>
-        <div class="lm-bg-glow right" aria-hidden="true"></div>
-        <div class="container">
-            <div class="lm-inner">
-                <div class="lm-copy reveal">
-                    <div class="eyebrow">
-                        <span class="lm-free-tag">0 €</span> Für D2C-Founder
-                    </div>
-                    <h2 class="section-title">
-                        Dein kompletter Brand<br>
-                        Style Guide <span class="accent">in 24h</span>.
-                    </h2>
-                    <p class="section-sub">
-                        Kein Pitch. Keine Haken. Wir bauen dir einen interaktiven Brand Style Guide mit Logo-Nutzung, Farbsystem, Typografie, Bildsprache und Brand Voice. Genau so, wie wir ihn sonst nur für zahlende Kunden liefern. Du gibst uns ein paar Infos, wir liefern innerhalb von 24 Stunden — per WhatsApp direkt auf dein Handy.
-                    </p>
-                    <ul class="lm-benefits">
-                        <li>
-                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                            <span><strong>Logo-Rules, Farbsystem & Typografie</strong>. Plus Spacing, Iconografie und UI-Tokens, die du sofort nutzen kannst.</span>
-                        </li>
-                        <li>
-                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                            <span><strong>Brand Voice, Dos & Don'ts, Bildsprache</strong>. Alles was dein Team (und dein Designer) braucht, um konsistent zu kommunizieren.</span>
-                        </li>
-                        <li>
-                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                            <span><strong>Interaktives HTML-Dokument</strong>. Kein totes PDF, live nutzbar, teilbar mit Copy-to-Clipboard für Farben und Snippets.</span>
-                        </li>
-                        <li>
-                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                            <span><strong>In 24h bei dir</strong>. Garantiert. Per WhatsApp direkt auf dein Handy.</span>
-                        </li>
-                    </ul>
-                    <div class="lm-trust-row">
-                        <span>100 % kostenlos</span>
-                        <span>Keine Kreditkarte</span>
-                        <span>Kein Newsletter</span>
-                    </div>
-                    <button type="button" class="lm-cta" id="lmOpenBtn" data-lm-open data-magnet="style-guide" aria-haspopup="dialog" aria-controls="lmModal">
-                        <span class="lm-cta-shine" aria-hidden="true"></span>
-                        <span class="lm-cta-text">Kostenlosen Style Guide anfordern</span>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <p class="lm-cta-micro">In 24h bei dir · Keine Weiterleitung · Kein Newsletter</p>
-                    <div class="lm-second-magnet">
-                        <span class="lm-second-magnet-label">Oder lieber technisch?</span>
-                        <button type="button" class="lm-second-magnet-cta" data-lm-open data-magnet="ai-readiness-check" aria-haspopup="dialog" aria-controls="lmModal">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
-                            <span>Kostenloser AI Readiness Check für deinen Store</span>
-                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="lm-showcase reveal" id="lmShowcase">
-                    <div class="lm-showcase-tag">
-                        <span class="lm-pulse" aria-hidden="true"></span>
-                        Live Beispiel · Echter Kunde
-                    </div>
-                    <div class="lm-window" role="figure" aria-label="Beispiel: ARCTIVE Brand Style Guide">
-                        <div class="lm-window-chrome">
-                            <div class="lm-window-traffic" aria-hidden="true">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="lm-window-url">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <span><span class="lm-window-host">brand-guide.bb-brands.de</span>/arctive</span>
-                            </div>
-                            <div class="lm-window-actions">
-                                <a class="lm-window-newtab" href="/preview/arctive-style-guide.html" target="_blank" rel="noopener" aria-label="Beispiel im neuen Tab öffnen">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="lm-window-frame">
-                            <video
-                                class="lm-window-video"
-                                src="https://jm1dlc1r0alm6hwf.public.blob.vercel-storage.com/video/arctive-preview.mov"
-                                autoplay
-                                loop
-                                muted
-                                playsinline
-                                preload="metadata"
-                                aria-label="ARCTIVE Brand Style Guide — Beispiel-Video"
-                            ></video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ====== LEAD FORM MODAL ====== -->
-        <div class="lm-modal" id="lmModal" hidden role="dialog" aria-modal="true" aria-labelledby="lmModalTitle">
-            <div class="lm-modal-backdrop" data-lm-close></div>
-            <div class="lm-modal-card" role="document">
-                <button type="button" class="lm-modal-close" data-lm-close aria-label="Schließen">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                </button>
-                <div class="lm-modal-body">
-                    <div class="lm-form-head" id="lmFormHead">
-                        <div class="lm-form-eyebrow" id="lmFormEyebrow">Style Guide anfordern</div>
-                        <h3 id="lmModalTitle">Ein paar Infos — und er ist unterwegs.</h3>
-                    </div>
-                    <!--
-                      Backend: /api/leads (Vercel Serverless Function → Upstash Redis)
-                      Setup-Guide: SETUP-LEADS.md
-                      Lead-Verwaltung: /admin
-                    -->
-                    <form class="lm-form" id="lmForm" action="/api/leads" method="POST" novalidate>
-                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-                            <input type="hidden" name="magnet" id="lmMagnetField" value="style-guide">
-
-                            <div class="lm-row-2">
-                                <div class="lm-field">
-                                    <label class="lm-label" for="lm-name">Dein Name</label>
-                                    <input type="text" id="lm-name" name="name" required placeholder="Max Mustermann" autocomplete="name">
-                                </div>
-                                <div class="lm-field">
-                                    <label class="lm-label" for="lm-company">Unternehmen</label>
-                                    <input type="text" id="lm-company" name="company" required placeholder="Muster GmbH" autocomplete="organization">
-                                </div>
-                            </div>
-                            <div class="lm-field">
-                                <label class="lm-label" for="lm-website">Webseite</label>
-                                <input type="url" id="lm-website" name="website" required placeholder="https://deine-brand.de" autocomplete="url">
-                            </div>
-                            <div class="lm-field" id="lmPhoneField">
-                                <label class="lm-label" for="lm-phone">Deine WhatsApp-Nummer</label>
-                                <input type="tel" id="lm-phone" name="phone" required placeholder="+49 170 1234567" autocomplete="tel">
-                            </div>
-                            <input type="hidden" name="delivery" value="whatsapp">
-
-                            <div class="lm-consents">
-                                <label class="lm-consent" id="lmConsentGuide">
-                                    <input type="checkbox" name="consentGuide" required>
-                                    <span class="lm-consent-box" aria-hidden="true"></span>
-                                    <span class="lm-consent-text">
-                                        <span class="lm-consent-tag required">Pflicht</span>
-                                        Ich willige ein, dass BB Brands meine Angaben sowie öffentlich zugängliche Inhalte meiner Webseite (Markenelemente, Texte, Store-Struktur) verarbeitet, um meinen kostenlosen Lead-Magnet (Brand Style Guide oder AI Readiness Check) zu erstellen und mir per <strong>WhatsApp</strong> zuzustellen. Dabei werden die relevanten Inhalte zur automatisierten Analyse an <strong>Manus&nbsp;AI</strong> (Butterfly&nbsp;Effect&nbsp;Pte&nbsp;Ltd, Singapur) übermittelt, ein Drittland ohne EU-Angemessenheitsbeschluss. Die Zustellung erfolgt über <strong>WhatsApp</strong> (Meta&nbsp;Platforms&nbsp;Inc., USA); meine Telefonnummer wird ausschließlich für die Auslieferung verwendet und nicht für Marketing-Zwecke genutzt. Details und meine Rechte in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.
-                                    </span>
-                                </label>
-                                <label class="lm-consent" id="lmConsentReference">
-                                    <input type="checkbox" name="consentReference">
-                                    <span class="lm-consent-box" aria-hidden="true"></span>
-                                    <span class="lm-consent-text">
-                                        <span class="lm-consent-tag optional">Optional</span>
-                                        Ich stimme zu, dass BB Brands mein Firmenlogo und meinen Firmennamen als Referenzkunde auf <strong>bb-brands.de</strong> anzeigen darf. Diese Zustimmung ist freiwillig, jederzeit per E-Mail an <a href="mailto:info@bb-brands.de">info@bb-brands.de</a> widerruflich und hat keinen Einfluss auf die Erstellung des Style Guides.
-                                    </span>
-                                </label>
-                            </div>
-
-                            <button type="submit" class="lm-submit">
-                                <span class="lm-submit-text">Kostenlosen Style Guide anfordern</span>
-                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </button>
-                            <p class="lm-micro">Innerhalb von 24h bei dir. Keine Weiterleitung, keine Abo-Falle, kein Newsletter.</p>
-                        </form>
-
-                        <div class="lm-success" id="lmSuccess" hidden>
-                            <div class="lm-success-icon" aria-hidden="true">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                            </div>
-                            <h3>Passt! Wir sind dran.</h3>
-                            <p><span id="lmSuccessLead">Du bekommst deinen Brand Style Guide</span> innerhalb der nächsten 24 Stunden per <strong>WhatsApp</strong>. Halte dein Handy bereit!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ============ WHATSAPP CHAT MODAL ============ -->
     <!--
@@ -5123,15 +4973,187 @@
             </div>
 
             <div class="guarantees-cta reveal">
-                <button type="button" class="btn-primary btn-whatsapp" data-wa-open data-wa-source="guarantees" aria-haspopup="dialog" aria-controls="waModal">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
-                    Schreib uns auf WhatsApp
-                </button>
-                <p class="guarantees-cta-meta">2 Min. · unverbindlich · direkt mit Moritz · Antwort innerhalb von 2 Stunden</p>
+                <a href="erstgespraech.html" class="btn-primary btn-call" data-cta-source="guarantees">
+                    Erstgespräch buchen
+                    <span aria-hidden="true" style="margin-left: 6px;">→</span>
+                </a>
+                <p class="guarantees-cta-meta">30 Min. · unverbindlich · direkt mit Moritz · Angebot in 24h</p>
             </div>
         </div>
     </section>
 
+    <!-- ============ LEAD MAGNET ============ -->
+    <section class="leadmagnet" id="gratis-guide" aria-label="Kostenloser Brand Style Guide">
+        <div class="lm-bg-glow" aria-hidden="true"></div>
+        <div class="lm-bg-glow right" aria-hidden="true"></div>
+        <div class="container">
+            <div class="lm-inner">
+                <div class="lm-copy reveal">
+                    <div class="eyebrow">
+                        <span class="lm-free-tag">0 €</span> Für D2C-Founder
+                    </div>
+                    <h2 class="section-title">
+                        Dein kompletter Brand<br>
+                        Style Guide <span class="accent">in 24h</span>.
+                    </h2>
+                    <p class="section-sub">
+                        Kein Pitch. Keine Haken. Wir bauen dir einen interaktiven Brand Style Guide mit Logo-Nutzung, Farbsystem, Typografie, Bildsprache und Brand Voice. Genau so, wie wir ihn sonst nur für zahlende Kunden liefern. Du gibst uns ein paar Infos, wir liefern innerhalb von 24 Stunden — per WhatsApp direkt auf dein Handy.
+                    </p>
+                    <ul class="lm-benefits">
+                        <li>
+                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            <span><strong>Logo-Rules, Farbsystem & Typografie</strong>. Plus Spacing, Iconografie und UI-Tokens, die du sofort nutzen kannst.</span>
+                        </li>
+                        <li>
+                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            <span><strong>Brand Voice, Dos & Don'ts, Bildsprache</strong>. Alles was dein Team (und dein Designer) braucht, um konsistent zu kommunizieren.</span>
+                        </li>
+                        <li>
+                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            <span><strong>Interaktives HTML-Dokument</strong>. Kein totes PDF, live nutzbar, teilbar mit Copy-to-Clipboard für Farben und Snippets.</span>
+                        </li>
+                        <li>
+                            <span class="lm-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            <span><strong>In 24h bei dir</strong>. Garantiert. Per WhatsApp direkt auf dein Handy.</span>
+                        </li>
+                    </ul>
+                    <div class="lm-trust-row">
+                        <span>100 % kostenlos</span>
+                        <span>Keine Kreditkarte</span>
+                        <span>Kein Newsletter</span>
+                    </div>
+                    <button type="button" class="lm-cta" id="lmOpenBtn" data-lm-open data-magnet="style-guide" aria-haspopup="dialog" aria-controls="lmModal">
+                        <span class="lm-cta-shine" aria-hidden="true"></span>
+                        <span class="lm-cta-text">Kostenlosen Style Guide anfordern</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <p class="lm-cta-micro">In 24h bei dir · Keine Weiterleitung · Kein Newsletter</p>
+                    <div class="lm-second-magnet">
+                        <span class="lm-second-magnet-label">Oder lieber technisch?</span>
+                        <button type="button" class="lm-second-magnet-cta" data-lm-open data-magnet="ai-readiness-check" aria-haspopup="dialog" aria-controls="lmModal">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+                            <span>Kostenloser AI Readiness Check für deinen Store</span>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lm-showcase reveal" id="lmShowcase">
+                    <div class="lm-showcase-tag">
+                        <span class="lm-pulse" aria-hidden="true"></span>
+                        Live Beispiel · Echter Kunde
+                    </div>
+                    <div class="lm-window" role="figure" aria-label="Beispiel: ARCTIVE Brand Style Guide">
+                        <div class="lm-window-chrome">
+                            <div class="lm-window-traffic" aria-hidden="true">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="lm-window-url">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                <span><span class="lm-window-host">brand-guide.bb-brands.de</span>/arctive</span>
+                            </div>
+                            <div class="lm-window-actions">
+                                <a class="lm-window-newtab" href="/preview/arctive-style-guide.html" target="_blank" rel="noopener" aria-label="Beispiel im neuen Tab öffnen">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lm-window-frame">
+                            <video
+                                class="lm-window-video"
+                                src="https://jm1dlc1r0alm6hwf.public.blob.vercel-storage.com/video/arctive-preview.mov"
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                                preload="metadata"
+                                aria-label="ARCTIVE Brand Style Guide — Beispiel-Video"
+                            ></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== LEAD FORM MODAL ====== -->
+        <div class="lm-modal" id="lmModal" hidden role="dialog" aria-modal="true" aria-labelledby="lmModalTitle">
+            <div class="lm-modal-backdrop" data-lm-close></div>
+            <div class="lm-modal-card" role="document">
+                <button type="button" class="lm-modal-close" data-lm-close aria-label="Schließen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="lm-modal-body">
+                    <div class="lm-form-head" id="lmFormHead">
+                        <div class="lm-form-eyebrow" id="lmFormEyebrow">Style Guide anfordern</div>
+                        <h3 id="lmModalTitle">Ein paar Infos — und er ist unterwegs.</h3>
+                    </div>
+                    <!--
+                      Backend: /api/leads (Vercel Serverless Function → Upstash Redis)
+                      Setup-Guide: SETUP-LEADS.md
+                      Lead-Verwaltung: /admin
+                    -->
+                    <form class="lm-form" id="lmForm" action="/api/leads" method="POST" novalidate>
+                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                            <input type="hidden" name="magnet" id="lmMagnetField" value="style-guide">
+
+                            <div class="lm-row-2">
+                                <div class="lm-field">
+                                    <label class="lm-label" for="lm-name">Dein Name</label>
+                                    <input type="text" id="lm-name" name="name" required placeholder="Max Mustermann" autocomplete="name">
+                                </div>
+                                <div class="lm-field">
+                                    <label class="lm-label" for="lm-company">Unternehmen</label>
+                                    <input type="text" id="lm-company" name="company" required placeholder="Muster GmbH" autocomplete="organization">
+                                </div>
+                            </div>
+                            <div class="lm-field">
+                                <label class="lm-label" for="lm-website">Webseite</label>
+                                <input type="url" id="lm-website" name="website" required placeholder="https://deine-brand.de" autocomplete="url">
+                            </div>
+                            <div class="lm-field" id="lmPhoneField">
+                                <label class="lm-label" for="lm-phone">Deine WhatsApp-Nummer</label>
+                                <input type="tel" id="lm-phone" name="phone" required placeholder="+49 170 1234567" autocomplete="tel">
+                            </div>
+                            <input type="hidden" name="delivery" value="whatsapp">
+
+                            <div class="lm-consents">
+                                <label class="lm-consent" id="lmConsentGuide">
+                                    <input type="checkbox" name="consentGuide" required>
+                                    <span class="lm-consent-box" aria-hidden="true"></span>
+                                    <span class="lm-consent-text">
+                                        <span class="lm-consent-tag required">Pflicht</span>
+                                        Ich willige ein, dass BB Brands meine Angaben sowie öffentlich zugängliche Inhalte meiner Webseite (Markenelemente, Texte, Store-Struktur) verarbeitet, um meinen kostenlosen Lead-Magnet (Brand Style Guide oder AI Readiness Check) zu erstellen und mir per <strong>WhatsApp</strong> zuzustellen. Dabei werden die relevanten Inhalte zur automatisierten Analyse an <strong>Manus&nbsp;AI</strong> (Butterfly&nbsp;Effect&nbsp;Pte&nbsp;Ltd, Singapur) übermittelt, ein Drittland ohne EU-Angemessenheitsbeschluss. Die Zustellung erfolgt über <strong>WhatsApp</strong> (Meta&nbsp;Platforms&nbsp;Inc., USA); meine Telefonnummer wird ausschließlich für die Auslieferung verwendet und nicht für Marketing-Zwecke genutzt. Details und meine Rechte in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+                                    </span>
+                                </label>
+                                <label class="lm-consent" id="lmConsentReference">
+                                    <input type="checkbox" name="consentReference">
+                                    <span class="lm-consent-box" aria-hidden="true"></span>
+                                    <span class="lm-consent-text">
+                                        <span class="lm-consent-tag optional">Optional</span>
+                                        Ich stimme zu, dass BB Brands mein Firmenlogo und meinen Firmennamen als Referenzkunde auf <strong>bb-brands.de</strong> anzeigen darf. Diese Zustimmung ist freiwillig, jederzeit per E-Mail an <a href="mailto:info@bb-brands.de">info@bb-brands.de</a> widerruflich und hat keinen Einfluss auf die Erstellung des Style Guides.
+                                    </span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="lm-submit">
+                                <span class="lm-submit-text">Kostenlosen Style Guide anfordern</span>
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                            <p class="lm-micro">Innerhalb von 24h bei dir. Keine Weiterleitung, keine Abo-Falle, kein Newsletter.</p>
+                        </form>
+
+                        <div class="lm-success" id="lmSuccess" hidden>
+                            <div class="lm-success-icon" aria-hidden="true">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <h3>Passt! Wir sind dran.</h3>
+                            <p><span id="lmSuccessLead">Du bekommst deinen Brand Style Guide</span> innerhalb der nächsten 24 Stunden per <strong>WhatsApp</strong>. Halte dein Handy bereit!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ============ ABOUT ============ -->
     <section class="about" id="about">
         <div class="about-grid">
@@ -5393,9 +5415,13 @@
                     </li>
                 </ul>
                 <div class="final-cta-actions">
-                    <button type="button" class="btn-primary btn-whatsapp" data-wa-open data-wa-source="final-cta" aria-haspopup="dialog" aria-controls="waModal">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
-                        Schreib uns auf WhatsApp
+                    <a href="erstgespraech.html" class="btn-primary btn-call" data-cta-source="final-cta">
+                        Erstgespräch buchen
+                        <span aria-hidden="true" style="margin-left: 6px;">→</span>
+                    </a>
+                    <button type="button" class="btn-secondary btn-whatsapp" data-wa-open data-wa-source="final-cta-secondary" aria-haspopup="dialog" aria-controls="waModal">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
+                        Direkt schreiben
                     </button>
                 </div>
             </div>
