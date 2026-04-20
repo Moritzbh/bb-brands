@@ -663,7 +663,8 @@ function buildPushPayload(record) {
       record.website ? `🌐 ${record.website}` : null,
       channelLabel,
       record.consentReference ? '⭐ Referenz-OK erteilt' : null,
-      time ? `\n🕐 ${time} Uhr` : null,
+      `\n${sourceLine}`,
+      time ? `🕐 ${time} Uhr` : null,
     ].filter(Boolean);
     return {
       title,
@@ -685,7 +686,8 @@ function buildPushPayload(record) {
     record.email ? `✉️ ${record.email}` : null,
     record.phone ? `📱 ${record.phone}` : null,
     record.website ? `🌐 ${record.website}` : null,
-    time ? `\n🕐 ${time} Uhr` : null,
+    `\n${sourceLine}`,
+    time ? `🕐 ${time} Uhr` : null,
   ].filter(Boolean);
   return {
     title: genericTitle,
