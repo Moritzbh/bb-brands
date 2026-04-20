@@ -481,62 +481,21 @@ async function sendWhatsAppLeadEmail(record) {
 async function sendPushNotification(record) {
   if (!NTFY_TOPIC) return; // silent skip — wenn NTFY_TOPIC nicht gesetzt, keine Push
 
-  let title = 'Neuer Lead · BB Brands';
-  let message = '';
-  let priority = 'default';
-  let tags = 'bell';
-
-  if (record.magnet === 'erstgespraech') {
-    title = `Lead · ${record.brand || record.name}`;
-    const parts = [
-      record.name,
-      record.email ? `✉ ${record.email}` : null,
-      record.umsatz ? `Umsatz: ${UMSATZ_PUSH_LABELS[record.umsatz] || record.umsatz}` : null,
-      record.baustelle ? `Baustelle: ${BAUSTELLE_PUSH_LABELS[record.baustelle] || record.baustelle}` : null,
-      record.timeline ? `Timeline: ${TIMELINE_PUSH_LABELS[record.timeline] || record.timeline}` : null,
-      record.wasVerkauft ? `→ ${record.wasVerkauft}` : null,
-    ].filter(Boolean);
-    message = parts.join('\n');
-    // sofort-Timeline → High Priority (Sound + Vibration stärker)
-    priority = record.timeline === 'sofort' ? 'high' : 'default';
-    tags = 'fire,moneybag';
-  } else if (record.magnet === 'whatsapp-chat') {
-    title = `WhatsApp-Lead · ${record.brand}`;
-    const painLabel = PAIN_LABELS[record.pain] || record.pain;
-    message = [
-      record.name,
-      `📱 ${record.phone}`,
-      `Engpass: ${painLabel}`,
-      record.website ? record.website : null,
-    ].filter(Boolean).join('\n');
-    priority = 'high';
-    tags = 'speech_balloon';
-  } else {
-    // style-guide / ai-readiness-check
-    const magnetLabel = record.magnet === 'ai-readiness-check' ? 'AI-Check' : 'Style-Guide';
-    title = `${magnetLabel} · ${record.company || record.name}`;
-    message = [
-      record.name,
-      record.email ? `✉ ${record.email}` : null,
-      record.phone ? `📱 ${record.phone}` : null,
-      record.website ? record.website : null,
-    ].filter(Boolean).join('\n');
-    tags = 'rocket';
-  }
+  const payload = buildPushPayload(record);
 
   try {
     const resp = await fetch(`${NTFY_SERVER}/${NTFY_TOPIC}`, {
       method: 'POST',
       headers: {
         // ntfy nutzt HTTP-Headers für Metadata. Latin-1-safe damit Umlaute nicht crashen.
-        'Title': encodeLatin1Header(title),
-        'Priority': priority,
-        'Tags': tags,
-        'Click': 'https://bb-brands.de/admin',
-        'Actions': 'view, Admin öffnen, https://bb-brands.de/admin, clear=true',
+        'Title': encodeLatin1Header(payload.title),
+        'Priority': payload.priority,
+        'Tags': payload.tags,
+        'Click': payload.clickUrl,
+        'Actions': payload.actions,
         'Content-Type': 'text/plain; charset=utf-8',
       },
-      body: message,
+      body: payload.message,
     });
     if (!resp.ok) {
       const errText = await resp.text();
@@ -546,6 +505,141 @@ async function sendPushNotification(record) {
     // Fehler nicht weiterwerfen — Push ist best-effort, blockiert nicht den Lead-Save
     console.error('[ntfy] send failed:', err.message);
   }
+}
+
+// ----- Push-Payload-Builder pro Magnet-Typ -----------------
+// Baut Title, Message, Priority, Tags, Actions abhängig vom Lead-Typ.
+// Neuer Magnet-Typ? → unten im else-Zweig wird er generisch verarbeitet,
+// plus optional expliziter Case für reicheres Formatting.
+function buildPushPayload(record) {
+  const ADMIN_URL = 'https://bb-brands.de/admin';
+  const time = record.createdAt
+    ? new Date(record.createdAt).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })
+    : '';
+
+  // Shared: Is this a high-value lead? (→ High-Priority Push)
+  const isHighValue =
+    (record.umsatz && (record.umsatz === '25-100k' || record.umsatz === '100k+')) ||
+    (record.budget && record.budget === '20k+') ||
+    record.timeline === 'sofort' ||
+    record.magnet === 'whatsapp-chat';
+
+  // Shared: Action-Buttons bauen (max 3 — ntfy-Limit)
+  // Labels bewusst ohne Umlaute, damit HTTP-Header Latin-1 safe bleibt.
+  const actions = [];
+  const phoneClean = (record.phone || '').replace(/\D/g, '');
+  if (phoneClean) {
+    actions.push(`view, WhatsApp, https://wa.me/${phoneClean}, clear=true`);
+  } else if (record.email) {
+    actions.push(`view, Antworten, mailto:${record.email}?subject=Deine%20Anfrage%20bei%20BB%20Brands, clear=false`);
+  }
+  actions.push(`view, Admin, ${ADMIN_URL}, clear=true`);
+  if (record.website) {
+    const webHref = record.website.startsWith('http') ? record.website : `https://${record.website}`;
+    actions.push(`view, Website, ${webHref}, clear=false`);
+  }
+  const actionsHeader = actions.slice(0, 3).join('; ');
+
+  // === ERSTGESPRÄCH ===
+  if (record.magnet === 'erstgespraech') {
+    const prefix = isHighValue ? '🔥 HOT LEAD · ' : 'Lead · ';
+    const title = `${prefix}${record.brand || record.name}`;
+    const lines = [
+      `👤 ${record.name}`,
+      record.email ? `✉️ ${record.email}` : null,
+      record.umsatz ? `💰 Umsatz: ${UMSATZ_PUSH_LABELS[record.umsatz] || record.umsatz}` : null,
+      record.baustelle ? `🎯 Baustelle: ${BAUSTELLE_PUSH_LABELS[record.baustelle] || record.baustelle}` : null,
+      record.timeline ? `⏱ Timeline: ${TIMELINE_PUSH_LABELS[record.timeline] || record.timeline}` : null,
+      record.budget ? `💶 Budget: ${record.budget}` : null,
+      record.wasVerkauft ? `\n📝 ${record.wasVerkauft}` : null,
+      time ? `\n🕐 ${time} Uhr` : null,
+    ].filter(Boolean);
+    return {
+      title,
+      message: lines.join('\n'),
+      priority: isHighValue ? 'high' : 'default',
+      tags: isHighValue ? 'fire,moneybag' : 'mailbox_with_mail',
+      clickUrl: ADMIN_URL,
+      actions: actionsHeader,
+    };
+  }
+
+  // === WHATSAPP-CHAT ===
+  if (record.magnet === 'whatsapp-chat') {
+    const painLabel = PAIN_LABELS[record.pain] || record.pain;
+    const title = `📱 WhatsApp-Lead · ${record.brand}`;
+    const lines = [
+      `👤 ${record.name}`,
+      record.phone ? `📱 ${record.phone}` : null,
+      painLabel ? `🎯 Engpass: ${painLabel}` : null,
+      record.website ? `🌐 ${record.website}` : null,
+      record.context ? `\n💬 ${record.context}` : null,
+      time ? `\n🕐 ${time} Uhr` : null,
+    ].filter(Boolean);
+    // WhatsApp-Primary: Chat direkt öffnen
+    const waAction = phoneClean
+      ? `view, Chat, https://wa.me/${phoneClean}, clear=true`
+      : null;
+    const whatsappActions = [
+      waAction,
+      `view, Admin, ${ADMIN_URL}, clear=true`,
+      record.website ? `view, Website, ${record.website.startsWith('http') ? record.website : 'https://' + record.website}, clear=false` : null,
+    ].filter(Boolean).slice(0, 3).join('; ');
+    return {
+      title,
+      message: lines.join('\n'),
+      priority: 'high',
+      tags: 'speech_balloon,fire',
+      clickUrl: phoneClean ? `https://wa.me/${phoneClean}` : ADMIN_URL,
+      actions: whatsappActions,
+    };
+  }
+
+  // === STYLE-GUIDE / AI-READINESS-CHECK ===
+  if (record.magnet === 'style-guide' || record.magnet === 'ai-readiness-check') {
+    const magnetLabel = record.magnet === 'ai-readiness-check' ? 'AI-Check' : 'Style-Guide';
+    const title = `🎁 ${magnetLabel} · ${record.company || record.name}`;
+    const channelLabel = record.delivery === 'whatsapp' ? '📱 via WhatsApp' : '✉️ via E-Mail';
+    const lines = [
+      `👤 ${record.name}`,
+      record.company ? `🏢 ${record.company}` : null,
+      record.email ? `✉️ ${record.email}` : null,
+      record.phone ? `📱 ${record.phone}` : null,
+      record.website ? `🌐 ${record.website}` : null,
+      channelLabel,
+      record.consentReference ? '⭐ Referenz-OK erteilt' : null,
+      time ? `\n🕐 ${time} Uhr` : null,
+    ].filter(Boolean);
+    return {
+      title,
+      message: lines.join('\n'),
+      priority: 'default',
+      tags: record.consentReference ? 'rocket,star' : 'rocket',
+      clickUrl: ADMIN_URL,
+      actions: actionsHeader,
+    };
+  }
+
+  // === GENERISCHER FALLBACK für zukünftige Magnet-Typen ===
+  // Best-Effort: greift auf common fields zu, damit neue Magnets out-of-the-box
+  // mindestens eine verständliche Push produzieren.
+  const genericTitle = `Neue Anfrage · ${record.brand || record.company || record.name || 'Unbekannt'}`;
+  const genericLines = [
+    record.magnet ? `[${record.magnet}]` : null,
+    record.name ? `👤 ${record.name}` : null,
+    record.email ? `✉️ ${record.email}` : null,
+    record.phone ? `📱 ${record.phone}` : null,
+    record.website ? `🌐 ${record.website}` : null,
+    time ? `\n🕐 ${time} Uhr` : null,
+  ].filter(Boolean);
+  return {
+    title: genericTitle,
+    message: genericLines.join('\n'),
+    priority: 'default',
+    tags: 'bell',
+    clickUrl: ADMIN_URL,
+    actions: actionsHeader,
+  };
 }
 
 // HTTP-Header dürfen strikt genommen nur Latin-1 sein. ntfy empfiehlt
