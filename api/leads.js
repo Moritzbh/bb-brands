@@ -236,8 +236,10 @@ module.exports = async function handler(req, res) {
 
         await redis('HSET', HASH_KEY, id, JSON.stringify(record));
 
-        // Fire-and-forget Push-Notification (blockiert Response nicht)
-        sendPushNotification(record).catch((err) =>
+        // Await: Vercel Serverless killed die Function sofort nach res.end(),
+        // dadurch wurde der fire-and-forget fetch() zu ntfy mittendrin abgebrochen.
+        // Kostet ~200-500ms Response-Time, ist aber zuverlässig.
+        await sendPushNotification(record).catch((err) =>
           console.error('[/api/leads] push notify failed:', err)
         );
 
@@ -289,8 +291,8 @@ module.exports = async function handler(req, res) {
           console.error('[/api/leads] email notify failed:', err)
         );
 
-        // Fire-and-forget Push-Notification
-        sendPushNotification(record).catch((err) =>
+        // Await: siehe Kommentar oben beim Erstgespräch-Handler
+        await sendPushNotification(record).catch((err) =>
           console.error('[/api/leads] push notify failed:', err)
         );
 
@@ -342,8 +344,8 @@ module.exports = async function handler(req, res) {
 
       await redis('HSET', HASH_KEY, id, JSON.stringify(record));
 
-      // Fire-and-forget Push-Notification
-      sendPushNotification(record).catch((err) =>
+      // Await: siehe Kommentar oben
+      await sendPushNotification(record).catch((err) =>
         console.error('[/api/leads] push notify failed:', err)
       );
 
@@ -514,7 +516,13 @@ async function sendPushNotification(record) {
     console.log(`[ntfy] publish ok — lead ${record.id}`);
   } catch (err) {
     // Fehler nicht weiterwerfen — Push ist best-effort, blockiert nicht den Lead-Save
-    console.error('[ntfy] send failed:', err.message, '| URL:', publishUrl);
+    // err.cause hat bei Node fetch "fetch failed" den echten Grund (DNS, Timeout, TLS)
+    console.error(
+      '[ntfy] send failed:',
+      err.message,
+      '| cause:', err.cause?.message || err.cause?.code || 'n/a',
+      '| URL:', publishUrl
+    );
   }
 }
 
